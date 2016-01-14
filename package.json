@@ -1,0 +1,25 @@
+{
+  "name": "kolour",
+  "version": "0.0.1",
+  "description": "A simple color manipulation library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t28hub/kolour.git"
+  },
+  "keywords": [
+    "color",
+    "color-space",
+    "parser",
+    "converter"
+  ],
+  "author": "Tatsuya Maki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/t28hub/kolour/issues"
+  },
+  "homepage": "https://github.com/t28hub/kolour#readme"
+}
