@@ -59,6 +59,9 @@ export class Rgb extends Space {
   isValid() {
     let values = this.values();
     for (let value of values) {
+      if (!Number.isInteger(value)) {
+        return false;
+      }
       if (value < 0x00 || value > 0xFF) {
         return false;
       }
