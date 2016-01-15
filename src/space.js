@@ -234,3 +234,46 @@ export class Hsl extends Space {
     return m1;
   }
 }
+
+export class Cmyk extends Space {
+  static KEY_C = 'c';
+  static KEY_M = 'm';
+  static KEY_Y = 'y';
+  static KEY_K = 'k';
+
+  constructor(c, m, y, k) {
+    super([[Cmyk.KEY_C, c], [Cmyk.KEY_M, m], [Cmyk.KEY_Y, y], [Cmyk.KEY_K]]);
+  }
+
+  isValid() {
+    for (let value of this.values()) {
+      if (!Number.isFinite(value)) {
+        return false;
+      }
+      if (value < 0 || value > 1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  clone() {
+    return new Cmyk(this.c(), this.m(), this.y(), this.k());
+  }
+
+  c(value = null) {
+    return this.getOrSet(Cmyk.KEY_C, value);
+  }
+
+  m(value = null) {
+    return this.getOrSet(Cmyk.KEY_M, value);
+  }
+
+  y(value = null) {
+    return this.getOrSet(Cmyk.KEY_Y, value);
+  }
+
+  k(value = null) {
+    return this.getOrSet(Cmyk.KEY_K, value);
+  }
+}
