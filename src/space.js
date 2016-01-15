@@ -1,5 +1,3 @@
-import Utils from "./utils";
-
 class Space {
   constructor(iterable) {
     if (!iterable) {
