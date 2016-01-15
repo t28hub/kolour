@@ -36,6 +36,10 @@ export class Rgb extends Space {
     super([[Rgb.KEY_R, r], [Rgb.KEY_G, g], [Rgb.KEY_B, b]]);
   }
 
+  toString() {
+    return `rgb(${this.r()}, ${this.g()}, ${this.b()})`;
+  }
+
   r(value = null) {
     return this.getOrSet(Rgb.KEY_R, value);
   }
