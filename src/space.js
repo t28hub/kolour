@@ -34,6 +34,10 @@ class Space {
     throw new Error("hsl() is not implemented");
   }
 
+  cmyk() {
+    throw new Error("cmyk() is not implemented");
+  }
+
   get(key) {
     return this.table.get(key);
   }
@@ -137,6 +141,22 @@ export class Rgb extends Space {
 
     return new Hsl(h, s, l);
   }
+
+  cmyk() {
+    let r = this.r() / 0xFF;
+    let g = this.g() / 0xFF;
+    let b = this.b() / 0xFF;
+
+    let k = 1 - Math.max(r, g, b);
+    if (k === 1) {
+      return new Cmyk(0, 0, 0, 1);
+    }
+
+    let c = (1 - r - k) / (1 - k);
+    let m = (1 - g - k) / (1 - k);
+    let y = (1 - b - k) / (1 - k);
+    return new Cmyk(c, m, y, k);
+  }
 }
 
 export class Hsl extends Space {
@@ -215,6 +235,10 @@ export class Hsl extends Space {
 
   hsl() {
     return this;
+  }
+
+  cmyk() {
+    return this.rgb().cmyk();
   }
 
   static hueToRgb(m1, m2, h) {
