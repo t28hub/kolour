@@ -6,6 +6,14 @@ class Space {
     this.table = new Map(iterable);
   }
 
+  toString() {
+    let object = Object.create(null);
+    for (let [key, value] of this.table) {
+      object[key] = value;
+    }
+    return JSON.stringify(object);
+  }
+
   isValid() {
     return false;
   }
