@@ -316,4 +316,8 @@ export class Cmyk extends Space {
     let b = 0xFF * (1 - this.y()) * (1 - k);
     return new Rgb(r, g, b);
   }
+
+  hsl() {
+    return this.rgb().hsl();
+  }
 }
