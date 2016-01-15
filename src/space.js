@@ -1,9 +1,17 @@
+import Utils from "./utils";
+
+console.log(Utils.toString.toString("aaa"));
+
 class Space {
   constructor(iterable) {
     if (!iterable) {
       throw new Error();
     }
     this.table = new Map(iterable);
+  }
+
+  isValid() {
+    return false;
   }
 
   clone() {
@@ -44,6 +52,16 @@ export class Rgb extends Space {
     return `rgb(${this.r()}, ${this.g()}, ${this.b()})`;
   }
 
+  isValid() {
+    let values = this.values();
+    for (let value of values) {
+      if (value < 0x00 || value > 0xFF) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   clone() {
     return new Rgb(this.r(), this.g(), this.b());
   }
@@ -58,5 +76,9 @@ export class Rgb extends Space {
 
   b(value = null) {
     return this.getOrSet(Rgb.KEY_B, value);
+  }
+
+  static parse(value) {
+
   }
 }
