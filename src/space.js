@@ -22,6 +22,10 @@ class Space {
     throw new Error("clone() is not implemented");
   }
 
+  hex() {
+    throw new Error("hex() is not implemented");
+  }
+
   rgb() {
     throw new Error("rgb() is not implemented");
   }
@@ -88,6 +92,18 @@ export class Rgb extends Space {
 
   b(value = null) {
     return this.getOrSet(Rgb.KEY_B, value);
+  }
+
+  hex() {
+    let parts = [];
+    for (let value of this.values()) {
+      let text = value.toString(16);
+      if (text.length === 1) {
+        text = `0${text}`;
+      }
+      parts.push(text.toUppderCase());
+    }
+    return `#${parts.join('')}`;
   }
 
   rgb() {
@@ -168,6 +184,10 @@ export class Hsl extends Space {
 
   l(value = null) {
     return this.getOrSet(Hsl.KEY_L, value);
+  }
+
+  hex() {
+    return this.rgb().hex();
   }
 
   rgb() {
