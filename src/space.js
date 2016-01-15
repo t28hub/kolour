@@ -1,4 +1,4 @@
-class Space {
+export class Space {
   constructor(iterable) {
     if (!iterable) {
       throw new Error();
