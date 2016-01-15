@@ -1,7 +1,5 @@
 import Utils from "./utils";
 
-console.log(Utils.toString.toString("aaa"));
-
 class Space {
   constructor(iterable) {
     if (!iterable) {
@@ -76,9 +74,5 @@ export class Rgb extends Space {
 
   b(value = null) {
     return this.getOrSet(Rgb.KEY_B, value);
-  }
-
-  static parse(value) {
-
   }
 }
