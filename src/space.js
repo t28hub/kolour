@@ -320,4 +320,8 @@ export class Cmyk extends Space {
   hsl() {
     return this.rgb().hsl();
   }
+
+  cmyk() {
+    return this;
+  }
 }
