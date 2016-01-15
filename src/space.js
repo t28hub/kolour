@@ -300,4 +300,16 @@ export class Cmyk extends Space {
   k(value = null) {
     return this.getOrSet(Cmyk.KEY_K, value);
   }
+
+  rgb() {
+    let k = this.k();
+    if (k === 1) {
+      return new Rgb(0, 0, 0);
+    }
+
+    let r = 0xFF * (1 - this.c()) * (1 - k);
+    let g = 0xFF * (1 - this.m()) * (1 - k);
+    let b = 0xFF * (1 - this.y()) * (1 - k);
+    return new Rgb(r, g, b);
+  }
 }
