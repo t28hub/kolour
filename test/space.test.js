@@ -31,4 +31,63 @@ describe("Rgb", () => {
 
   });
 
+  describe(".isValid()", () => {
+
+    it("should return true if all values are in range", () => {
+      // setup
+      let rgb = new Rgb(32, 64, 128);
+
+      // exercise
+      let isValid = rgb.isValid();
+
+      // verify
+      expect(isValid).toBeTruthy();
+    });
+
+    it("should return true if a value is minimum boundary value", () => {
+      // setup
+      let rgb = new Rgb(32, 64, 0);
+
+      // exercise
+      let isValid = rgb.isValid();
+
+      // verify
+      expect(isValid).toBeTruthy();
+    });
+
+    it("should return true if a value is maximum boundary value", () => {
+      // setup
+      let rgb = new Rgb(32, 64, 255);
+
+      // exercise
+      let isValid = rgb.isValid();
+
+      // verify
+      expect(isValid).toBeTruthy();
+    });
+
+    it("should return false if a value is less than minimum boundary value", () => {
+      // setup
+      let rgb = new Rgb(32, 64, -1);
+
+      // exercise
+      let isValid = rgb.isValid();
+
+      // verify
+      expect(isValid).not.toBeTruthy();
+    });
+
+    it("should return false if a value is greater than maximum boundary value", () => {
+      // setup
+      let rgb = new Rgb(32, 64, 256);
+
+      // exercise
+      let isValid = rgb.isValid();
+
+      // verify
+      expect(isValid).not.toBeTruthy();
+    });
+
+  });
+
 });
