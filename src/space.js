@@ -1,6 +1,3 @@
-const KEYS = Object.freeze(
-);
-
 class Space {
   constructor(iterable) {
     if (!iterable) {
