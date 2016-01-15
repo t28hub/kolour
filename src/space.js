@@ -6,6 +6,10 @@ class Space {
     this.table = new Map(iterable);
   }
 
+  clone() {
+    throw new Error("clone() is not implemented");
+  }
+
   get(key) {
     return this.table.get(key);
   }
@@ -38,6 +42,10 @@ export class Rgb extends Space {
 
   toString() {
     return `rgb(${this.r()}, ${this.g()}, ${this.b()})`;
+  }
+
+  clone() {
+    return new Rgb(this.r(), this.g(), this.b());
   }
 
   r(value = null) {
