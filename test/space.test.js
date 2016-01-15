@@ -16,4 +16,19 @@ describe("Rgb", () => {
 
   });
 
+  describe(".toString()", () => {
+
+    it("should return a text that is specified with rgb(r, g, b)", () => {
+      // setup
+      let rgb = new Rgb(32, 64, 128);
+
+      // exercise
+      let string = rgb.toString();
+
+      // verify
+      expect(string).toBe("rgb(32, 64, 128)");
+    });
+
+  });
+
 });
