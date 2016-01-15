@@ -1,3 +1,6 @@
+const KEYS = Object.freeze(
+);
+
 class Space {
   constructor(iterable) {
     if (!iterable) {
@@ -14,6 +17,14 @@ class Space {
     return this.table.set(key, value);
   }
 
+  getOrSet(key, value = null) {
+    if (value == null) {
+      return this.get(key);
+    }
+    this.set(key, value);
+    return this;
+  }
+
   values() {
     return this.table.values();
   }
@@ -25,6 +36,18 @@ export class Rgb extends Space {
   static KEY_B = "b";
 
   constructor(r, g, b) {
-    super([[self.KEY_R, r], [self.KEY_G, g], [self.KEY_B, b]]);
+    super([[Rgb.KEY_R, r], [Rgb.KEY_G, g], [Rgb.KEY_B, b]]);
+  }
+
+  r(value = null) {
+    return this.getOrSet(Rgb.KEY_R, value);
+  }
+
+  g(value = null) {
+    return this.getOrSet(Rgb.KEY_G, value);
+  }
+
+  b(value = null) {
+    return this.getOrSet(Rgb.KEY_B, value);
   }
 }
