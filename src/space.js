@@ -301,6 +301,10 @@ export class Cmyk extends Space {
     return this.getOrSet(Cmyk.KEY_K, value);
   }
 
+  hex() {
+    return this.rgb().hex();
+  }
+
   rgb() {
     let k = this.k();
     if (k === 1) {
