@@ -82,3 +82,51 @@ export class Rgb extends Space {
     return this.getOrSet(Rgb.KEY_B, value);
   }
 }
+
+export class Hsl extends Space {
+  static KEY_H = "h";
+  static KEY_S = "s";
+  static KEY_L = "l";
+
+  constructor(h, s, l) {
+    super([[Hsl.KEY_H, h], [Hsl.KEY_S, s], [Hsl.KEY_L, l]]);
+  }
+
+  toString() {
+    return `hsl(${this.h()}, ${this.s()}%, ${this.l()}%)`;
+  }
+
+  clone() {
+    return new Hsl(this.h(), this.s(), this.l());
+  }
+
+  isValid() {
+    let h = this.h();
+    if (!Number.isFinite(h) || h < 0 || h > 360) {
+      return false;
+    }
+
+    let s = this.s();
+    if (!Number.isFinite(s) || s < 0 || s > 100) {
+      return false;
+    }
+
+    let l = this.l();
+    if (!Number.isFinite(l) || l < 0 || l > 100) {
+      return false;
+    }
+    return true;
+  }
+
+  h(value = null) {
+    return this.getOrSet(Hsl.KEY_H, value);
+  }
+
+  s(value = null) {
+    return this.getOrSet(Hsl.KEY_S, value);
+  }
+
+  l(value = null) {
+    return this.getOrSet(Hsl.KEY_L, value);
+  }
+}
