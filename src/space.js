@@ -22,6 +22,14 @@ class Space {
     throw new Error("clone() is not implemented");
   }
 
+  rgb() {
+    throw new Error("rgb() is not implemented");
+  }
+
+  hsl() {
+    throw new Error("hsl() is not implemented");
+  }
+
   get(key) {
     return this.table.get(key);
   }
@@ -80,6 +88,10 @@ export class Rgb extends Space {
 
   b(value = null) {
     return this.getOrSet(Rgb.KEY_B, value);
+  }
+
+  rgb() {
+    return this;
   }
 
   hsl() {
@@ -179,6 +191,10 @@ export class Hsl extends Space {
     let g = Math.round(255 * Hsl.hueToRgb(m1, m2, h / 360));
     let b = Math.round(255 * Hsl.hueToRgb(m1, m2, h / 360 - 1 / 3));
     return new Rgb(r, g, b)
+  }
+
+  hsl() {
+    return this;
   }
 
   static hueToRgb(m1, m2, h) {
