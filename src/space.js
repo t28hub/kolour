@@ -34,6 +34,10 @@ class Space {
     throw new Error("hsl() is not implemented");
   }
 
+  hsv() {
+    throw new Error("hsv() is not implemented");
+  }
+
   cmyk() {
     throw new Error("cmyk() is not implemented");
   }
@@ -142,6 +146,36 @@ export class Rgb extends Space {
     return new Hsl(h, s, l);
   }
 
+  hsv() {
+    let r = this.r() / 0xFF;
+    let g = this.g() / 0xFF;
+    let b = this.b() / 0xFF;
+
+    let max   = Math.max(r, g, b);
+    let min   = Math.min(r, g, b);
+    let delta = max - min;
+    if (delta === 0) {
+      return new Hsv(0, 0, max);
+    }
+
+    let h = 0;
+    if (max === r) {
+      h = 60 * (((g - b) / delta) % 6);
+    } else if (max === g) {
+      h = 60 * (((b - r) / delta) + 2);
+    } else if (max === b) {
+      h = 60 * (((r - g) / delta) + 4);
+    }
+
+    let s = 0;
+    if (max !== 0) {
+      s = delta / max;
+    }
+
+    let v = max;
+    return new Hsv(h, s, v);
+  }
+
   cmyk() {
     let r = this.r() / 0xFF;
     let g = this.g() / 0xFF;
@@ -236,6 +270,10 @@ export class Hsl extends Space {
   hsl() {
     return this;
   }
+  
+  hsv() {
+    return this.rgb().hsv();
+  }
 
   cmyk() {
     return this.rgb().cmyk();
@@ -257,6 +295,17 @@ export class Hsl extends Space {
     }
     return m1;
   }
+}
+
+export class Hsv extends Space {
+  static KEY_H = 'h';
+  static KEY_S = 's';
+  static KEY_V = 'v';
+
+  constructor(h, s, v) {
+    super([[Hsv.KEY_H, h], [Hsv.KEY_S, s], [Hsv.KEY_V, v]]);
+  }
+
 }
 
 export class Cmyk extends Space {
@@ -319,6 +368,10 @@ export class Cmyk extends Space {
 
   hsl() {
     return this.rgb().hsl();
+  }
+
+  hsv() {
+    return this.rgb().hsv();
   }
 
   cmyk() {
