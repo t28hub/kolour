@@ -306,6 +306,17 @@ export class Hsv extends Space {
     super([[Hsv.KEY_H, h], [Hsv.KEY_S, s], [Hsv.KEY_V, v]]);
   }
 
+  h(value = null) {
+    return this.getOrSet(Hsv.KEY_H, value);
+  }
+
+  s(value = null) {
+    return this.getOrSet(Hsv.KEY_S, value);
+  }
+
+  v(value = null) {
+    return this.getOrSet(Hsv.KEY_V, value);
+  }
 }
 
 export class Cmyk extends Space {
