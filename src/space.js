@@ -306,6 +306,24 @@ export class Hsv extends Space {
     super([[Hsv.KEY_H, h], [Hsv.KEY_S, s], [Hsv.KEY_V, v]]);
   }
 
+  isValid() {
+    let h = this.h();
+    if (!Number.isFinite(h) || h < 0 || h > 360) {
+      return false;
+    }
+
+    let s = this.s();
+    if (!Number.isFinite(s) || s < 0 || s > 1) {
+      return false;
+    }
+
+    let v = this.v();
+    if (!Number.isFinite(v) || v < 0 || v > 1) {
+      return false;
+    }
+    return true;
+  }
+
   h(value = null) {
     return this.getOrSet(Hsv.KEY_H, value);
   }
