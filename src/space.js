@@ -466,8 +466,26 @@ export class Cmy extends Space {
   }
 
   cmyk() {
-    // TODO: need to fix implementation
-    return this.rgb().cmyk();
+    let c = this.c();
+    let m = this.m();
+    let y = this.y();
+    let k = 1;
+    if (c < k) {
+      k = c;
+    } else if (m < k) {
+      k = m;
+    } else if (y < k) {
+      k = y;
+    }
+
+    if (k === 1) {
+      return new Cmyk(0, 0, 0, 0);
+    }
+
+    c = (c - k) / (1 - k);
+    m = (m - k) / (1 - k);
+    y = (y - k) / (1 - k);
+    return new Cmyk(c, m, y, k);
   }
 }
 
