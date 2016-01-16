@@ -363,7 +363,7 @@ export class Cmyk extends Space {
   static KEY_K = 'k';
 
   constructor(c, m, y, k) {
-    super([[Cmyk.KEY_C, c], [Cmyk.KEY_M, m], [Cmyk.KEY_Y, y], [Cmyk.KEY_K]]);
+    super([[Cmyk.KEY_C, c], [Cmyk.KEY_M, m], [Cmyk.KEY_Y, y], [Cmyk.KEY_K, k]]);
   }
 
   isValid() {
