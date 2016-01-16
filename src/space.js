@@ -380,6 +380,18 @@ export class Hsv extends Space {
 
     return new Rgb((r + m) * 0xFF, (g + m) * 0xFF, (b + m) * 0xFF);
   }
+  
+  hsl() {
+    return this.rgb().hsl();
+  }
+
+  hsv() {
+    return this;
+  }
+
+  cmyk() {
+    return this.rgb().cmyk();
+  }
 }
 
 export class Cmyk extends Space {
