@@ -286,6 +286,10 @@ export class Hsl extends Space {
     return this.rgb().hsv();
   }
 
+  cmy() {
+    return this.rgb().cmy();
+  }
+
   cmyk() {
     return this.rgb().cmyk();
   }
@@ -398,6 +402,10 @@ export class Hsv extends Space {
 
   hsv() {
     return this;
+  }
+
+  cmy() {
+    return this.rgb().cmy();
   }
 
   cmyk() {
