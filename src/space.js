@@ -538,8 +538,15 @@ export class Cmyk extends Space {
   }
 
   cmy() {
-    // TODO: need to fix implementaion
-    return this.rgb().cmy();
+    let c = this.c();
+    let m = this.m();
+    let y = this.y();
+    let k = this.k();;
+    return new Cmy(
+        c * (1 - k) + k,
+        m * (1 - k) + k,
+        y * (1 - k) + k
+    );
   }
 
   cmyk() {
