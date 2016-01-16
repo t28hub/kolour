@@ -19,7 +19,7 @@ class Space {
   }
 
   clone() {
-    throw new Error("clone() is not implemented");
+    return new this.constructor.name(...this.values());
   }
 
   hex() {
@@ -88,10 +88,6 @@ export class Rgb extends Space {
       }
     }
     return true;
-  }
-
-  clone() {
-    return new Rgb(this.r(), this.g(), this.b());
   }
 
   r(value = null) {
@@ -217,10 +213,6 @@ export class Hsl extends Space {
     return `hsl(${this.h()}, ${this.s()}%, ${this.l()}%)`;
   }
 
-  clone() {
-    return new Hsl(this.h(), this.s(), this.l());
-  }
-
   isValid() {
     let h = this.h();
     if (!Number.isFinite(h) || h < 0 || h > 360) {
@@ -339,10 +331,6 @@ export class Hsv extends Space {
     return true;
   }
 
-  clone() {
-    return new Hsv(...this.values());
-  }
-
   h(value = null) {
     return this.getOrSet(Hsv.KEY_H, value);
   }
@@ -434,10 +422,6 @@ export class Cmy extends Space {
     return true;
   }
 
-  clone() {
-    return new Cmy(this.c(), this.m(), this.y());
-  }
-
   c(value = null) {
     return this.getOrSet(Cmyk.KEY_C, value);
   }
@@ -517,10 +501,6 @@ export class Cmyk extends Space {
       }
     }
     return true;
-  }
-
-  clone() {
-    return new Cmyk(this.c(), this.m(), this.y(), this.k());
   }
 
   c(value = null) {
