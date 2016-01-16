@@ -324,6 +324,10 @@ export class Hsv extends Space {
     return true;
   }
 
+  clone() {
+    return new Hsv(...this.values());
+  }
+
   h(value = null) {
     return this.getOrSet(Hsv.KEY_H, value);
   }
