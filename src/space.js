@@ -38,6 +38,10 @@ class Space {
     throw new Error("hsv() is not implemented");
   }
 
+  cmy() {
+    throw new Error("cmy() is not implemented");
+  }
+
   cmyk() {
     throw new Error("cmyk() is not implemented");
   }
@@ -174,6 +178,13 @@ export class Rgb extends Space {
 
     let v = max;
     return new Hsv(h, s, v);
+  }
+
+  cmy() {
+    let c = 1 - (this.r() / 0xFF);
+    let m = 1 - (this.g() / 0xFF);
+    let y = 1 - (this.b() / 0xFF);
+    return new Cmy(c, m, y);
   }
 
   cmyk() {
@@ -394,6 +405,72 @@ export class Hsv extends Space {
   }
 }
 
+export class Cmy extends Space {
+  static KEY_C = 'c';
+  static KEY_M = 'm';
+  static KEY_Y = 'y';
+
+  constructor(c, m, y) {
+    super([[Cmyk.KEY_C, c], [Cmyk.KEY_M, m], [Cmyk.KEY_Y, y]]);
+  }
+
+  isValid() {
+    for (let value of this.values()) {
+      if (!Number.isFinite(value)) {
+        return false;
+      }
+      if (value < 0 || value > 1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  clone() {
+    return new Cmy(this.c(), this.m(), this.y());
+  }
+
+  c(value = null) {
+    return this.getOrSet(Cmyk.KEY_C, value);
+  }
+
+  m(value = null) {
+    return this.getOrSet(Cmyk.KEY_M, value);
+  }
+
+  y(value = null) {
+    return this.getOrSet(Cmyk.KEY_Y, value);
+  }
+
+  hex() {
+    return this.rgb().hex();
+  }
+
+  rgb() {
+    let r = (1 - this.c()) * 0xFF;
+    let g = (1 - this.m()) * 0xFF;
+    let b = (1 - this.y()) * 0xFF;
+    return new Rgb(r, g, b);
+  }
+
+  hsl() {
+    return this.rgb().hsl();
+  }
+
+  hsv() {
+    return this.rgb().hsl();
+  }
+
+  cmy() {
+    return this;
+  }
+
+  cmyk() {
+    // TODO: need to fix implementation
+    return this.rgb().cmyk();
+  }
+}
+
 export class Cmyk extends Space {
   static KEY_C = 'c';
   static KEY_M = 'm';
@@ -458,6 +535,11 @@ export class Cmyk extends Space {
 
   hsv() {
     return this.rgb().hsv();
+  }
+
+  cmy() {
+    // TODO: need to fix implementaion
+    return this.rgb().cmy();
   }
 
   cmyk() {
