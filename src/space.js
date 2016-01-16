@@ -339,6 +339,10 @@ export class Hsv extends Space {
   v(value = null) {
     return this.getOrSet(Hsv.KEY_V, value);
   }
+  
+  hex() {
+    return this.rgb().hex();
+  }
 
   rgb() {
     let h = this.h();
