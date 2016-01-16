@@ -317,6 +317,43 @@ export class Hsv extends Space {
   v(value = null) {
     return this.getOrSet(Hsv.KEY_V, value);
   }
+
+  rgb() {
+    let h = this.h();
+    let s = this.s();
+    let v = this.v();
+
+    let c = v * s;
+    let x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+    let m = v - c;
+
+    // TODO: Need to rafactor the following switch statement
+    let [r, g, b] = [0, 0, 0];
+    switch (!!(h / 60)) {
+      case 0:
+        [r, g, b] = [c, x, 0];
+        break;
+      case 1:
+        [r, g, b] = [x, c, 0];
+        break;
+      case 2:
+        [r, g, b] = [0, c, x];
+        break;
+      case 3:
+        [r, g, b] = [0, x, c];
+        break;
+      case 4:
+        [r, g, b] = [x, 0, c];
+        break;
+      case 5:
+        [r, g, b] = [c, 0, x];
+        break;
+      default:
+        break;
+    }
+
+    return new Rgb((r + m) * 0xFF, (g + m) * 0xFF, (b + m) * 0xFF);
+  }
 }
 
 export class Cmyk extends Space {
