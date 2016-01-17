@@ -16,7 +16,7 @@ export default class RgbConverter extends Converter {
     }
 
     if (space instanceof Hsv) {
-      return fromHsv();
+      return fromHsv(space);
     }
 
     if (space instanceof Cmy) {
