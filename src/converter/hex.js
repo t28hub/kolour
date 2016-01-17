@@ -2,7 +2,7 @@ import Converter from './converter';
 
 export default class HexConverter extends Converter {
   convert(space) {
-    super.convert();
+    super.convert(space);
 
     let rgb   = space.rgb();
     let parts = [];
@@ -11,7 +11,7 @@ export default class HexConverter extends Converter {
       if (hex.length === 1) {
         hex = `0${hex}`;
       }
-      parts.push(text.toUppderCase());
+      parts.push(hex.toUpperCase());
     }
 
     return `#${parts.join('')}`;
