@@ -1,6 +1,6 @@
-jest.dontMock("../src/space.js");
+jest.autoMockOff();
 
-const Rgb = require("../src/space").Rgb;
+const Rgb = require("../src/space/rgb").default;
 
 describe("Rgb", () => {
 
