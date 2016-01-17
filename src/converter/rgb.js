@@ -3,6 +3,7 @@ import Rgb from '../space/rgb';
 import Hsl from '../space/hsl';
 import Hsv from '../space/hsv';
 import Cmy from '../space/cmy';
+import Cmyk from '../space/cmyk';
 
 export default class RgbConverter extends Converter {
   convert(space) {
@@ -21,6 +22,10 @@ export default class RgbConverter extends Converter {
 
     if (space instanceof Cmy) {
       return fromCmy(space);
+    }
+
+    if (space instanceof Cmyk) {
+      return fromCmyk(space);
     }
     return null;
   }
@@ -92,6 +97,19 @@ export default class RgbConverter extends Converter {
       Math.round(0xFF * (1 - cmy.c())),
       Math.round(0xFF * (1 - cmy.m())),
       Math.round(0xFF * (1 - cmy.y()))
+    );
+  }
+
+  fromCmyk(cmyk) {
+    let k = cmyk.k();
+    if (k === 1) {
+      return new Rgb(0, 0, 0);
+    }
+
+    return new Rgb(
+        0xFF * (1 - cmyk.c()) * (1 - k),
+        0xFF * (1 - cmyk.m()) * (1 - k),
+        0xFF * (1 - cmyk.y()) * (1 - k),
     );
   }
 
