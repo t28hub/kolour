@@ -1,5 +1,4 @@
 import Space from './space';
-console.log(Space);
 
 const KEY = Object.freeze({
   'R': Symbol.for('r'),

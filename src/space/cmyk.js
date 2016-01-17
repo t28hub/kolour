@@ -7,7 +7,7 @@ const KEY = Object.freeze({
   'K': Symbol.for('k')
 });
 
-export class Cmyk extends Space {
+export default class Cmyk extends Space {
   constructor(c, m, y, k) {
     super([[KEY.C, c], [KEY.M, m], [KEY.Y, y], [KEY.K, k]]);
   }

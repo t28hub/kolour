@@ -6,7 +6,11 @@ const KEY = Object.freeze({
   'L': Symbol.for('l')
 });
 
-export class Hsl extends Space {
+export default class Hsl extends Space {
+}
+
+/*
+export default class Hsl extends Space {
   constructor(h, s, l) {
     super([[KEY.H, h], [KEY.S, s], [KEY.L, l]]);
   }
@@ -45,3 +49,4 @@ export class Hsl extends Space {
     return this.getOrSet(KEY.L, value);
   }
 }
+*/

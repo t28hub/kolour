@@ -6,7 +6,7 @@ const KEY = Object.freeze({
   'V': Symbol.for('v')
 });
 
-export class Hsv extends Space {
+export default class Hsv extends Space {
   constructor(h, s, v) {
     super([[KEY.H, h], [KEY.S, s], [KEY.V, v]]);
   }
