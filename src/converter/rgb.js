@@ -2,6 +2,7 @@ import Converter from './converter';
 import Rgb from '../space/rgb';
 import Hsl from '../space/hsl';
 import Hsv from '../space/hsv';
+import Cmy from '../space/cmy';
 
 export default class RgbConverter extends Converter {
   convert(space) {
@@ -16,6 +17,10 @@ export default class RgbConverter extends Converter {
 
     if (space instanceof Hsv) {
       return fromHsv();
+    }
+
+    if (space instanceof Cmy) {
+      return fromCmy(space);
     }
     return null;
   }
@@ -79,6 +84,14 @@ export default class RgbConverter extends Converter {
         Math.round(0xFF * (r + m)),
         Math.round(0xFF * (g + m)),
         Math.round(0xFF * (b + m))
+    );
+  }
+
+  fromCmy(cmy) {
+    return new Rgb(
+      Math.round(0xFF * (1 - cmy.c())),
+      Math.round(0xFF * (1 - cmy.m())),
+      Math.round(0xFF * (1 - cmy.y()))
     );
   }
 
