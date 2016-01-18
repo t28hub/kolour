@@ -63,4 +63,8 @@ export default class Color {
   hsv() {
     throw new Error();
   }
+
+  convertTo(converter) {
+    return converter.convert(this);
+  }
 }
