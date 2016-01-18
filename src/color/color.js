@@ -1,11 +1,7 @@
-import {RGB, HSL} from './space';
-import Factory from '../converter/factory';
-
 export default class Color {
-  constructor(space, table, factory = Factory.normal()) {
-    this.space   = space;
-    this.table   = new Map(table);
-    this.factory = factory;
+  constructor(space, table) {
+    this.space = space;
+    this.table = new Map(table);
   }
 
   toString() {
@@ -57,15 +53,10 @@ export default class Color {
   }
 
   rgb() {
-    return this.convertTo(RGB);
+    throw new Error();
   }
 
   hsl() {
-    return this.convertTo(HSL);
-  }
-
-  convertTo(space) {
-    let converter = this.factory.create(space);
-    return converter.convert(this.toBytes());
+    throw new Error();
   }
 }
