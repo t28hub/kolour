@@ -2,13 +2,10 @@ import Converter from './converter';
 import Hsl from '../space/hsl';
 
 export default class HslConverter extends Converter {
-  convert(space) {
-    super.convert(space);
-
-    let rgb = space.rgb();
-    let r   = rgb.r() / 0xFF;
-    let g   = rgb.g() / 0xFF;
-    let b   = rgb.b() / 0xFF;
+  to(r, g, b, a) {
+    r /= 0xFF;
+    g /= 0xFF;
+    b /= 0xFF;
 
     let max   = Math.max(r, g, b);
     let min   = Math.min(r, g, b);
@@ -27,7 +24,6 @@ export default class HslConverter extends Converter {
     }
     let l = (max + min) / 2;
     let s = delta / (1 - Math.abs(2 * l - 1))
-
     return new Hsl(h, s, l);
   }
 }
