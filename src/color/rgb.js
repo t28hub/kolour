@@ -1,5 +1,7 @@
 import Color from './color';
 import {RGB} from './space'; 
+import HslConverter from '../converter/hsl';
+import HsvConverter from '../converter/hsv';
 
 const KEY = Object.freeze({
   'R': Symbol.for('r'),
@@ -31,6 +33,18 @@ export default class Rgb extends Color {
       }
     }
     return true;
+  }
+
+  rgb() {
+    return this;
+  }
+
+  hsl() {
+    return this.convertTo(new HslConverter());
+  }
+
+  hsv() {
+    return this.convertTo(new HsvConverter());
   }
 
   r(value = null) {
