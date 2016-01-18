@@ -7,7 +7,7 @@ const KEY = Object.freeze({
   'B': Symbol.for('b')
 });
 
-export default class Rgb extends Space {
+export default class Rgb extends Color {
   constructor(r, g, b) {
     super(RGB, [[KEY.R, r], [KEY.G, g], [KEY.B, b]]);
   }
