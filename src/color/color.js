@@ -16,6 +16,10 @@ export default class Color {
     return JSON.strigify(object);
   }
 
+  toBytes() {
+    return [0, 0, 0, 0];
+  }
+
   isValid() {
     return false;
   }
