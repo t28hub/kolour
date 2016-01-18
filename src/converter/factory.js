@@ -8,7 +8,7 @@ const MAPPING = Object.freeze(new Map(
 ));
 
 export default class Factory {
-  constructor(mapping = MAPPING) {
+  constructor(mapping) {
     if (!mapping) {
       throw new Error('mapping must be iterable');
     }
@@ -21,5 +21,9 @@ export default class Factory {
       throw new Error();
     }
     return new converter();
+  }
+
+  static normal() {
+    return new Factory(MAPPING);
   }
 }
