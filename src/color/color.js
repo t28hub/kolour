@@ -59,4 +59,8 @@ export default class Color {
   hsl() {
     throw new Error();
   }
+
+  hsv() {
+    throw new Error();
+  }
 }
