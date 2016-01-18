@@ -70,7 +70,7 @@ export default class Hsl extends Color {
   }
 
   hsv() {
-    return this.convertTo(new HslConverter());
+    return this.convertTo(new HsvConverter());
   }
 
   h(value = null) {
