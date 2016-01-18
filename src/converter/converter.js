@@ -1,15 +1,11 @@
 const BYTES_LENGTH = 4;
 
 export default class Converter {
-  convert(bytes) {
-    if (!bytes) {
-      throw new Error('bytes must not be null');
-    }
-
+  convert(color) {
+    let bytes = color.toBytes();
     if (bytes.length !== BYTES_LENGTH) {
       throw new Error(`length of bytes (${bytes.length}) must be ${BYTES_LENGTH}`);
     }
-
     return this.to(...bytes);
   }
 
