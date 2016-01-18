@@ -74,11 +74,11 @@ export default class Hsv extends Color {
   }
 
   rgb() {
-    return new RgbConverter().convert(this);
+    return this.convertTo(new RgbConverter());
   }
 
   hsl() {
-    return new HslConverter().convert(this);
+    return this.convertTo(new HslConverter());
   }
 
   hsv() {
