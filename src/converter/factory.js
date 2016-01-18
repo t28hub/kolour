@@ -1,9 +1,11 @@
 import RgbConverter from './rgb';
-import {RGB} from '../color/space';
+import HslConverter from './hsl';
+import {RGB, HSL} from '../color/space';
 
 const MAPPING = Object.freeze(new Map(
   [
-    [RGB, RgbConverter]
+    [RGB, RgbConverter],
+    [HSL, HslConverter]
   ]
 ));
 
