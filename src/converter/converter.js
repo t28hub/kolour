@@ -10,7 +10,7 @@ export default class Converter {
       throw new Error(`length of bytes (${bytes.length}) must be ${BYTES_LENGTH}`);
     }
 
-    return to(...bytes);
+    return this.to(...bytes);
   }
 
   to(r, g, b, a) {
