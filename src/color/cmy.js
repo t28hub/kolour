@@ -12,6 +12,15 @@ export default class Cmy extends Color {
     super(CMY, [[KEY.C, c], [KEY.M, m], [KEY.Y, y]]);
   }
 
+  toBytes() {
+    return [
+      Math.floor(0xFF * (1 - this.c())),
+      Math.floor(0xFF * (1 - this.m())),
+      Math.floor(0xFF * (1 - this.y())),
+      0
+    ];
+  }
+
   isValid() {
     for (let value of this.values()) {
       if (!Number.isFinite(value)) {
