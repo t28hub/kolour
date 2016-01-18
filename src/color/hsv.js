@@ -1,7 +1,7 @@
 import Color from './color';
 import {HSV} from './space'
-import RgbConverter from './converter/rgb';
-import HslConverter from './converter/hsl';
+import RgbConverter from '../converter/rgb';
+import HslConverter from '../converter/hsl';
 
 const KEY = Object.freeze({
   'H': Symbol.for('h'),
