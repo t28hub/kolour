@@ -1,5 +1,5 @@
 import Converter from './converter';
-import Hsl from '../space/hsl';
+import Hsl from '../color/hsl';
 
 export default class HslConverter extends Converter {
   to(r, g, b, a) {
