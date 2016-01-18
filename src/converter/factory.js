@@ -1,22 +1,9 @@
-import HexConverter from './hex';
 import RgbConverter from './rgb';
-import HslConverter from './hsl';
-import CmyConverter from './cmy';
-import CmykConverter from './cmyk';
-
-export const HEX  = Symbol();
-export const RGB  = Symbol();
-export const HSL  = Symbol();
-export const CMY  = Symbol();
-export const CMYK = Symbol();
+import {RGB} from '../color/space';
 
 const MAPPING = Object.freeze(new Map(
   [
-    [HEX,  HexConverter],
-    [RGB,  RgbConverter],
-    [HSL,  HslConverter],
-    [CMY,  CmyConverter],
-    [CMYK, CmykConverter]
+    [RGB, RgbConverter]
   ]
 ));
 
