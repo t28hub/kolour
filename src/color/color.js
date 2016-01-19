@@ -67,8 +67,4 @@ export default class Color {
   cmy() {
     throw new Error();
   }
-
-  convertTo(converter) {
-    return converter.convert(this);
-  }
 }
