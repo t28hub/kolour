@@ -1,20 +1,14 @@
-jest.dontMock("../src/color");
+jest.autoMockOff();
 
-const Color = require("../src/color").default;
+const Rgb = require('../src/color/rgb').default;
 
-describe("Color", () => {
+describe('Rgb', () => {
 
-  describe("#toString", () => {
+  describe('.constructor', () => {
 
-    it("should return 'color'", () => {
-      // setup
-      let color = new Color();
-
-      // exercise
-      let string = color.toString();
-
-      // verify
-      expect(string).toBe('color');
+    it('should create an instance', () => {
+      let rgb = new Rgb(32, 64, 128);
+      expect(rgb).not.toBeNull();
     });
 
   });
