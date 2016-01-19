@@ -1,8 +1,5 @@
-import Converter from './converter';
 import Rgb from '../color/rgb';
 
-export default class RgbConverter extends Converter {
-  to(r, g, b, a) {
-    return new Rgb(r, g, b);
-  }
+export default function toRgb(bytes) {
+  return new Rgb(bytes.shift(), bytes.shift(), bytes.shift());
 }
