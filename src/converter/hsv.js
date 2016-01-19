@@ -1,9 +1,7 @@
 import Hsv from '../color/hsv';
 
-export default function toHsv(bytes) {
-  let r = bytes.shift() / 0xFF;
-  let g = bytes.shift() / 0xFF;
-  let b = bytes.shift() / 0xFF;
+export default function toHsv(color) {
+  let [r, g, b] = color.toBytes().map(value => value / 0xFF);
 
   let max   = Math.max(r, g, b);
   let min   = Math.min(r, g, b);

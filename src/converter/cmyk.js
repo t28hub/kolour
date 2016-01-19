@@ -1,9 +1,7 @@
 import Cmyk from '../color/cmyk';
 
-export default function toCmyk(bytes) {
-  let r = bytes.shift() / 0xFF;
-  let g = bytes.shift() / 0xFF;
-  let b = bytes.shift() / 0xFF;
+export default function toCmyk(color) {
+  let [r, g, b] = color.toBytes().map(value => value / 0xFF);
   let k = 1 - Math.max(r, g, b);
   if (k === 1) {
     return new Cmyk(0, 0, 0, k);
