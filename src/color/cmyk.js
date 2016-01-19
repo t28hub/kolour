@@ -1,5 +1,9 @@
 import Color from './color';
 import {CMYK} from './space';
+import toRgb from '../converter/rgb';
+import toHsl from '../converter/hsl';
+import toHsv from '../converter/hsv';
+import toCmy from '../converter/cmy';
 
 const KEY = Object.freeze({
   'C': Symbol.for('c'),
@@ -36,6 +40,26 @@ export default class Cmyk extends Color {
       }
     }
     return true;
+  }
+
+  rgb() {
+    return toRgb(this);
+  }
+
+  hsl() {
+    return toHsl(this);
+  }
+
+  hsv() {
+    return toHsv(this);
+  }
+
+  cmy() {
+    return toCmy(this);
+  }
+
+  cmyk() {
+    return this;
   }
 
   c(value = null) {
