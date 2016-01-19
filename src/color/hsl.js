@@ -1,7 +1,9 @@
 import Color from './color';
 import {HSL} from './space';
-import RgbConverter from '../converter/rgb';
-import HsvConverter from '../converter/hsv';
+import toRgb from '../converter/rgb';
+import toHsv from '../converter/hsv';
+import toCmy from '../converter/cmy';
+import toCmyk from '../converter/cmyk';
 
 const KEY = Object.freeze({
   'H': Symbol.for('h'),
@@ -62,7 +64,7 @@ export default class Hsl extends Color {
   }
 
   rgb() {
-    return this.convertTo(new RgbConverter());
+    return toRgb(this);
   }
 
   hsl() {
@@ -70,7 +72,15 @@ export default class Hsl extends Color {
   }
 
   hsv() {
-    return this.convertTo(new HsvConverter());
+    return toHsv(this);
+  }
+
+  cmy() {
+    return toCmy(this);
+  }
+
+  cmyk() {
+    return toCmyk(this);
   }
 
   h(value = null) {
