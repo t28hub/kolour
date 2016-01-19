@@ -1,7 +1,10 @@
+const PROPERTY_BYTES = 'bytes';
+
 export default class Color {
   constructor(space, table) {
     this.space = space;
     this.table = new Map(table);
+    Object.defineProperty(this, PROPERTY_BYTES, {get: () => { return this.toBytes(); }});
   }
 
   toString() {
