@@ -13,6 +13,19 @@ export default class Cmyk extends Color {
     super(CMYK, [[KEY.C, c], [KEY.M, m], [KEY.Y, y], [KEY.K, k]]);
   }
 
+  toBytes() {
+    let k = this.k();
+    if (k === 1) {
+      return [0, 0, 0, 0];
+    }
+    return [
+      Math.floor(0xFF * (1 - this.c()) * (1 - k)),
+      Math.floor(0xFF * (1 - this.m()) * (1 - k)),
+      Math.floor(0xFF * (1 - this.y()) * (1 - k)),
+      0
+    ];
+  }
+
   isValid() {
     for (let value of this.values()) {
       if (!Number.isFinite(value)) {
