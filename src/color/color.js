@@ -1,10 +1,12 @@
 const PROPERTY_BYTES = 'bytes';
+const PROPERTY_ARRAY = 'array';
 
 export default class Color {
   constructor(space, table) {
     this.space = space;
     this.table = new Map(table);
     Object.defineProperty(this, PROPERTY_BYTES, {get: () => { return this.toBytes(); }});
+    Object.defineProperty(this, PROPERTY_ARRAY, {get: () => { return this.toArray(); }});
   }
 
   toString() {
@@ -17,6 +19,10 @@ export default class Color {
       Object.defineProperty(object, key, {'value': value});
     });
     return JSON.strigify(object);
+  }
+
+  toArray() {
+    return Array.from(this.table.values());
   }
 
   toBytes() {
