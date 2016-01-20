@@ -1,11 +1,7 @@
 export default class Color {
-  constructor(space, table) {
+  constructor(space, components) {
     this.space = space;
-    this.table = new Map(table);
-  }
-
-  isValid() {
-    return false;
+    this.table = new Map(components);
   }
 
   toString() {
@@ -20,20 +16,12 @@ export default class Color {
     return JSON.strigify(object);
   }
 
-  toArray() {
-    return Array.from(this.table.values());
-  }
-
-  toBytes() {
-    return [0, 0, 0, 0];
-  }
-
   clone() {
     return new this.constructor.name(this.space, this.table);
   }
 
   space() {
-    return this.space;
+    return this.space.name();
   }
 
   keys() {
