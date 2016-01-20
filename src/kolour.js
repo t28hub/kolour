@@ -1,4 +1,4 @@
-class Kolour {
+export default class Kolour {
   constructor(color) {
     if (!color) {
       throw new TypeError('color must not be null');
