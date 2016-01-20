@@ -1,12 +1,11 @@
-const PROPERTY_BYTES = 'bytes';
-const PROPERTY_ARRAY = 'array';
-
 export default class Color {
   constructor(space, table) {
     this.space = space;
     this.table = new Map(table);
-    Object.defineProperty(this, PROPERTY_BYTES, {get: () => { return this.toBytes(); }});
-    Object.defineProperty(this, PROPERTY_ARRAY, {get: () => { return this.toArray(); }});
+  }
+
+  isValid() {
+    return false;
   }
 
   toString() {
@@ -29,23 +28,24 @@ export default class Color {
     return [0, 0, 0, 0];
   }
 
-  isValid() {
-    return false;
-  }
-
   clone() {
     return new this.constructor.name(this.space, this.table);
   }
 
   space() {
-    return Symbol.forKey(this.space);
+    return this.space;
   }
 
-  access(key, value = null) {
-    if (value === null) {
-      return this.get(key);
-    }
-    return this.set(key, value);
+  keys() {
+    return Array.from(this.table.keys());
+  }
+
+  values() {
+    return Array.from(this.table.values());
+  }
+
+  has(key) {
+    return this.table.has(key);
   }
 
   get(key) {
@@ -55,25 +55,5 @@ export default class Color {
   set(key, value) {
     this.table.set(key, value);
     return this;
-  }
-
-  values() {
-    return this.table.values();
-  }
-
-  rgb() {
-    throw new Error();
-  }
-
-  hsl() {
-    throw new Error();
-  }
-
-  hsv() {
-    throw new Error();
-  }
-
-  cmy() {
-    throw new Error();
   }
 }
