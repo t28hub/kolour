@@ -29,7 +29,7 @@ const KEY_B = Symbol.for('b');
 
 export const RGB = new class extends Space {
   constructor() {
-    super('hsl', [KEY_R, KEY_G, KEY_B]);
+    super('RGB', [KEY_R, KEY_G, KEY_B]);
   }
 
   isValid(color) {
