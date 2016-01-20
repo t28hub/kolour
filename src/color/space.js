@@ -20,30 +20,42 @@ export default class Space {
   }
 
   bytes() {
-
   }
 }
 
+const KEY_R = Symbol.for('r');
+const KEY_G = Symbol.for('g');
+const KEY_B = Symbol.for('b');
+
 export const RGB = new class extends Space {
   constructor() {
-    super('rgb', [Symbol.for('r'), Symbol.for('g'), Symbol.for('b')]);
+    super('hsl', [KEY_R, KEY_G, KEY_B]);
   }
 
   isValid(color) {
-    if (!super.isValid(color)) {
+    if (color.space() !== this.name()) {
+      throw new TypeError();
+    }
+
+    let r = color.get(KEY_R);
+    if (!Number.isInteger(r) || r < 0x00 || r > 0xFF) {
       return false;
     }
 
-    // TODO
+    let g = color.get(KEY_G);
+    if (!Number.isInteger(r) || r < 0x00 || r > 0xFF) {
+      return false;
+    }
+
+    let b = color.get(KEY_B);
+    if (!Number.isInteger(b) || b < 0x00 || b > 0xFF) {
+      return false;
+    }
     return true;
   }
 
   bytes(color) {
-    return [];
-  }
-
-  from(...args) {
-    let keys = this.keys();
+    return [...color.values(), 0];
   }
 }
 
