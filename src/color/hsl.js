@@ -1,32 +1,43 @@
-import Color from './color';
-import {HSL} from './space';
-import toRgb from '../converter/rgb';
-import toHsv from '../converter/hsv';
-import toCmy from '../converter/cmy';
-import toCmyk from '../converter/cmyk';
+import Space from './space';
 
-const KEY = Object.freeze({
-  'H': Symbol.for('h'),
-  'S': Symbol.for('s'),
-  'L': Symbol.for('l')
-});
+const SPACE = 'HSL';
+const KEY_H = 'h';
+const KEY_S = 's';
+const KEY_L = 'l';
 
-export default class Hsl extends Color {
-  constructor(h, s, l) {
-    super(HSL, [[KEY.H, h], [KEY.S, s], [KEY.L, l]]);
+export class HSL = new class extends Space {
+  constructor() {
+    super(SPACE, [KEY_H, KEY_S, KEY_L]);
   }
 
-  toString() {
-    return `hsl(${this.h()}, ${this.s()}%, ${this.l()}%)`;
+  isValid(color) {
+    if (color.space() !== this.name()) {
+      return false;
+    }
+
+    let [h, s, l] = this.values();
+    if (!Number.isFinite(h) || h < 0 || h > 360) {
+      return false;
+    }
+
+    if (!Number.isFinite(s) || s < 0 || s > 1) {
+      return false;
+    }
+
+    if (!Number.isFinite(l) || l < 0 || l > 1) {
+      return false;
+    }
+    return true;
   }
 
-  toBytes() {
-    let h = this.h();
-    let s = this.s();
-    let l = this.l();
+  rgb(h, s, l) {
+    if (color.space() !== this.name()) {
+      throw new TypeError();
+    }
+
     if (s === 0) {
       let value = Math.floor(0xFF * l);
-      return [value, value, value, 0];
+      return [value, value, value];
     }
 
     let m2 = 0;
@@ -38,67 +49,17 @@ export default class Hsl extends Color {
 
     let m1 = 2 * l - m2;
     return [
-      Math.floor(0xFF * Hsl.hueToRgb(m1, m2, h / 360 + 1 / 3)),
-      Math.floor(0xFF * Hsl.hueToRgb(m1, m2, h / 360)),
-      Math.floor(0xFF * Hsl.hueToRgb(m1, m2, h / 360 - 1 / 3)),
-      0
+      Math.floor(0xFF * this.hueToRgb(m1, m2, h / 360 + 1 / 3)),
+      Math.floor(0xFF * this.hueToRgb(m1, m2, h / 360)),
+      Math.floor(0xFF * this.hueToRgb(m1, m2, h / 360 - 1 / 3))
     ];
   }
 
-  isValid() {
-    let h = this.h();
-    if (!Number.isFinite(h) || h < 0 || h > 360) {
-      return false;
-    }
-
-    let s = this.s();
-    if (!Number.isFinite(s) || s < 0 || s > 1) {
-      return false;
-    }
-
-    let l = this.l();
-    if (!Number.isFinite(l) || l < 0 || l > 1) {
-      return false;
-    }
-    return true;
-  }
-
-  rgb() {
-    return toRgb(this);
-  }
-
-  hsl() {
-    return this;
-  }
-
-  hsv() {
-    return toHsv(this);
-  }
-
-  cmy() {
-    return toCmy(this);
-  }
-
-  cmyk() {
-    return toCmyk(this);
-  }
-
-  h(value = null) {
-    return this.access(KEY.H, value);
-  }
-
-  s(value = null) {
-    return this.access(KEY.S, value);
-  }
-
-  l(value = null) {
-    return this.access(KEY.L, value);
-  }
-
-  static hueToRgb(m1, m2, h) {
+  hueToRgb(m1, m2, h) {
     if (h < 0) {
       h += 1;
-    } else if (h > 1) {
+    }
+    if (h > 1) {
       h -= 1;
     }
 
