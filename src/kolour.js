@@ -2,6 +2,7 @@ import Color from './color/color';
 import RGB from './color/rgb';
 import CMY from './color/cmy';
 import HSL from './color/hsl';
+import CMYK from './color/cmyk';
 
 export default class Kolour {
   constructor(color) {
