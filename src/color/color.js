@@ -1,7 +1,14 @@
+import Utils from '../utils';
+
 export default class Color {
   constructor(space, components) {
+    let keys = space.keys();
+    if (keys.length !== components.length) {
+      throw new TypeError(`components.length ${components.length} must be ${keys.length}`);
+    }
+
     this.space = space;
-    this.table = new Map(components);
+    this.table = new Map(Utils.zip(keys, components));;
   }
 
   toString() {
