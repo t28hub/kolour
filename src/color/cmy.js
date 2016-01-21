@@ -1,32 +1,21 @@
-import Color from './color';
-import {CMY} from './space';
-import toRgb from '../converter/rgb';
-import toHsl from '../converter/hsl';
-import toHsv from '../converter/hsv';
-import toCmyk from '../converter/cmyk';
+import Space from './space';
 
-const KEY = Object.freeze({
-  'C': Symbol.for('c'),
-  'M': Symbol.for('m'),
-  'Y': Symbol.for('y')
-});
+const SPACE = 'CMY';
+const KEY_C = 'c';
+const KEY_M = 'm';
+const KEY_Y = 'y';
 
-export default class Cmy extends Color {
+export const CMY = new class extends Space {
   constructor(c, m, y) {
     super(CMY, [[KEY.C, c], [KEY.M, m], [KEY.Y, y]]);
   }
 
-  toBytes() {
-    return [
-      Math.floor(0xFF * (1 - this.c())),
-      Math.floor(0xFF * (1 - this.m())),
-      Math.floor(0xFF * (1 - this.y())),
-      0
-    ];
-  }
+  isValid(color) {
+    if (color.space() !== this) {
+      return false;
+    }
 
-  isValid() {
-    for (let value of this.values()) {
+    for (let value of color.values()) {
       if (!Number.isFinite(value)) {
         return false;
       }
@@ -37,35 +26,21 @@ export default class Cmy extends Color {
     return true;
   }
 
-  rgb() {
-    return toRgb(this);
+  rgb(c, m, y) {
+    return [c, m, y].map(value => {
+      return Math.floor((1 - value) * 0xFF);
+    });
   }
 
-  hsl() {
-    return toHsl(this);
-  }
+  cmyk(c, m, y) {
+    let k = Math.min(c, m, y);
+    if (k === 1) {
+      return [0, 0, 0, k];
+    }
 
-  hsv() {
-    return toHsv(this);
-  }
-
-  cmy() {
-    return this;
-  }
-
-  cmyk() {
-    return toCmyk(this);
-  }
-
-  c(value = null) {
-    return this.access(KEY.C, value);
-  }
-
-  m(value = null) {
-    return this.access(KEY.M, value);
-  }
-
-  y(value = null) {
-    return this.access(KEY.Y, value);
+    let delta = 1 - k;
+    return [c, m, y].map(value => {
+      return (value - k) / delta;
+    });
   }
 }
