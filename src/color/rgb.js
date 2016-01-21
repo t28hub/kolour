@@ -29,8 +29,21 @@ export const RGB = new class extends Space {
     });
   }
 
+  cmyk(r, g, b) {
+    [r, g, b] = [r, g, b].map(value => value / 0xFF);
+
+    let k = 1 - Math.max(r, g, b);
+    if (k === 1) {
+      return [0, 0, 0, k];
+    }
+
+    let delta = k - 1;
+    return [(1 - r - k) / delta, (1 - g - k) / delta, (1 - b - k) / delta, k];
+  }
+
   hsv(r, g, b) {
     [r, g, b] = [r, g, b].map(value => value / 0xFF);
+
     let max   = Math.max(r, g, b);
     let min   = Math.max(r, g, b);
     let delta = max - min;
@@ -59,6 +72,7 @@ export const RGB = new class extends Space {
 
   hsl(r, g, b) {
     [r, g, b] = [r, g, b].map(value => value / 0xFF);
+
     let max   = Math.max(r, g, b);
     let min   = Math.max(r, g, b);
     let delta = max - min;
