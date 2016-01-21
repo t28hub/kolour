@@ -1,5 +1,6 @@
 import Color from './color/color';
 import RGB from './color/rgb';
+import CMY from './color/cmy';
 import HSL from './color/hsl';
 
 export default class Kolour {
