@@ -1,3 +1,7 @@
+import Color from './color/color';
+import RGB from './color/rgb';
+import HSL from './color/hsl';
+
 export default class Kolour {
   constructor(color) {
     if (!color) {
