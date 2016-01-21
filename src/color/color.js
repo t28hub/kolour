@@ -28,7 +28,7 @@ export default class Color {
   }
 
   space() {
-    return this.space.name();
+    return this.space;
   }
 
   keys() {
