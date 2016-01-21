@@ -24,7 +24,7 @@ export default class Color {
   }
 
   clone() {
-    return new this.constructor.name(this.space, this.table);
+    return new Color(this.space, this.values());
   }
 
   space() {
