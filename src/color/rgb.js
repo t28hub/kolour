@@ -23,6 +23,17 @@ export const RGB = new class extends Space {
     return true;
   }
 
+  hex(r, g, b) {
+    let parts = [r, g, b].map(value => {
+      let hex = value.toString(16);
+      if (hex.length === 1) {
+        hex = `0${hex}`;
+      }
+      return hex;
+    });
+    return `#${parts.join('')}`;
+  }
+
   cmy(r, g, b) {
     return [r, g, b].map(value => {
       return 1 - value / 0xFF;
