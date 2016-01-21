@@ -23,6 +23,12 @@ export const RGB = new class extends Space {
     return true;
   }
 
+  cmy(r, g, b) {
+    return [r, g, b].map(value => {
+      return 1 - value / 0xFF;
+    });
+  }
+
   hsv(r, g, b) {
     [r, g, b] = [r, g, b].map(value => value / 0xFF);
     let max   = Math.max(r, g, b);
