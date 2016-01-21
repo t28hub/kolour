@@ -12,17 +12,16 @@ export default class Kolour {
 
   assign(color) {
     color.keys().forEach(key => {
-      let name = Symbol.keyFor(key);
-      if (this.hasOwnProperty(name)) {
+      if (this.hasOwnProperty(key)) {
         return;
       }
 
-      Object.defineProperty(this, name, {
+      Object.defineProperty(this, key, {
         get: () => {
           return function(value = null) {
             let color = this.color;
             if (!color.has(key)) {
-              throw new Error(`${color.space()} does not have a key for ${name}`);
+              throw new Error(`${color.space()} does not have a key for ${key}`);
             }
 
             if (value === null) {
