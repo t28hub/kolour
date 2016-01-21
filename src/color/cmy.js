@@ -5,7 +5,7 @@ const KEY_C = 'c';
 const KEY_M = 'm';
 const KEY_Y = 'y';
 
-export const CMY = new class extends Space {
+export default const CMY = new class extends Space {
   constructor(c, m, y) {
     super(CMY, [[KEY.C, c], [KEY.M, m], [KEY.Y, y]]);
   }
