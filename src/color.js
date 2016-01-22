@@ -1,5 +1,6 @@
 export default class Color {
-  constructor(components) {
+  constructor(space, components) {
+    this.space      = space;
     this.components = new Map(components);
     this.components.forEach((value, key) => {
       Object.defineProperty(this, key, {
@@ -14,6 +15,10 @@ export default class Color {
         }
       });
     });
+  }
+
+  space() {
+    return this.space;
   }
 
   has(key) {
