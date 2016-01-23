@@ -62,4 +62,8 @@ export default class Hsv extends Color {
     });
     return new Rgb(r, g, b);
   }
+
+  xyz() {
+    return this.rgb().xyz();
+  }
 }
