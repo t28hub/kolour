@@ -83,4 +83,13 @@ describe('Color', () => {
 
   });
 
+  describe('.prototype.keys()', () => {
+
+    it('should return all keys', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      assert.deepEqual(color.keys(), [KEYS.A, KEYS.B, KEYS.C]);
+    });
+
+  });
+
 });
