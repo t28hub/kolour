@@ -1,40 +1,19 @@
-import Color from './color/color';
-import RGB from './color/rgb';
-import CMY from './color/cmy';
-import HSL from './color/hsl';
-import CMYK from './color/cmyk';
+import Cmy  from './cmy';
+import Cmyk from './cmyk';
+import Hsl  from './hsl';
+import Hsv  from './hsv';
+import Rgb  from './rgb';
+import Xyz  from './xyz';
 
 export default class Kolour {
   constructor(color) {
     if (!color) {
       throw new TypeError('color must not be null');
     }
-    this.assign(color);
+    this.color = color;
   }
 
-  assign(color) {
-    color.keys().forEach(key => {
-      if (this.hasOwnProperty(key)) {
-        return;
-      }
-
-      Object.defineProperty(this, key, {
-        get: () => {
-          return function(value = null) {
-            let color = this.color;
-            if (!color.has(key)) {
-              throw new Error(`${color.space()} does not have a key for ${key}`);
-            }
-
-            if (value === null) {
-              return color.get(key);
-            }
-            color.set(key, value);
-            return this;
-          }.bind(this);
-        }
-      });
-    });
-    this.color = color;
+  static from(object) {
+    // not implemented yet...
   }
 }
