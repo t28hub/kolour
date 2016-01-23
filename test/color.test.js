@@ -62,4 +62,25 @@ describe('Color', () => {
 
   });
 
+  describe('.prototype.set(key, value)', () => {
+
+    it('should update value when a specified key exists in a color', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      color.set(KEYS.A, 16);
+      color.set(KEYS.B, 32);
+      color.set(KEYS.C, 64);
+      assert(color.get(KEYS.A) === 16);
+      assert(color.get(KEYS.B) === 32);
+      assert(color.get(KEYS.C) === 64);
+    });
+
+    it('should throw TypeError when a specified key does not exist in a color', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      assert.throws(() => {
+        color.set('a', 16);
+      }, TypeError);
+    });
+
+  });
+
 });
