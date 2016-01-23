@@ -1,14 +1,16 @@
 import Color from './color';
 import Rgb from './rgb';
 
-const SPACE = 'XYZ';
-const KEY_X = 'x';
-const KEY_Y = 'y';
-const KEY_Z = 'z';
+const NAME = Symbol.for('XYZ');
+const KEYS = Object.freeze({
+  X: Symbol.for('x'),
+  Y: Symbol.for('y'),
+  Z: Symbol.for('z')
+});
 
 export default class Xyz extends Color {
   constructor(x, y, z) {
-    super(SPACE, [[KEY_X, x], [KEY_Y, y], [KEY_Z, z]]);
+    super(NAME, [[KEYS.X, x], [KEYS.Y, y], [KEYS.Z, z]]);
   }
 
   cmy() {

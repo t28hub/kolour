@@ -3,7 +3,8 @@ export default class Color {
     this.space      = space;
     this.components = new Map(components);
     this.components.forEach((value, key) => {
-      Object.defineProperty(this, key, {
+      let name = Symbol.keyFor(key);
+      Object.defineProperty(this, name, {
         get: () => {
           return function(value = null) {
             if (value === null) {
@@ -18,7 +19,7 @@ export default class Color {
   }
 
   space() {
-    return this.space;
+    return Symbol.keyFor(this.space);
   }
 
   has(key) {

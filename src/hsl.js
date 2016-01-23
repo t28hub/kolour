@@ -1,14 +1,16 @@
 import Color from './color';
 import Rgb from './rgb';
 
-const SPACE = 'HSL';
-const KEY_H = 'h';
-const KEY_S = 's';
-const KEY_L = 'l';
+const NAME = Symbol.for('HSL');
+const KEYS = Object.freeze({
+  H: Symbol.for('h'), 
+  S: Symbol.for('s'), 
+  L: Symbol.for('l')
+});
 
 export default class Hsl extends Color {
   constructor(h, s, l) {
-    super(SPACE, [[KEY_H, h], [KEY_S, s], [KEY_L, l]]);
+    super(NAME, [[KEYS.H, h], [KEYS.S, s], [KEYS.L, l]]);
   }
 
   hsl() {

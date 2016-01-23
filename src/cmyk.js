@@ -1,15 +1,17 @@
 import Color from './color';
 import Cmy from './cmy';
 
-const SPACE = 'CMYK';
-const KEY_C = 'c';
-const KEY_M = 'm';
-const KEY_Y = 'y';
-const KEY_K = 'k';
+const NAME = Symbol.for('CMYK');
+const KEYS = Object.freeze({
+  C: Symbol.for('c'), 
+  M: Symbol.for('m'), 
+  Y: Symbol.for('y'), 
+  K: Symbol.for('k')
+});
 
 export default class Cmyk extends Color {
   constructor(c, m, y, k) {
-    super(SPACE, [[KEY_C, c], [KEY_M, m], [KEY_Y, y], [KEY_K, k]]);
+    super(NAME, [[KEYS.C, c], [KEYS.M, m], [KEYS.Y, y], [KEYS.K, k]]);
   }
 
   cmy() {

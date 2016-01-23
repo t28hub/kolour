@@ -4,14 +4,16 @@ import Hsl from './hsl';
 import Hsv from './hsv';
 import Xyz from './xyz';
 
-const SPACE = 'RGB';
-const KEY_R = 'r';
-const KEY_G = 'g';
-const KEY_B = 'b';
+const NAME = Symbol.for('RGB');
+const KEYS = Object.freeze({
+  R: Symbol.for('r'),
+  G: Symbol.for('g'),
+  B: Symbol.for('b'),
+});
 
 export default class Rgb extends Color {
   constructor(r, g, b) {
-    super(SPACE, [[KEY_R, r], [KEY_G, g], [KEY_B, b]]);
+    super(NAME, [[KEYS.R, r], [KEYS.G, g], [KEYS.B, b]]);
   }
 
   cmy() {

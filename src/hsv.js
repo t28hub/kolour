@@ -1,14 +1,16 @@
 import Color from './color';
 import Rgb from './rgb';
 
-const SPACE = 'HSV';
-const KEY_H = 'h';
-const KEY_S = 's';
-const KEY_V = 'v';
+const NAME = Symbol.for('HSV');
+const KEYS = Object.freeze({
+  H: Symbol.for('h'),
+  S: Symbol.for('s'),
+  V: Symbol.for('v')
+});
 
 export default class Hsv extends Color {
   constructor(h, s, v) {
-    super(SPACE, [[KEY_H, h], [KEY_S, s], [KEY_V, v]]);
+    super(NAME, [[KEYS.H, h], [KEYS.S, s], [KEYS.V, v]]);
   }
 
   cmy() {
