@@ -31,7 +31,7 @@
     "mocha": "^2.3.4",
     "power-assert": "^1.2.0"
   },
-  "engines" {
+  "engines": {
     "node": "4.2.6"
   }
 }
