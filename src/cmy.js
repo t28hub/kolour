@@ -1,5 +1,5 @@
 import Color from './color';
-import Cmyk from './Cmyk';
+import Cmyk from './cmyk';
 import Rgb from './rgb';
 
 const NAME = Symbol.for('CMY');
