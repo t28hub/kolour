@@ -9,7 +9,7 @@ const KEY_Y = 'y';
 
 export default class Cmy extends Color {
   constructor(c, m, y) {
-    super(SPACE, [[KEY_C, c], [KET_M, m], [KET_Y, y]]);
+    super(SPACE, [[KEY_C, c], [KEY_M, m], [KET_Y, y]]);
   }
 
   cmy() {
