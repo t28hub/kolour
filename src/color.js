@@ -18,10 +18,6 @@ export default class Color {
     });
   }
 
-  space() {
-    return Symbol.keyFor(this.space);
-  }
-
   has(key) {
     return this.components.has(key);
   }
