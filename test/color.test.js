@@ -44,4 +44,22 @@ describe('Color', () => {
 
   });
 
+  describe('.prototype.get(key)', () => {
+
+    it('should return value when a specified key exists in a color', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      assert(color.get(KEYS.A) === 8);
+      assert(color.get(KEYS.B) === 16);
+      assert(color.get(KEYS.C) === 32);
+    });
+
+    it('should throw TypeError when a specified key does not exist in a color', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      assert.throws(() => {
+        color.get('a');
+      }, TypeError);
+    });
+
+  });
+
 });
