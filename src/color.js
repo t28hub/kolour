@@ -63,4 +63,7 @@ export default class Color {
 
   rgb() {
   }
+
+  xyz() {
+  }
 }
