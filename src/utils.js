@@ -7,6 +7,10 @@ export default class Utils {
     return toString(value) === '[object String]';
   }
 
+  static isA(value, type) {
+    return toString(value) === type;
+  }
+
   static zip(array1, array2) {
     if (!array1 || !array2) {
       return [];
