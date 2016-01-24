@@ -1,3 +1,4 @@
+import Utils from './utils';
 import Color from './color';
 import Cmy from './cmy';
 import Hsl from './hsl';
@@ -97,5 +98,21 @@ export default class Rgb extends Color {
     let y = r * 0.2126 + g * 0.7152 + b * 0.0722;
     let z = r * 0.0193 + g * 0.1192 + b * 0.9505;
     return new Xyz(x, y, z);
+  }
+
+  static from(value) {
+    if (Utils.isObject(value)) {
+      return Rgb.fromObject(value);
+    }
+    return null;
+  }
+
+  static fromObject(object) {
+    let keysA = Object.keys(object).sort();
+    let keysB = Object.keys(KEYS).sort();
+    if (keysA.join('').toLowerCase() === keysB.join('').toLowerCase()) {
+      return new Rgb(object.r, object.g, object.b);
+    }
+    return null;
   }
 }
