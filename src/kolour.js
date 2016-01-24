@@ -5,15 +5,16 @@ import Hsv  from './hsv';
 import Rgb  from './rgb';
 import Xyz  from './xyz';
 
-export default class Kolour {
-  constructor(color) {
-    if (!color) {
-      throw new TypeError('color must not be null');
-    }
-    this.color = color;
-  }
+const COLORS = [
+  Cmy, Cmyk, Hsl, Hsv, Rgb, Xyz
+];
 
-  static from(object) {
-    // not implemented yet...
-  }
-}
+export default function kolor(value) {
+  for (let clazz of COLORS) {
+    let color = clazz.from(value);
+    if (!color) {
+      continue;
+    }
+    return color;
+  }  
+};
