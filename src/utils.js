@@ -9,11 +9,11 @@ export default class Utils {
   }
 
   static isString(value) {
-    return isA(value, TYPE.STRING);
+    return Utils.isA(value, TYPE.STRING);
   }
 
   static isObject(value) {
-    return isA(value, TYPE.OBJECT);
+    return Utils.isA(value, TYPE.OBJECT);
   }
 
   static isA(value, type) {
