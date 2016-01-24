@@ -101,4 +101,19 @@ describe('Color', () => {
 
   });
 
+  describe('.prototype.a()', () => {
+
+    it('should return a value without value', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      assert(color.a() === 8);
+    });
+
+    it('should update a values with new value', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      assert(color.a(64) === color);
+      assert(color.get(KEYS.A) === 64)
+    });
+
+  });
+
 });
