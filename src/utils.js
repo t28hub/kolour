@@ -1,5 +1,6 @@
 const TYPE = Object.freeze({
-  STRING: '[object String]'
+  STRING: '[object String]',
+  OBJECT: '[object Object]'
 });
 
 export default class Utils {
@@ -9,6 +10,10 @@ export default class Utils {
 
   static isString(value) {
     return isA(value, TYPE.STRING);
+  }
+
+  static isObject(value) {
+    return isA(value, TYPE.OBJECT);
   }
 
   static isA(value, type) {
