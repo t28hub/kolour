@@ -1,3 +1,5 @@
+import Utils from './utils';
+
 export default class Color {
   constructor(space, components) {
     this.space      = space;
@@ -61,5 +63,23 @@ export default class Color {
   }
 
   xyz() {
+  }
+
+  static from(value) {
+    if (Utils.isString(value)) {
+      return fromString(value);
+    }
+    if (Utils.isObject(value)) {
+      return fromObject(value);
+    }
+    return null;
+  }
+
+  static fromString(string) {
+    return null;
+  }
+
+  static fromObject(object) {
+    return null;
   }
 }
