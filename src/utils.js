@@ -1,10 +1,14 @@
+const TYPE = Object.freeze({
+  STRING: '[object String]'
+});
+
 export default class Utils {
   static toString(value) {
     return Object.prototype.toString.call(value);
   }
 
   static isString(value) {
-    return toString(value) === '[object String]';
+    return isA(value, TYPE.STRING);
   }
 
   static isA(value, type) {
