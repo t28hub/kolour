@@ -47,6 +47,10 @@ export default class Color {
     return Array.from(this.components.values());
   }
 
+  entries() {
+    return Array.from(this.components.entries());
+  }
+
   cmy() {
   }
 
