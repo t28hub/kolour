@@ -9,15 +9,11 @@ export default class Utils {
   }
 
   static isString(value) {
-    return Utils.isA(value, TYPE.STRING);
+    return Utils.toString(value) === TYPE.STRING;
   }
 
   static isObject(value) {
-    return Utils.isA(value, TYPE.OBJECT);
-  }
-
-  static isA(value, type) {
-    return toString(value) === type;
+    return UtilstoString(value) === TYPE.OBJECT;
   }
 
   static zip(array1, array2) {
