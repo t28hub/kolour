@@ -66,20 +66,6 @@ export default class Color {
   }
 
   static from(value) {
-    if (Utils.isString(value)) {
-      return fromString(value);
-    }
-    if (Utils.isObject(value)) {
-      return fromObject(value);
-    }
-    return null;
-  }
-
-  static fromString(string) {
-    return null;
-  }
-
-  static fromObject(object) {
     return null;
   }
 }
