@@ -13,7 +13,7 @@ export default class Utils {
   }
 
   static isObject(value) {
-    return UtilstoString(value) === TYPE.OBJECT;
+    return Utils.toString(value) === TYPE.OBJECT;
   }
 
   static zip(array1, array2) {
