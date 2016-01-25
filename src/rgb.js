@@ -25,6 +25,15 @@ export default class Rgb extends Color {
     return new Rgb(...this.values());
   }
 
+  isValid() {
+    return this.values().every(value => {
+      if (!Number.isInteger(value)) {
+        return false;
+      }
+      return 0x00 <= value && value <= 0xFF;
+    });
+  }
+
   cmy() {
     let [c, m, y] = this.values().map(value => {
       return 1 - value / 0xFF;
