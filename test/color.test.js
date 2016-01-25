@@ -110,6 +110,15 @@ describe('Color', () => {
 
   });
 
+  describe('.prototype.entries()', () => {
+
+    it('should return all entries', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      assert.deepEqual(color.entries(), [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+    });
+
+  });
+
   describe('.prototype.a()', () => {
 
     it('should return a value without value', () => {
