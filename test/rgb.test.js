@@ -17,6 +17,18 @@ describe('Rgb', () => {
 
   });
 
+  describe('.prorotype.clone()', () => {
+
+    it('should create new instance', () => {
+      let rgb = new Rgb(32, 64, 128);
+      let cloned = rgb.clone();
+      assert(cloned !== null);
+      assert(cloned !== rgb);
+      assert(`[r=${cloned.r()}, g=${cloned.g()}, b=${cloned.b()}]` === `[r=${rgb.r()}, g=${rgb.g()}, b=${rgb.b()}]`)
+    });
+
+  });
+
   describe('.prorotype.cmy()', () => {
 
     it('should convert color space from RGB to CMY', () => {
