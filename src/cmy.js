@@ -14,6 +14,10 @@ export default class Cmy extends Color {
     super(NAME, [[KEYS.C, c], [KEYS.M, m], [KEYS.Y, y]]);
   }
 
+  clone() {
+    return new Cmy(...this.values());
+  }
+
   cmy() {
     return this;
   }
