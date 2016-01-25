@@ -13,6 +13,10 @@ export default class Hsv extends Color {
     super(NAME, [[KEYS.H, h], [KEYS.S, s], [KEYS.V, v]]);
   }
 
+  clone() {
+    return new Hsv(...this.values());
+  }
+
   cmy() {
     return this.rgb().cmy();
   }
