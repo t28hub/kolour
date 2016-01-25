@@ -134,4 +134,13 @@ describe('Color', () => {
 
   });
 
+  describe('.from(value)', () => {
+
+    it('should always return null', () => {
+      let color = Color.from('value');
+      assert(color === null);
+    });
+
+  });
+
 });
