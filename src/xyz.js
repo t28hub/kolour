@@ -13,6 +13,10 @@ export default class Xyz extends Color {
     super(NAME, [[KEYS.X, x], [KEYS.Y, y], [KEYS.Z, z]]);
   }
 
+  clone() {
+    return new Xyz(...this.values());
+  }
+
   cmy() {
     return this.rgb().cmy();
   }
