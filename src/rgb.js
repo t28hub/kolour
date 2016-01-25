@@ -17,6 +17,10 @@ export default class Rgb extends Color {
     super(NAME, [[KEYS.R, r], [KEYS.G, g], [KEYS.B, b]]);
   }
 
+  clone() {
+    return new Rgb(NAME, this.entries());
+  }
+
   cmy() {
     let [c, m, y] = this.values().map(value => {
       return 1 - value / 0xFF;
