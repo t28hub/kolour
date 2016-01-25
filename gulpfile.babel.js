@@ -8,12 +8,6 @@ import isparta from 'isparta';
 
 const $ = plugins();
 
-gulp.task('test:pre', () => {
-  gulp.src('src/**/*.js')
-      .pipe($.istanbul())
-      .pipe($.istanbul.hookRequire());
-});
-
 gulp.task('test', (done) => {
   gulp.src('src/**/*.js')
     .pipe($.istanbul({
