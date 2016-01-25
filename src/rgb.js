@@ -112,6 +112,9 @@ export default class Rgb extends Color {
     if (Utils.isObject(value)) {
       return Rgb.fromObject(value);
     }
+    if (Utils.isString(value)) {
+      return Rgb.fromString(value);
+    }
     return null;
   }
 
@@ -126,5 +129,17 @@ export default class Rgb extends Color {
       return new Rgb(object.r, object.g, object.b);
     }
     return null;
+  }
+
+  static fromString(string) {
+    let matches = string.match(HEX_PATTERN);
+    if (matches) {
+      let matched = matches[1];
+      let integer = Number.parseInt(matched, 16);
+      if (matched.length === 6) {
+        return new Rgb(integer >> 16 & 0xFF, integer >>  8 & 0xFF, integer >>  0 & 0xFF);
+      }
+      return new Rgb((integer >> 8 & 0xF) * 17, (integer >> 4 & 0xF) * 17, (integer >> 0 & 0xF) * 17);
+    }
   }
 }
