@@ -21,7 +21,14 @@ gulp.task('test', (done) => {
     .on('finish', () => {
       gulp.src('test/**/*.test.js')
         .pipe($.mocha())
-        .pipe($.istanbul.writeReports())
+        .pipe($.istanbul.writeReports({
+          dir: './build/coverage',
+          reporters: ['lcov', 'json'],
+          reportOpts: {
+            lcov: {dir: './build/coverage/lcov', file: 'lcov.info'},
+            json: {dir: './build/coverage/json', file: 'coverage.json'}
+          }
+        }))
         .on('end', done);
     });
 });
