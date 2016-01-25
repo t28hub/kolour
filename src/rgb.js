@@ -18,7 +18,7 @@ export default class Rgb extends Color {
   }
 
   clone() {
-    return new Rgb(NAME, this.entries());
+    return new Rgb(...this.values());
   }
 
   cmy() {
@@ -112,6 +112,10 @@ export default class Rgb extends Color {
   }
 
   static fromObject(object) {
+    if (object instanceof Rgb) {
+      return object.clone();
+    }
+
     let keysA = Object.keys(object).sort();
     let keysB = Object.keys(KEYS).sort();
     if (keysA.join('').toLowerCase() === keysB.join('').toLowerCase()) {
