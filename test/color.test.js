@@ -26,6 +26,15 @@ describe('Color', () => {
 
   });
 
+  describe('.prototype.isValid()', () => {
+
+    it('should always return false', () => {
+      let color = new Color(NAME, [[KEYS.A, 8], [KEYS.B, 16], [KEYS.C, 32]]);
+      assert(color.isValid() === false);
+    });
+
+  });
+
   describe('.prototype.has(key)', () => {
 
     it('should return true when a specified key is contained', () => {
