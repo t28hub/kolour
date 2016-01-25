@@ -17,6 +17,45 @@ describe('Rgb', () => {
 
   });
 
+  describe('.prorotype.isValid()', () => {
+
+    it('should return true when all values are invalid', () => {
+      let rgb = new Rgb(32, 64, 128);
+      assert(rgb.isValid());
+    });
+
+    it('should return true when a value is equal to minimum value', () => {
+      let rgb = new Rgb(0, 64, 128);
+      assert(rgb.isValid());
+    });
+
+    it('should return true when a value is equal to maximum value', () => {
+      let rgb = new Rgb(32, 64, 255);
+      assert(rgb.isValid());
+    });
+
+    it('should return false when a value is float number', () => {
+      let rgb = new Rgb(32, 64, 128.0001);
+      assert(rgb.isValid() === false);
+    });
+
+    it('should return false when a value is not number', () => {
+      let rgb = new Rgb('32', '64', '128');
+      assert(rgb.isValid() === false);
+    });
+
+    it('should return false when a value is less than minimum value', () => {
+      let rgb = new Rgb(-1, 64, 128);
+      assert(rgb.isValid() === false);
+    });
+
+    it('should return false when a value is greater than maximum value', () => {
+      let rgb = new Rgb(32, 64, 256);
+      assert(rgb.isValid() === false);
+    });
+
+  });
+
   describe('.prorotype.clone()', () => {
 
     it('should create new instance', () => {
