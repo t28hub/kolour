@@ -14,6 +14,10 @@ export default class Cmyk extends Color {
     super(NAME, [[KEYS.C, c], [KEYS.M, m], [KEYS.Y, y], [KEYS.K, k]]);
   }
 
+  clone() {
+    return new Cmyk(...this.values());
+  }
+
   cmy() {
     let [c, m, y, k] = this.values();
     let delta = 1 - k;
