@@ -35,9 +35,9 @@ gulp.task('test', (done) => {
 
 gulp.task('build', () => {
   gulp.src('src/**/*js')
-      .pipe($.sourcemaps.init())
-      .pipe($.babel())
-      .pipe($.concat('bundle.js'))
-      .pipe($.sourcemaps.write("."))
-      .pipe(gulp.dest("dist"));
+    .pipe($.sourcemaps.init())
+    .pipe($.babel())
+    .pipe($.concat('bundle.js'))
+    .pipe($.sourcemaps.write("."))
+    .pipe(gulp.dest("dist"));
 });
