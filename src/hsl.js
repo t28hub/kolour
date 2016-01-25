@@ -13,6 +13,10 @@ export default class Hsl extends Color {
     super(NAME, [[KEYS.H, h], [KEYS.S, s], [KEYS.L, l]]);
   }
 
+  clone() {
+    return new Hsl(...this.values());
+  }
+
   hsl() {
     return this;
   }
