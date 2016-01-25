@@ -3,6 +3,11 @@ import plugins from 'gulp-load-plugins';
 
 const $ = plugins();
 
+gulp.task('test', () => {
+  gulp.src('test/**/*.test.js')
+      .pipe($.mocha());
+});
+
 gulp.task('build', () => {
   gulp.src('src/**/*js')
       .pipe($.sourcemaps.init())
