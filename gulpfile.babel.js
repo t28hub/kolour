@@ -1,11 +1,29 @@
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
+import {Instrumenter} from 'isparta';
+import isparta from 'isparta';
 
 const $ = plugins();
 
-gulp.task('test', () => {
-  gulp.src('test/**/*.test.js')
-      .pipe($.mocha());
+gulp.task('test:pre', () => {
+  gulp.src('src/**/*.js')
+      .pipe($.istanbul())
+      .pipe($.istanbul.hookRequire());
+});
+
+gulp.task('test', (done) => {
+  gulp.src('src/**/*.js')
+    .pipe($.istanbul({
+      instrumenter: Instrumenter,
+      includeUntested: true
+    }))
+    .pipe($.istanbul.hookRequire())
+    .on('finish', () => {
+      gulp.src('test/**/*.test.js')
+        .pipe($.mocha())
+        .pipe($.istanbul.writeReports())
+        .on('end', done);
+    });
 });
 
 gulp.task('build', () => {
