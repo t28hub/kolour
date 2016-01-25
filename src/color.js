@@ -23,6 +23,10 @@ export default class Color {
   clone() {
   }
 
+  isValid() {
+    return false;
+  }
+
   has(key) {
     return this.components.has(key);
   }
