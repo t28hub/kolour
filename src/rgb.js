@@ -12,6 +12,10 @@ const KEYS = Object.freeze({
   B: Symbol.for('b'),
 });
 
+const HEX_PATTERN = /^#([0-9a-f]{6}|[0-9a-f]{3})$/i;
+const INT_PATTERN = /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/i;
+const PCT_PATTERN = /^rgb\(\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*\)$/i;
+
 export default class Rgb extends Color {
   constructor(r, g, b) {
     super(NAME, [[KEYS.R, r], [KEYS.G, g], [KEYS.B, b]]);
