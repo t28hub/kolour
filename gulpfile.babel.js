@@ -1,6 +1,7 @@
 'use strict';
 
 import gulp from 'gulp';
+import del from 'del';
 import plugins from 'gulp-load-plugins';
 import {Instrumenter} from 'isparta';
 import isparta from 'isparta';
@@ -42,4 +43,8 @@ gulp.task('build', () => {
     .pipe($.concat('bundle.js'))
     .pipe($.sourcemaps.write("."))
     .pipe(gulp.dest("dist"));
+});
+
+gulp.task('clean', () => {
+  del('build/*', {dot: true})
 });
