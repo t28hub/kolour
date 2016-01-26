@@ -56,7 +56,7 @@ export default class Cmy extends Color {
 
   rgb() {
     let [r, g, b] = this.values().map(value => {
-      return Math.floor(0xFF * (1 - value));
+      return Math.round(0xFF * (1 - value));
     });
     return new Rgb(r, g, b);
   }
