@@ -13,4 +13,17 @@ describe('Cmyk', () => {
 
   });
 
+  describe('.prototype.clone()', () => {
+
+    it('should clone an instance', () => {
+      let source = new Cmyk(0.2, 0.4, 0.6, 0.8);
+      let cloned = source.clone();
+      assert(cloned !== null);
+      assert(cloned !== source);
+      assert(cloned instanceof Cmyk);
+      assert.deepEqual(cloned.entries(), source.entries());
+    });
+
+  });
+
 });
