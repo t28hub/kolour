@@ -134,10 +134,19 @@ describe('Color', () => {
 
   });
 
-  describe('.from(value)', () => {
+  describe('.fromObject(object)', () => {
 
     it('should always return null', () => {
-      let color = Color.from('value');
+      let color = Color.fromObject({});
+      assert(color === null);
+    });
+
+  });
+
+  describe('.fromString(string)', () => {
+
+    it('should always return null', () => {
+      let color = Color.fromString('value');
       assert(color === null);
     });
 
