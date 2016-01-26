@@ -187,4 +187,27 @@ describe('Cmy', () => {
 
   });
 
+  describe('.fromObject(object)', () => {
+    
+    it('should create an instance from an Object', () => {
+      let cmy = Cmy.fromObject({c: 0.75, m: 0.5, y: 0.25});
+      assert(cmy !== null);
+      assert(cmy instanceof Cmy);
+      assert.deepEqual(cmy.values(), [0.75, 0.5, 0.25]);
+    });
+
+    it('should create an instance from an Object when the Object has keys that are upper case char', () => {
+      let cmy = Cmy.fromObject({C: 0.75, M: 0.5, Y: 0.25});
+      assert(cmy !== null);
+      assert(cmy instanceof Cmy);
+      assert.deepEqual(cmy.values(), [0.75, 0.5, 0.25]);
+    });
+
+    it('should return null from Object when the Object does not have necessary key', () => {
+      let cmy = Cmy.fromObject({c: 0.75, m: 0.5});
+      assert(cmy === null);
+    });
+
+  });
+
 });
