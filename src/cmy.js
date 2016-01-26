@@ -18,6 +18,15 @@ export default class Cmy extends Color {
     return new Cmy(...this.values());
   }
 
+  isValid() {
+    return this.values().every(value => {
+      if (!Number.isFinite(value)) {
+        return false;
+      }
+      return 0 <= value && value <= 1;
+    });
+  }
+
   cmy() {
     return this;
   }
