@@ -65,4 +65,13 @@ describe('Cmy', () => {
 
   });
 
+  describe('.prototype.cmy()', () => {
+
+    it('should return self', () => {
+      let cmy = new Cmy(0.5, 0.25, 0.125);
+      assert(cmy.cmy() === cmy);
+    });
+
+  });
+
 });
