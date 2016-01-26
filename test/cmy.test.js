@@ -3,6 +3,7 @@ import sinon  from 'sinon';
 import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
 import Hsl    from '../src/hsl';
+import Hsv    from '../src/hsv';
 import Rgb    from '../src/rgb';
 
 describe('Cmy', () => {
@@ -125,6 +126,27 @@ describe('Cmy', () => {
       let stub = sinon.stub(cmy, 'rgb');
       stub.returns(rgb);
       let hsl = cmy.hsl();
+      assert(spy.callCount === 1);
+    });
+
+  });
+
+  describe('.prototype.hsv()', () => {
+
+    it('should convert color space from CMY to HSV', () => {
+      let cmy = new Cmy(0.75, 0.5, 0.25);
+      let hsv = cmy.hsv();
+      assert(hsv !== null);
+      assert(hsv instanceof Hsv);
+    });
+
+    it('should delegate a color space conversion process to Rgb', () => {
+      let cmy  = new Cmy(1, 1, 1);
+      let rgb  = new Rgb(0, 0, 0);
+      let spy  = sinon.spy(rgb, 'hsv');
+      let stub = sinon.stub(cmy, 'rgb');
+      stub.returns(rgb);
+      let hsv = cmy.hsv();
       assert(spy.callCount === 1);
     });
 
