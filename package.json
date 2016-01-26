@@ -39,7 +39,8 @@
     "istanbul": "^0.4.2",
     "jest-cli": "^0.8.2",
     "mocha": "^2.3.4",
-    "power-assert": "^1.2.0"
+    "power-assert": "^1.2.0",
+    "sinon": "^1.17.2"
   },
   "engines": {
     "node": "4.2.6"
