@@ -1,6 +1,9 @@
 import assert from 'power-assert';
+import sinon  from 'sinon';
 import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
+import Hsl    from '../src/hsl';
+import Rgb    from '../src/rgb';
 
 describe('Cmy', () => {
 
@@ -102,6 +105,27 @@ describe('Cmy', () => {
       assert(cmyk !== null);
       assert(cmyk instanceof Cmyk);
       assert.deepEqual(cmyk.values(), [0, 0, 0, 1]);
+    });
+
+  });
+
+  describe('.prototype.hsl()', () => {
+
+    it('should convert color space from CMY to HSL', () => {
+      let cmy = new Cmy(0.75, 0.5, 0.25);
+      let hsl = cmy.hsl();
+      assert(hsl !== null);
+      assert(hsl instanceof Hsl);
+    });
+
+    it('should delegate a color space conversion process to Rgb', () => {
+      let cmy  = new Cmy(1, 1, 1);
+      let rgb  = new Rgb(0, 0, 0);
+      let spy  = sinon.spy(rgb, 'hsl');
+      let stub = sinon.stub(cmy, 'rgb');
+      stub.returns(rgb);
+      let hsl = cmy.hsl();
+      assert(spy.callCount === 1);
     });
 
   });
