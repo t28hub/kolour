@@ -76,7 +76,11 @@ export default class Color {
   xyz() {
   }
 
-  static from(value) {
+  static fromString(string) {
+    return null;
+  }
+
+  static fromObject(object) {
     return null;
   }
 }
