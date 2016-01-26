@@ -1,5 +1,6 @@
 import assert from 'power-assert';
 import Cmy    from '../src/cmy';
+import Cmyk   from '../src/cmyk';
 
 describe('Cmy', () => {
 
@@ -70,6 +71,37 @@ describe('Cmy', () => {
     it('should return self', () => {
       let cmy = new Cmy(0.5, 0.25, 0.125);
       assert(cmy.cmy() === cmy);
+    });
+
+  });
+
+  describe('.prototype.cmyk()', () => {
+
+    it('should convert color space from CMY to CMYK', () => {
+      let cmy = new Cmy(0.75, 0.5, 0.25);
+      let cmyk = cmy.cmyk();
+      assert(cmyk !== null);
+      assert(cmyk instanceof Cmyk);
+      assert(cmyk.c() === (cmy.c() - 0.25) / (1 - 0.25));
+      assert(cmyk.m() === (cmy.m() - 0.25) / (1 - 0.25));
+      assert(cmyk.y() === (cmy.y() - 0.25) / (1 - 0.25));
+      assert(cmyk.k() === 0.25);
+    });
+
+    it('should convert color space from CMY to CMYK when all values are same values', () => {
+      let cmy = new Cmy(0.25, 0.25, 0.25);
+      let cmyk = cmy.cmyk();
+      assert(cmyk !== null);
+      assert(cmyk instanceof Cmyk);
+      assert.deepEqual(cmyk.values(), [0, 0, 0, 0.25]);
+    });
+
+    it('should convert color space from CMY to CMYK when all values are equal to 1', () => {
+      let cmy = new Cmy(1, 1, 1);
+      let cmyk = cmy.cmyk();
+      assert(cmyk !== null);
+      assert(cmyk instanceof Cmyk);
+      assert.deepEqual(cmyk.values(), [0, 0, 0, 1]);
     });
 
   });
