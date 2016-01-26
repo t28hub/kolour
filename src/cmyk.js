@@ -18,6 +18,15 @@ export default class Cmyk extends Color {
     return new Cmyk(...this.values());
   }
 
+  isValid() {
+    return this.values().every(value => {
+      if (!Number.isFinite(value)) {
+        return false;
+      }
+      return 0 <= value && value <= 1;
+    });
+  }
+
   cmy() {
     let [c, m, y, k] = this.values();
     let delta = 1 - k;
