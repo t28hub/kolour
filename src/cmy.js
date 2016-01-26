@@ -69,8 +69,9 @@ export default class Cmy extends Color {
     let keys1 = Object.keys(object).sort();
     let keys2 = Object.keys(KEYS).sort();
     if (keys1.join('').toLowerCase() !== keys2.join('').toLowerCase()) {
-      return false;
+      return null;
     }
+
     let c = object.c || object.C;
     let m = object.m || object.M;
     let y = object.y || object.Y;
