@@ -157,6 +157,19 @@ describe('Cmy', () => {
 
     it('should convert color space from CMY to XYZ', () => {
       let cmy = new Cmy(0.75, 0.5, 0.25);
+      let rgb = cmy.rgb();
+      assert(rgb !== null);
+      assert(rgb instanceof Rgb);
+      assert(rgb.isValid());
+      assert.deepEqual(rgb.values(), [64, 128, 191]);
+    });
+
+  });
+
+  describe('.prototype.xyz()', () => {
+
+    it('should convert color space from CMY to XYZ', () => {
+      let cmy = new Cmy(0.75, 0.5, 0.25);
       let xyz = cmy.xyz();
       assert(xyz !== null);
       assert(xyz instanceof Xyz);
