@@ -1,4 +1,5 @@
 import assert from 'power-assert';
+import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
 
 describe('Cmyk', () => {
@@ -45,6 +46,26 @@ describe('Cmyk', () => {
         let cmyk = new Cmyk(...args);
         assert(cmyk.isValid() === expected);
       });
+    });
+
+  });
+
+  describe('.prototype.cmy()', () => {
+
+    it('should convert color space from CMYK to CMY', () => {
+      let cmyk = new Cmyk(0.8, 0.6, 0.4, 0.2);
+      let cmy  = cmyk.cmy();
+      assert(cmy !== null);
+      assert(cmy instanceof Cmy);
+      assert.deepEqual(cmy.values(), [0.8 * (1 - 0.2) + 0.2, 0.6 * (1 - 0.2) + 0.2, 0.4 * (1 - 0.2) + 0.2]);
+    });
+
+    it('should convert color space from CMYK to CMY when color k === 1', () => {
+      let cmyk = new Cmyk(0, 0, 0, 1);
+      let cmy  = cmyk.cmy();
+      assert(cmy !== null);
+      assert(cmy instanceof Cmy);
+      assert.deepEqual(cmy.values(), [1, 1, 1]);
     });
 
   });
