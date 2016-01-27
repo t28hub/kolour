@@ -55,4 +55,17 @@ export default class Cmyk extends Color {
   xyz() {
     return this.cmy().xyz();
   }
+
+  static fromObject(object) {
+    let keys1 = Object.keys(object).sort();
+    let keys2 = Object.keys(KEYS).sort();
+    if (keys1.join('').toLowerCase() !== keys2.join('').toLowerCase()) {
+      return null;
+    }
+    let c = object.c || object.C;
+    let m = object.m || object.M;
+    let y = object.y || object.Y;
+    let k = object.k || object.K;
+    return new Cmyk(c, m, y, k);
+  }
 }
