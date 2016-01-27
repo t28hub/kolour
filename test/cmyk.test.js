@@ -164,4 +164,36 @@ describe('Cmyk', () => {
 
   });
 
+  describe('.fromObject(object)', () => {
+
+    it('should instantiate Cmyk from plain object', () => {
+      let [c, m, y, k] = [0.8, 0.6, 0.4, 0.2];
+      let cmyk = Cmyk.fromObject({c, m, y, k});
+      assert(cmyk !== null);
+      assert(cmyk instanceof Cmyk);
+      assert.deepEqual(cmyk.values(), [c, m, y, k]);
+    });
+
+    it('should instanticate Cmyk from plain object that has upper case char key', () => {
+      let [C, M, Y, K] = [0.8, 0.6, 0.4, 0.2];
+      let cmyk = Cmyk.fromObject({C, M, Y, K});
+      assert(cmyk !== null);
+      assert(cmyk instanceof Cmyk);
+      assert.deepEqual(cmyk.values(), [C, M, Y, K]);
+    });
+
+    it('should return null from plain object that does not have necessary key', () => {
+      let [c, m, y] = [0.8, 0.6, 0.4];
+      let cmyk = Cmyk.fromObject({c, m, y});
+      assert(cmyk === null);
+    });
+
+    it('should return null from plain object that has invalid key', () => {
+      let [c, m, y, k, x] = [0.8, 0.6, 0.4, 0.2, 0.0];
+      let cmyk = Cmyk.fromObject({c, m, y, k, x});
+      assert(cmyk === null);
+    });
+
+  });
+
 });
