@@ -33,11 +33,10 @@ gulp.task('test', ['clean'], (done) => {
       gulp.src('test/**/*.test.js')
         .pipe($.mocha())
         .pipe($.istanbul.writeReports({
-          dir: './build/coverage',
-          reporters: ['lcov', 'json'],
+          dir: 'build/coverage',
+          reporters: ['lcov'],
           reportOpts: {
-            lcov: {dir: './build/coverage/lcov', file: 'lcov.info'},
-            json: {dir: './build/coverage/json', file: 'coverage.json'}
+            lcov: {dir: 'build/coverage/lcov', file: 'lcov.info'}
           }
         }))
         .on('end', done);
@@ -46,7 +45,7 @@ gulp.task('test', ['clean'], (done) => {
 
 gulp.task('browser-sync', () => {
   browserSync.init(null, {
-    server: 'build/coverage/lcov/lcov-report/'
+    server: 'build/coverage/lcov/lcov-report/src/'
   });
 });
 
@@ -65,11 +64,10 @@ gulp.task('watch', ['browser-sync'], (done) => {
     gulp.src(path)
       .pipe($.mocha())
       .pipe($.istanbul.writeReports({
-        dir: './build/coverage',
-        reporters: ['lcov', 'json'],
+        dir: 'build/coverage',
+        reporters: ['lcov'],
         reportOpts: {
-          lcov: {dir: './build/coverage/lcov', file: 'lcov.info'},
-          json: {dir: './build/coverage/json', file: 'coverage.json'}
+          lcov: {dir: 'build/coverage/lcov', file: 'lcov.info'}
         }
       }))
       .pipe(browserSync.reload({stream:true}))
