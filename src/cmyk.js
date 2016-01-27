@@ -53,6 +53,6 @@ export default class Cmyk extends Color {
   }
 
   xyz() {
-    return this.cmy().rgb().xyz();
+    return this.cmy().xyz();
   }
 }
