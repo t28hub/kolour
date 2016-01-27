@@ -43,3 +43,28 @@ gulp.task('test', ['clean'], (done) => {
     });
 });
 
+gulp.task('watch', (done) => {
+  gulp.watch(['src/**/*.js', 'test/**/*.js']).on('change', event => {
+    if (event.type === 'deleted') {
+      return;
+    }
+
+    let path    = event.path.replace(`${__dirname}`, '.');
+    let matched = path.match(/^\.\/src\/(.+?)\.js$/i);
+    if (matched) {
+      path = `./test/${matched[1]}.test.js`;
+    }
+
+    gulp.src(path)
+      .pipe($.mocha());
+      .pipe($.istanbul.writeReports({
+        dir: './build/coverage',
+        reporters: ['lcov', 'json'],
+        reportOpts: {
+          lcov: {dir: './build/coverage/lcov', file: 'lcov.info'},
+          json: {dir: './build/coverage/json', file: 'coverage.json'}
+        }
+      }))
+      .on('end', done);
+  });
+});
