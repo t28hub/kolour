@@ -45,20 +45,22 @@ gulp.task('test', ['clean'], (done) => {
 
 gulp.task('browser-sync', () => {
   browserSync.init(null, {
-    server: 'build/coverage/lcov/lcov-report/src/'
+    server: {
+      baseDir: 'build/coverage/lcov/lcov-report/'
+    }
   });
 });
 
-gulp.task('watch', ['browser-sync'], (done) => {
+gulp.task('watch', ['test', 'browser-sync'], (done) => {
   gulp.watch(['src/**/*.js', 'test/**/*.js']).on('change', event => {
     if (event.type === 'deleted') {
       return;
     }
 
-    let path    = event.path.replace(`${__dirname}`, '.');
+    let path    = event.path.replace(`${__dirname}/`, '');
     let matched = path.match(/^\.\/src\/(.+?)\.js$/i);
     if (matched) {
-      path = `./test/${matched[1]}.test.js`;
+      path = `test/${matched[1]}.test.js`;
     }
 
     gulp.src(path)
@@ -70,7 +72,7 @@ gulp.task('watch', ['browser-sync'], (done) => {
           lcov: {dir: 'build/coverage/lcov', file: 'lcov.info'}
         }
       }))
-      .pipe(browserSync.reload({stream:true}))
+      .pipe(browserSync.reload())
       .on('end', done);
   })
 });
