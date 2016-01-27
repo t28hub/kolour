@@ -8,7 +8,20 @@ import isparta from 'isparta';
 
 const $ = plugins();
 
-gulp.task('test', (done) => {
+gulp.task('clean', () => {
+  del('build/*', {dot: true})
+});
+
+gulp.task('build', ['clean'], () => {
+  gulp.src('src/**/*js')
+    .pipe($.sourcemaps.init())
+    .pipe($.babel())
+    .pipe($.concat('bundle.js'))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('test', ['clean'], (done) => {
   gulp.src('src/**/*.js')
     .pipe($.istanbul({
       instrumenter: Instrumenter,
@@ -30,15 +43,3 @@ gulp.task('test', (done) => {
     });
 });
 
-gulp.task('build', () => {
-  gulp.src('src/**/*js')
-    .pipe($.sourcemaps.init())
-    .pipe($.babel())
-    .pipe($.concat('bundle.js'))
-    .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest('build'));
-});
-
-gulp.task('clean', () => {
-  del('build/*', {dot: true})
-});
