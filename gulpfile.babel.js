@@ -3,6 +3,7 @@
 import gulp from 'gulp';
 import del from 'del';
 import plugins from 'gulp-load-plugins';
+import browserSync from 'browser-sync';
 import {Instrumenter} from 'isparta';
 import isparta from 'isparta';
 
@@ -43,7 +44,13 @@ gulp.task('test', ['clean'], (done) => {
     });
 });
 
-gulp.task('watch', (done) => {
+gulp.task('browser-sync', () => {
+  browserSync.init(null, {
+    server: 'build/coverage/lcov/lcov-report/'
+  });
+});
+
+gulp.task('watch', ['browser-sync'], (done) => {
   gulp.watch(['src/**/*.js', 'test/**/*.js']).on('change', event => {
     if (event.type === 'deleted') {
       return;
@@ -56,7 +63,7 @@ gulp.task('watch', (done) => {
     }
 
     gulp.src(path)
-      .pipe($.mocha());
+      .pipe($.mocha())
       .pipe($.istanbul.writeReports({
         dir: './build/coverage',
         reporters: ['lcov', 'json'],
@@ -65,6 +72,7 @@ gulp.task('watch', (done) => {
           json: {dir: './build/coverage/json', file: 'coverage.json'}
         }
       }))
+      .pipe(browserSync.reload({stream:true}))
       .on('end', done);
-  });
+  })
 });
