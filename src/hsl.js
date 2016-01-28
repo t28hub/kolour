@@ -17,6 +17,14 @@ export default class Hsl extends Color {
     return new Hsl(...this.values());
   }
 
+  cmy() {
+    return this.rgb().cmy();
+  }
+
+  cmyk() {
+    return this.rgb().cmy().cmyk();
+  }
+
   hsl() {
     return this;
   }
@@ -45,14 +53,6 @@ export default class Hsl extends Color {
         Math.floor(0xFF * Hsl.hueToRgb(m1, m2, h / 360)),
         Math.floor(0xFF * Hsl.hueToRgb(m1, m2, h / 360 - 1 / 3))
     );
-  }
-
-  cmy() {
-    return this.rgb().cmy();
-  }
-
-  cmyk() {
-    return this.rgb().cmy().cmyk();
   }
 
   xyz() {
