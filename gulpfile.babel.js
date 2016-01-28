@@ -4,19 +4,23 @@ import gulp from 'gulp';
 import del from 'del';
 import plugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
+import notifier from 'node-notifier';
 import {Instrumenter} from 'isparta';
 import isparta from 'isparta';
-import {version} from './package';
+import {name, version} from './package';
 
 const $  = plugins();
 const _ = browserSync.create();
 
-gulp.task('version', () => {
-  console.log(version);
+gulp.task('version', (callback) => {
+  notifier.notify({
+    title: name,
+    message: `${name}@${version}`
+  }, callback);
 });
 
-gulp.task('clean', () => {
-  del('build/*', {dot: true})
+gulp.task('clean', (callback) => {
+  del('build/*', {dot: true}).then(callback);
 });
 
 gulp.task('build', ['clean'], () => {

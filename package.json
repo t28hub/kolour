@@ -35,11 +35,13 @@
     "gulp-istanbul": "^0.10.3",
     "gulp-load-plugins": "^1.2.0",
     "gulp-mocha": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
     "gulp-sourcemaps": "^1.6.0",
     "isparta": "^4.0.0",
     "istanbul": "^0.4.2",
     "jest-cli": "^0.8.2",
     "mocha": "^2.3.4",
+    "node-notifier": "^4.4.0",
     "power-assert": "^1.2.0",
     "sinon": "^1.17.2"
   },
