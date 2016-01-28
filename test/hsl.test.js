@@ -96,9 +96,8 @@ describe('Hsl', () => {
       let hsl  = new Hsl(180, 0.5, 0.5);
       let rgb  = hsl.rgb();
       let spy  = sinon.spy(rgb, 'yxy');
-      let stub = sinon.stub(hsl, 'rgb');
-      stub.returns(rgb);
-      let xyz = hsl.yxy();
+      sinon.stub(hsl, 'rgb').returns(rgb);
+      let yxy = hsl.yxy();
       assert(spy.callCount === 1);
     });
 
