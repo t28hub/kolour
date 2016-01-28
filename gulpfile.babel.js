@@ -38,7 +38,7 @@ gulp.task('clean', () => {
   del(PATHS.buildDir, {dot: true});
 });
 
-gulp.task('build', ['clean'], () => {
+gulp.task('compile', ['clean'], () => {
   gulp.src(PATHS.srcFiles)
     .pipe($.plumber({errorHandler}))
     .pipe($.sourcemaps.init())
@@ -90,6 +90,10 @@ gulp.task('browser-sync:reload', () => {
 gulp.task('watch', ['browser-sync:init'], (callback) => {
   gulp.watch([PATHS.srcFiles, PATHS.testFiles], ['test']);
   gulp.watch(PATHS.coverageFiles, ['browser-sync:reload']);
+});
+
+gulp.task('build', (callback) => {
+  runSequence('clean', 'test', 'compile', callback); 
 });
 
 gulp.task('default', (callback) => {
