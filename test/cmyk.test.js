@@ -33,7 +33,8 @@ describe('Cmyk', () => {
   });
 
   describe('.prototype.isValid()', () => {
-    const TESTS = Object.freeze([
+
+    [
       {args: [  0,   0,   0,   0], 'expected': true},
       {args: [0.2, 0.4, 0.6, 0.8], 'expected': true},
       {args: [  0,   0,   0,   1], 'expected': true},
@@ -42,9 +43,7 @@ describe('Cmyk', () => {
       {args: ['a', 0.4, 0.6, 0.8], 'expected': false},
       {args: [ -1, 0.4, 0.6, 0.8], 'expected': false},
       {args: [1.1, 0.4, 0.6, 0.8], 'expected': false},
-    ]);
-
-    TESTS.forEach((test) => {
+    ].forEach((test) => {
       let args     = test.args;
       let expected = test.expected
       it(`should return ${expected} with [${args}]`, () => {
