@@ -87,7 +87,7 @@ gulp.task('browser-sync:reload', () => {
   _.reload();
 });
 
-gulp.task('watch', ['browser-sync:init'], (callback) => {
+gulp.task('watch', ['browser-sync:init'], () => {
   gulp.watch([PATHS.srcFiles, PATHS.testFiles], ['test']);
   gulp.watch(PATHS.coverageFiles, ['browser-sync:reload']);
 });
