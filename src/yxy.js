@@ -42,8 +42,10 @@ export default class Yxy extends Color {
   }
 
   xyz() {
-    // Not implemented yet
-    return null;
+    let x = this.x() * (this.Y() / this.y());
+    let y = this.Y();
+    let z = (1 - this.x() - this.y()) * (this.Y() / this.y());
+    return new Xyz(x, y, z);
   }
 
   yxy() {
