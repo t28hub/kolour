@@ -63,6 +63,15 @@ describe('Hsl', () => {
 
   });
 
+  describe('.prototype.hsl()', () => {
+
+    it('should return self', () => {
+      let hsl = new Hsl(180, 0.5, 0.5);
+      assert(hsl.hsl() === hsl);
+    });
+
+  });
+
   describe('.prototype.hsv()', () => {
 
     it('should convert color space from HSV to XYZ', () => {
