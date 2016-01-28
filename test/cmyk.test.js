@@ -168,7 +168,7 @@ describe('Cmyk', () => {
 
     it('should convert color space from CMYK to Yxy', () => {
       let cmyk = new Cmyk(0.8, 0.6, 0.4, 0.2);
-      let yxy  = cmyk.yyx();
+      let yxy  = cmyk.yxy();
       assert(yxy !== null);
       assert(yxy instanceof Yxy);
     });
