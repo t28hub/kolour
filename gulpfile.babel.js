@@ -27,7 +27,7 @@ gulp.task('version', (callback) => {
 });
 
 gulp.task('clean', () => {
-  del.sync(PATHS.buildDir, {dot: true});
+  del(PATHS.buildDir, {dot: true});
 });
 
 gulp.task('build', ['clean'], () => {
@@ -48,7 +48,9 @@ gulp.task('test', ['clean'], callback => {
     .pipe($.istanbul.hookRequire())
       .on('finish', () => {
         gulp.src(PATHS.testFiles)
-          .pipe($.mocha())
+          .pipe($.mocha({
+            reporter: 'spec'
+          }))
           .pipe($.istanbul.writeReports({
             dir: PATHS.coverageDir,
             reporters: ['lcov'],
