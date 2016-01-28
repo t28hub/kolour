@@ -20,11 +20,12 @@ const PATHS = Object.freeze({
   coverageDir: 'build/coverage/'
 });
 
-let errorHandler = error => {
+let errorHandler = function(error) {
   notifier.notify({
     title: name,
     message: error.message
   });
+  this.emit('end');
 };
 
 gulp.task('version', (callback) => {
@@ -50,6 +51,7 @@ gulp.task('compile', ['clean'], () => {
 
 gulp.task('test', (callback) => {
   gulp.src(PATHS.srcFiles)
+    .pipe($.plumber({errorHandler}))
     .pipe($.istanbul({
       instrumenter: Instrumenter,
       includeUntested: true
@@ -57,10 +59,7 @@ gulp.task('test', (callback) => {
     .pipe($.istanbul.hookRequire())
       .on('finish', () => {
         gulp.src(PATHS.testFiles)
-          .pipe($.plumber({errorHandler: function(error) {
-            errorHandler(error);
-            this.emit('end');
-          }}))
+          .pipe($.plumber({errorHandler}))
           .pipe($.mocha({
             reporter: 'min'
           }))
