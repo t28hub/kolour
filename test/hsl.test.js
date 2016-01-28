@@ -63,6 +63,25 @@ describe('Hsl', () => {
 
   });
 
+  describe('.prototype.rgb()', () => {
+
+    it('should convert color space from HSL to RGB', () => {
+      let hsl = new Hsl(180, 0.5, 0.5);
+      let rgb = hsl.rgb();
+      assert(rgb !== null);
+      assert(rgb instanceof Rgb);
+    });
+
+    it('should convert color space from HSL to RGB when saturation is zero', () => {
+      let hsl = new Hsl(180, 0.0, 0.4);
+      let rgb = hsl.rgb();
+      assert(rgb !== null);
+      assert(rgb instanceof Rgb);
+      assert.deepEqual(rgb.values(), [102, 102, 102]);
+    });
+
+  });
+
   describe('.prototype.xyz()', () => {
 
     it('should convert color space from HSL to XYZ', () => {
