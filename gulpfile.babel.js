@@ -10,6 +10,14 @@ import {name, version} from './package';
 
 const $ = loadPlugins();
 const _ = browserSync.create();
+const PATHS = Object.freeze({
+  srcFiles: 'src/**/*.js',
+  testFiles: 'test/**/*.test.js',
+  bundleFile: 'bundle.js',
+  buildDir: 'build/',
+  coverageDir: 'build/coverage/',
+  lcovDir: 'build/coverage/lcov/'
+});
 
 gulp.task('version', (callback) => {
   notifier.notify({
@@ -18,34 +26,34 @@ gulp.task('version', (callback) => {
   }, callback);
 });
 
-gulp.task('clean', (callback) => {
-  del('build/*', {dot: true}).then(callback);
+gulp.task('clean', () => {
+  del.sync(PATHS.buildDir, {dot: true});
 });
 
 gulp.task('build', ['clean'], () => {
-  gulp.src('src/**/*js')
+  gulp.src(PATHS.srcFiles)
     .pipe($.sourcemaps.init())
     .pipe($.babel())
-    .pipe($.concat('bundle.js'))
+    .pipe($.concat(PATHS.buildFile))
     .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest(PATHS.buildDir));
 });
 
 gulp.task('test', ['clean'], callback => {
-  gulp.src('src/**/*.js')
+  gulp.src(PATHS.srcFiles)
     .pipe($.istanbul({
       instrumenter: Instrumenter,
       includeUntested: true
     }))
     .pipe($.istanbul.hookRequire())
       .on('finish', () => {
-        gulp.src('test/**/*.test.js')
+        gulp.src(PATHS.testFiles)
           .pipe($.mocha())
           .pipe($.istanbul.writeReports({
-            dir: 'build/coverage',
+            dir: PATHS.coverageDir,
             reporters: ['lcov'],
             reportOpts: {
-              lcov: {dir: 'build/coverage/lcov', file: 'lcov.info'}
+              lcov: {dir: PATHS.lcovDir, file: 'lcov.info'}
             }
           }))
           .on('end', callback);
@@ -65,5 +73,5 @@ gulp.task('browser-reload', () => {
 });
 
 gulp.task('watch', ['browser-sync'], callback => {
-  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['test', 'browser-reload']);
+  gulp.watch([PATHS.srcFiles, PATHS.testFiles], ['test', 'browser-reload']);
 });
