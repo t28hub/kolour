@@ -59,7 +59,7 @@ gulp.task('test', (callback) => {
         gulp.src(PATHS.testFiles)
           .pipe($.plumber({errorHandler: function(error) {
             errorHandler(error);
-            this.emit('end'); 
+            this.emit('end');
           }}))
           .pipe($.mocha({
             reporter: 'min'
@@ -87,9 +87,35 @@ gulp.task('browser-sync:reload', () => {
   _.reload();
 });
 
-gulp.task('watch', ['browser-sync:init'], () => {
+gulp.task('watch', ['browser-sync:init'], (callback) => {
   gulp.watch([PATHS.srcFiles, PATHS.testFiles], ['test']);
   gulp.watch(PATHS.coverageFiles, ['browser-sync:reload']);
+  /*
+  gulp.watch(PATHS.testFiles).on('change', (event) => {
+    if (event.type === 'deleted') {
+      return;
+    }
+
+    let path = event.path.replace(`${__dirname}/`, '');
+    console.log(path);
+    gulp.src(path)
+      .pipe($.plumber({errorHandler: function(error) {
+        errorHandler(error);
+        this.emit('end');
+      }}))
+      .pipe($.mocha({
+        reporter: 'min'
+      }))
+      .pipe($.istanbul.writeReports({
+        dir: PATHS.coverageDir,
+        reporters: ['lcov'],
+        reportOpts: {
+          lcov: {dir: PATHS.coverageDir, file: 'lcov.info'}
+        }
+      }))
+      .on('end', callback);
+  });
+  */
 });
 
 gulp.task('build', (callback) => {
