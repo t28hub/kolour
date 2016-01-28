@@ -19,6 +19,13 @@ const PATHS = Object.freeze({
   lcovDir: 'build/coverage/lcov/'
 });
 
+let errorHandler = error => {
+  notifier.notify({
+    title: name,
+    message: error.message
+  });
+};
+
 gulp.task('version', (callback) => {
   notifier.notify({
     title: name,
@@ -32,9 +39,10 @@ gulp.task('clean', () => {
 
 gulp.task('build', ['clean'], () => {
   gulp.src(PATHS.srcFiles)
+    .pipe($.plumber({errorHandler}))
     .pipe($.sourcemaps.init())
     .pipe($.babel())
-    .pipe($.concat(PATHS.buildFile))
+    .pipe($.concat(PATHS.bundleFile))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(PATHS.buildDir));
 });
@@ -48,6 +56,7 @@ gulp.task('test', ['clean'], callback => {
     .pipe($.istanbul.hookRequire())
       .on('finish', () => {
         gulp.src(PATHS.testFiles)
+          .pipe($.plumber({errorHandler}))
           .pipe($.mocha({
             reporter: 'spec'
           }))
