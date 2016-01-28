@@ -56,6 +56,10 @@ export default class Cmyk extends Color {
     return this.cmy().xyz();
   }
 
+  yxy() {
+    return this.cmy().yxy();
+  }
+
   static fromObject(object) {
     let keys1 = Object.keys(object).sort();
     let keys2 = Object.keys(KEYS).sort();

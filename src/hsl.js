@@ -70,6 +70,10 @@ export default class Hsl extends Color {
     return this.rgb().xyz();
   }
 
+  yxy() {
+    return this.rgb().yxy();
+  }
+
   static hueToRgb(m1, m2, h) {
     if (h < 0) {
       h += 1;

@@ -76,6 +76,9 @@ export default class Color {
   xyz() {
   }
 
+  yxy() {
+  }
+
   static fromString(string) {
     return null;
   }

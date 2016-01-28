@@ -1,5 +1,6 @@
 import Color from './color';
 import Rgb from './rgb';
+import Yxy from './yxy';
 
 const NAME = Symbol.for('XYZ');
 const KEYS = Object.freeze({
@@ -53,5 +54,10 @@ export default class Xyz extends Color {
 
   xyz() {
     return this;
+  }
+
+  yxy() {
+    let [x, y, z] = this.values();
+    return new Yxy(y, x / (x + y + z), y / (x + y + z));
   }
 }

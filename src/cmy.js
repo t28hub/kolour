@@ -65,6 +65,10 @@ export default class Cmy extends Color {
     return this.rgb().xyz();
   }
 
+  yxy() {
+    return this.rgb().yxy();
+  }
+
   static fromObject(object) {
     let keys1 = Object.keys(object).sort();
     let keys2 = Object.keys(KEYS).sort();

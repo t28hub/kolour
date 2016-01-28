@@ -72,4 +72,8 @@ export default class Hsv extends Color {
   xyz() {
     return this.rgb().xyz();
   }
+
+  yxy() {
+    return this.rgb().yxy();
+  }
 }

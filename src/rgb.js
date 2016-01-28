@@ -117,6 +117,10 @@ export default class Rgb extends Color {
     return new Xyz(x, y, z);
   }
 
+  yxy() {
+    return this.xyz().yxy();
+  }
+
   static from(value) {
     if (Utils.isObject(value)) {
       return Rgb.fromObject(value);
