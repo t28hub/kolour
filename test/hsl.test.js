@@ -63,6 +63,26 @@ describe('Hsl', () => {
 
   });
 
+  describe('.prototype.hsv()', () => {
+
+    it('should convert color space from HSV to XYZ', () => {
+      let hsl = new Hsl(180, 0.5, 0.5);
+      let hsv = hsl.hsv();
+      assert(hsv !== null);
+      assert(hsv instanceof Hsv);
+    });
+
+    it('should delegate a color space conversion process to Rgb', () => {
+      let hsl  = new Hsl(180, 0.5, 0.5);
+      let rgb  = hsl.rgb();
+      let spy  = sinon.spy(rgb, 'hsv');
+      sinon.stub(hsl, 'rgb').returns(rgb);
+      let hsv = hsl.hsv();
+      assert(spy.callCount === 1);
+    });
+
+  });
+
   describe('.prototype.rgb()', () => {
 
     it('should convert color space from HSL to RGB', () => {
