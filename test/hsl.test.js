@@ -63,6 +63,26 @@ describe('Hsl', () => {
 
   });
 
+  describe('.prototype.cmy()', () => {
+
+    it('should convert color space from HSV to CMY', () => {
+      let hsl = new Hsl(180, 0.5, 0.5);
+      let cmy = hsl.cmy();
+      assert(cmy !== null);
+      assert(cmy instanceof Cmy);
+    });
+
+    it('should delegate a color space conversion process to Rgb', () => {
+      let hsl  = new Hsl(180, 0.5, 0.5);
+      let rgb  = hsl.rgb();
+      let spy  = sinon.spy(rgb, 'cmy');
+      sinon.stub(hsl, 'rgb').returns(rgb);
+      let cmy = hsl.cmy();
+      assert(spy.callCount === 1);
+    });
+
+  });
+
   describe('.prototype.cmyk()', () => {
 
     it('should convert color space from HSV to CMYK', () => {
