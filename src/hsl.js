@@ -1,5 +1,5 @@
 import Color from './color';
-import Rgb from './rgb';
+import Rgb   from './rgb';
 
 const NAME = Symbol.for('HSL');
 const KEYS = Object.freeze({
@@ -33,7 +33,7 @@ export default class Hsl extends Color {
   }
 
   cmyk() {
-    return this.rgb().cmy().cmyk();
+    return this.rgb().cmyk();
   }
 
   hsl() {
