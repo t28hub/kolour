@@ -17,6 +17,17 @@ export default class Hsl extends Color {
     return new Hsl(...this.values());
   }
 
+  isValid() {
+    return this.entries().every(entry => {
+      let key   = entry[0];
+      let value = entry[1];
+      if (key !== KEYS.H) {
+        return Number.isFinite(value) && 0 <= value && value <= 1;
+      }
+      return Number.isInteger(value) && 0 <= value && value <= 360;
+    });
+  }
+
   cmy() {
     return this.rgb().cmy();
   }
