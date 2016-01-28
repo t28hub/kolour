@@ -6,9 +6,14 @@ import plugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import {Instrumenter} from 'isparta';
 import isparta from 'isparta';
+import {version} from './package';
 
 const $  = plugins();
 const _ = browserSync.create();
+
+gulp.task('version', () => {
+  console.log(version);
+});
 
 gulp.task('clean', () => {
   del('build/*', {dot: true})
