@@ -43,6 +43,7 @@
     "mocha": "^2.3.4",
     "node-notifier": "^4.4.0",
     "power-assert": "^1.2.0",
+    "run-sequence": "^1.1.5",
     "sinon": "^1.17.2"
   },
   "engines": {
