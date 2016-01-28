@@ -48,7 +48,7 @@ export default class Hsl extends Color {
     let [h, s, l] = this.values();
     if (s === 0) {
       let value = Math.floor(0xFF * l);
-      return [value, value, value];
+      return new Rgb(value, value, value);
     }
 
     let m2 = 0;
