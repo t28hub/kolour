@@ -4,7 +4,7 @@ import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
 import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
-import Rgb    from '../src/hrgb';
+import Rgb    from '../src/rgb';
 import Xyz    from '../src/xyz';
 
 describe('Hsl', () => {
