@@ -1,15 +1,14 @@
 'use strict';
 
-import gulp from 'gulp';
-import del from 'del';
-import plugins from 'gulp-load-plugins';
-import browserSync from 'browser-sync';
-import notifier from 'node-notifier';
-import {Instrumenter} from 'isparta';
-import isparta from 'isparta';
+import gulp            from 'gulp';
+import loadPlugins     from 'gulp-load-plugins';
+import del             from 'del';
+import notifier        from 'node-notifier';
+import browserSync     from 'browser-sync';
+import {Instrumenter}  from 'isparta';
 import {name, version} from './package';
 
-const $  = plugins();
+const $ = loadPlugins();
 const _ = browserSync.create();
 
 gulp.task('version', (callback) => {
