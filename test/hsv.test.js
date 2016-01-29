@@ -14,4 +14,17 @@ describe('Hsv', () => {
 
   });
 
+  describe('.prototype.clone()', () => {
+
+    it('should create an instance', () => {
+      let source = new Hsv(60, 0.1, 0.1);
+      let cloned = source.clone();
+      assert(cloned !== null);
+      assert(cloned !== source);
+      assert(cloned instanceof Hsv);
+      assert.deepEqual(cloned.entries(), source.entries());
+    });
+
+  });
+
 });
