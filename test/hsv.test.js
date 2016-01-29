@@ -4,6 +4,7 @@ import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
 import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
+import Rgb    from '../src/rgb';
 
 describe('Hsv', () => {
 
@@ -95,6 +96,31 @@ describe('Hsv', () => {
     it('should return self', () => {
       let hsv = new Hsv(60, 0.5, 0.5);
       assert(hsv.hsv() === hsv);
+    });
+
+  });
+
+  describe('.prototype.hsl()', () => {
+
+    it('should convert color space from HSV to RGB when hue is less equal than 60', () => {
+      let hsv = new Hsv(0, 0.5, 0.5);
+      let rgb = hsv.rgb();
+      assert(rgb !== null);
+      assert(rgb instanceof Rgb);
+    });
+
+    it('should convert color space from HSV to RGB when hue is greater than 60', () => {
+      let hsv = new Hsv(61, 0.5, 0.5);
+      let rgb = hsv.rgb();
+      assert(rgb !== null);
+      assert(rgb instanceof Rgb);
+    });
+
+    it('should convert color space from HSV to RGB when hue is greater than 120', () => {
+      let hsv = new Hsv(121, 0.5, 0.5);
+      let rgb = hsv.rgb();
+      assert(rgb !== null);
+      assert(rgb instanceof Rgb);
     });
 
   });
