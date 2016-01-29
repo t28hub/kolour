@@ -1,6 +1,6 @@
 import Color from './color';
-import Rgb from './rgb';
-import Yxy from './yxy';
+import Rgb   from './rgb';
+import Yxy   from './yxy';
 
 const NAME = Symbol.for('XYZ');
 const KEYS = Object.freeze({
@@ -23,7 +23,7 @@ export default class Xyz extends Color {
   }
 
   cmyk() {
-    return this.rgb().cmy().cmyk();
+    return this.rgb().cmyk();
   }
 
   hsl() {

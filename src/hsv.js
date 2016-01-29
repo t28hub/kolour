@@ -1,5 +1,5 @@
 import Color from './color';
-import Rgb from './rgb';
+import Rgb   from './rgb';
 
 const NAME = Symbol.for('HSV');
 const KEYS = Object.freeze({

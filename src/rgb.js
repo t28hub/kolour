@@ -1,9 +1,9 @@
 import Utils from './utils';
 import Color from './color';
-import Cmy from './cmy';
-import Hsl from './hsl';
-import Hsv from './hsv';
-import Xyz from './xyz';
+import Cmy   from './cmy';
+import Hsl   from './hsl';
+import Hsv   from './hsv';
+import Xyz   from './xyz';
 
 const NAME = Symbol.for('RGB');
 const KEYS = Object.freeze({

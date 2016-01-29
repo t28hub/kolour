@@ -1,5 +1,5 @@
 import Color from './color';
-import Cmy from './cmy';
+import Cmy   from './cmy';
 
 const NAME = Symbol.for('CMYK');
 const KEYS = Object.freeze({

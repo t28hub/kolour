@@ -1,6 +1,6 @@
 import Color from './color';
-import Cmyk from './cmyk';
-import Rgb from './rgb';
+import Cmyk  from './cmyk';
+import Rgb   from './rgb';
 
 const NAME = Symbol.for('CMY');
 const KEYS = Object.freeze({
