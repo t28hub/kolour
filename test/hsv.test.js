@@ -2,6 +2,7 @@ import assert from 'power-assert';
 import sinon  from 'sinon';
 import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
+import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
 
 describe('Hsv', () => {
@@ -64,6 +65,26 @@ describe('Hsv', () => {
       let spy = sinon.spy(rgb, 'cmyk');
       sinon.stub(hsv, 'rgb').returns(rgb);
       let cmyk = hsv.cmyk();
+      assert(spy.callCount === 1);
+    });
+
+  });
+
+  describe('.prototype.hsl()', () => {
+
+    it('should convert color space from HSV to HSL', () => {
+      let hsv = new Hsv(60, 0.5, 0.5);
+      let hsl = hsv.hsl();
+      assert(hsl !== null);
+      assert(hsl instanceof Hsl);
+    });
+
+    it('should delegate a color space conversion process to Rgb', () => {
+      let hsv = new Hsv(60, 0.5, 0.5);
+      let rgb = hsv.rgb();
+      let spy = sinon.spy(rgb, 'hsl');
+      sinon.stub(hsv, 'rgb').returns(rgb);
+      let hsl = hsv.hsl();
       assert(spy.callCount === 1);
     });
 
