@@ -22,7 +22,7 @@ export default class Hsv extends Color {
   }
 
   cmyk() {
-    return this.rgb().cmy().cmyk();
+    return this.rgb().cmyk();
   }
 
   hsl() {
@@ -40,7 +40,7 @@ export default class Hsv extends Color {
     let m = v - c;
 
     let [r, g, b] = [0, 0, 0];
-    switch (!!(h / 60)) {
+    switch (Math.floor(h / 60)) {
       case 0:
         [r, g, b] = [c, x, 0];
         break;
