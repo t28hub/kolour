@@ -15,16 +15,4 @@ export default class Utils {
   static isObject(value) {
     return Utils.toString(value) === TYPE.OBJECT;
   }
-
-  static zip(array1, array2) {
-    if (!array1 || !array2) {
-      return [];
-    }
-
-    if (array1.length !== array2.length) {
-      return [];
-    }
-
-    return array1.map((name, index) => [array1[index], array2[index]]);
-  }
 }
