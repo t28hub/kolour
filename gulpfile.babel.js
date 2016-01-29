@@ -4,6 +4,7 @@ import gulp            from 'gulp';
 import loadPlugins     from 'gulp-load-plugins';
 import del             from 'del';
 import runSequence     from 'run-sequence';
+import eventStream     from 'event-stream';
 import notifier        from 'node-notifier';
 import browserSync     from 'browser-sync';
 import {Instrumenter}  from 'isparta';
@@ -87,21 +88,13 @@ gulp.task('browser-sync:reload', () => {
 });
 
 gulp.task('watch', ['browser-sync:init'], (callback) => {
-  gulp.watch([PATHS.srcFiles, PATHS.testFiles], ['test']);
+  gulp.watch(PATHS.srcFiles, ['test']);
   gulp.watch(PATHS.coverageFiles, ['browser-sync:reload']);
-  /*
-  gulp.watch(PATHS.testFiles).on('change', (event) => {
-    if (event.type === 'deleted') {
-      return;
-    }
 
-    let path = event.path.replace(`${__dirname}/`, '');
-    console.log(path);
-    gulp.src(path)
-      .pipe($.plumber({errorHandler: function(error) {
-        errorHandler(error);
-        this.emit('end');
-      }}))
+  gulp.watch(PATHS.testFiles, (event) => {
+
+    gulp.src(event.path)  
+      .pipe($.plumber({errorHandler}))
       .pipe($.mocha({
         reporter: 'min'
       }))
@@ -112,9 +105,14 @@ gulp.task('watch', ['browser-sync:init'], (callback) => {
           lcov: {dir: PATHS.coverageDir, file: 'lcov.info'}
         }
       }))
-      .on('end', callback);
+      .pipe((() => {
+        return eventStream.map((file, callback) => {
+          callback(null, file);
+        });        
+      })());
+
   });
-  */
+
 });
 
 gulp.task('build', (callback) => {
