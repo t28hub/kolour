@@ -8,7 +8,7 @@ import eventStream     from 'event-stream';
 import notifier        from 'node-notifier';
 import browserSync     from 'browser-sync';
 import {Instrumenter}  from 'isparta';
-import {name, version} from './package';
+import metadata        from './package';
 
 const $ = loadPlugins();
 const _ = browserSync.create();
@@ -23,7 +23,7 @@ const PATHS = Object.freeze({
 
 let errorHandler = function(error) {
   notifier.notify({
-    title: name,
+    title: metadata.name,
     message: error.message
   });
   this.emit('end');
@@ -31,8 +31,8 @@ let errorHandler = function(error) {
 
 gulp.task('version', (callback) => {
   notifier.notify({
-    title: name,
-    message: `${name}@${version}`
+    title: metadata.name,
+    message: `${metadata.name}@${metadata.version}`
   }, callback);
 });
 
