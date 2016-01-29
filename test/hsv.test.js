@@ -90,4 +90,13 @@ describe('Hsv', () => {
 
   });
 
+  describe('.prototype.hsv()', () => {
+
+    it('should return self', () => {
+      let hsv = new Hsv(60, 0.5, 0.5);
+      assert(hsv.hsv() === hsv);
+    });
+
+  });
+
 });
