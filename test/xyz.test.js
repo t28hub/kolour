@@ -14,4 +14,17 @@ describe('Xyz', () => {
 
   });
 
+  describe('.prototype.clone()', () => {
+
+    it('should clone an instace', () => {
+      let source = new Xyz(41.838, 21.499, 5.077);
+      let cloned = source.clone();
+      assert(cloned !== null);
+      assert(cloned !== source);
+      assert(cloned instanceof Xyz);
+      assert.deepEqual(cloned.entries(), source.entries());
+    });
+
+  });
+
 });
