@@ -95,7 +95,7 @@ describe('Xyz', () => {
 
   describe('.prototype.hsv()', () => {
 
-    it('should convert color space from XYZ to hsv', () => {
+    it('should convert color space from XYZ to HSV', () => {
       let xyz = new Xyz(41.838, 21.499, 5.077);
       let hsv = xyz.hsv();
       assert(hsv !== null);
@@ -115,7 +115,7 @@ describe('Xyz', () => {
 
   describe('.prototype.rgb()', () => {
 
-    it('should convert color space from XYZ to hsv', () => {
+    it('should convert color space from XYZ to RGB', () => {
       let xyz = new Xyz(41.838, 21.499, 5.077);
       let rgb = xyz.rgb();
       assert(rgb !== null);
