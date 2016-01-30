@@ -123,4 +123,13 @@ describe('Xyz', () => {
 
   });
   
+  describe('.prototype.xyz()', () => {
+
+    it('should return self', () => {
+      let xyz = new Xyz(41.838, 21.499, 5.077);
+      assert(xyz.xyz() === xyz);
+    });
+
+  });
+
 });
