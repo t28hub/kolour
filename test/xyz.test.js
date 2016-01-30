@@ -6,6 +6,7 @@ import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
 import Rgb    from '../src/rgb';
 import Xyz    from '../src/xyz';
+import Yxy    from '../src/yxy';
 
 describe('Xyz', () => {
 
@@ -132,4 +133,15 @@ describe('Xyz', () => {
 
   });
 
+  describe('.prototype.yxy()', () => {
+
+    it('should convert color space from XYZ to Yzy', () => {
+      let xyz = new Xyz(41.838, 21.499, 5.077);
+      let yxy = xyz.yxy();
+      assert(yxy !== null);
+      assert(yxy instanceof Yxy);
+    });
+
+  });
+  
 });
