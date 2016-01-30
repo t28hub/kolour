@@ -1,5 +1,6 @@
 import assert from 'power-assert';
 import sinon  from 'sinon';
+import Cmy    from '../src/cmy';
 import Xyz    from '../src/xyz';
 
 describe('Xyz', () => {
@@ -23,6 +24,26 @@ describe('Xyz', () => {
       assert(cloned !== source);
       assert(cloned instanceof Xyz);
       assert.deepEqual(cloned.entries(), source.entries());
+    });
+
+  });
+
+  describe('.prototype.cmy()', () => {
+
+    it('should convert color space from XYZ to CMY', () => {
+      let xyz = new Xyz(41.838, 21.499, 5.077);
+      let cmy = xyz.cmy();
+      assert(cmy !== null);
+      assert(cmy instanceof Cmy);
+    });
+
+    it('should delegate a color space conversion process to Rgb', () => {
+      let xyz = new Xyz(41.838, 21.499, 5.077);
+      let rgb = xyz.rgb();
+      let spy = sinon.spy(rgb, 'cmy');
+      sinon.stub(xyz, 'rgb').returns(rgb);
+      let cmy = xyz.cmy();
+      assert(spy.callCount === 1);
     });
 
   });
