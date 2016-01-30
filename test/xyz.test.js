@@ -4,6 +4,7 @@ import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
 import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
+import Rgb    from '../src/rgb';
 import Xyz    from '../src/xyz';
 
 describe('Xyz', () => {
@@ -111,4 +112,15 @@ describe('Xyz', () => {
 
   });
 
+  describe('.prototype.rgb()', () => {
+
+    it('should convert color space from XYZ to hsv', () => {
+      let xyz = new Xyz(41.838, 21.499, 5.077);
+      let rgb = xyz.rgb();
+      assert(rgb !== null);
+      assert(rgb instanceof Rgb);
+    });
+
+  });
+  
 });
