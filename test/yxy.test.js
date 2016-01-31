@@ -162,4 +162,25 @@ describe('Yxy', () => {
 
   });
 
+  describe('.fromObject(object)', () => {
+
+    it('should create an instance from Object', () => {
+      let Y = 21.499;
+      let x = 0.61154;
+      let y = 0.31425;
+      let yxy = Yxy.fromObject({Y, x, y});
+      assert(yxy !== null);
+      assert(yxy instanceof Yxy);
+      assert.deepEqual(yxy.values(), [Y, x, y]);
+    });
+
+    it('should return null when a specifed Object does not have required key', () => {
+      let Y = 21.499;
+      let x = 0.61154;
+      let yxy = Yxy.fromObject({Y, x});
+      assert(yxy === null);
+    });
+
+  });
+
 });
