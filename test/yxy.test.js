@@ -44,7 +44,7 @@ describe('Yxy', () => {
 
   describe('.prototype.cmy()', () => {
 
-    it('should convert color space from Xyx to CMY', () => {
+    it('should convert color space from Yyx to CMY', () => {
       let yxy = new Yxy(21.499, 0.61154, 0.31425);
       let cmy = yxy.cmy();
       assert(cmy !== null);
@@ -64,7 +64,7 @@ describe('Yxy', () => {
 
   describe('.prototype.cmyk()', () => {
 
-    it('should convert color space from Xyx to CMYK', () => {
+    it('should convert color space from Yyx to CMYK', () => {
       let yxy  = new Yxy(21.499, 0.61154, 0.31425);
       let cmyk = yxy.cmyk();
       assert(cmyk !== null);
@@ -84,7 +84,7 @@ describe('Yxy', () => {
 
   describe('.prototype.hsl()', () => {
 
-    it('should convert color space from Xyx to HSL', () => {
+    it('should convert color space from Yyx to HSL', () => {
       let yxy = new Yxy(21.499, 0.61154, 0.31425);
       let hsl = yxy.hsl();
       assert(hsl !== null);
@@ -104,7 +104,7 @@ describe('Yxy', () => {
 
   describe('.prototype.hsv()', () => {
 
-    it('should convert color space from Xyx to HSV', () => {
+    it('should convert color space from Yyx to HSV', () => {
       let yxy = new Yxy(21.499, 0.61154, 0.31425);
       let hsv = yxy.hsv();
       assert(hsv !== null);
@@ -124,7 +124,7 @@ describe('Yxy', () => {
 
   describe('.prototype.rgb()', () => {
 
-    it('should convert color space from Xyx to RGB', () => {
+    it('should convert color space from Yyx to RGB', () => {
       let yxy = new Yxy(21.499, 0.61154, 0.31425);
       let rgb = yxy.rgb();
       assert(rgb !== null);
@@ -144,7 +144,7 @@ describe('Yxy', () => {
 
   describe('.prototype.xyz()', () => {
 
-    it('should convert color space from Xyx to XYZ', () => {
+    it('should convert color space from Yyx to XYZ', () => {
       let yxy = new Yxy(21.499, 0.61154, 0.31425);
       let xyz = yxy.xyz();
       assert(xyz !== null);
