@@ -17,6 +17,10 @@ export default class Lab extends Color {
     return new Lab(NAME, ...this.values());
   }
 
+  lab() {
+    return this;
+  }
+
   xyz() {
     let y = this.l() + 16 / 116;
     let x = this.a() / 500 + y;
