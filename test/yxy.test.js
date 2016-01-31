@@ -1,6 +1,7 @@
 import assert from 'power-assert';
 import sinon  from 'sinon';
 import Cmy    from '../src/cmy';
+import Cmyk   from '../src/cmyk';
 import Xyz    from '../src/xyz';
 import Yxy    from '../src/yxy';
 
@@ -53,6 +54,26 @@ describe('Yxy', () => {
       let spy = sinon.spy(xyz, 'cmy');
       sinon.stub(yxy, 'xyz').returns(xyz);
       let cmy = yxy.cmy();
+      assert(spy.callCount === 1);
+    });
+
+  });
+
+  describe('.prototype.cmyk()', () => {
+
+    it('should convert color space from Xyx to CMYK', () => {
+      let yxy  = new Yxy(21.499, 0.61154, 0.31425);
+      let cmyk = yxy.cmyk();
+      assert(cmyk !== null);
+      assert(cmyk instanceof Cmyk);
+    });
+
+    it('should delegate a color space conversion process to Xyz', () => {
+      let yxy = new Yxy(21.499, 0.61154, 0.31425);
+      let xyz = yxy.xyz();
+      let spy = sinon.spy(xyz, 'cmyk');
+      sinon.stub(yxy, 'xyz').returns(xyz);
+      let cmyk = yxy.cmyk();
       assert(spy.callCount === 1);
     });
 
