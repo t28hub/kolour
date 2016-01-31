@@ -96,7 +96,7 @@ gulp.task('watch', ['browser-sync:init'], (callback) => {
     gulp.src(event.path)  
       .pipe($.plumber({errorHandler}))
       .pipe($.mocha({
-        reporter: 'min'
+        reporter: 'spec'
       }))
       .pipe($.istanbul.writeReports({
         dir: PATHS.coverageDir,
