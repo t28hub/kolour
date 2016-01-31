@@ -153,4 +153,13 @@ describe('Yxy', () => {
 
   });
 
+  describe('.prototype.yxy()', () => {
+    
+    it('should return self', () => {
+      let yxy = new Yxy(21.499, 0.61154, 0.31425);
+      assert(yxy.yxy() === yxy);
+    });
+
+  });
+
 });
