@@ -48,4 +48,19 @@ describe('kolour', () => {
 
   });
 
+  [
+    {object: {r: 255, g: 255, b: 255}, expected: {class: Rgb, name: 'Rgb'}}
+  ].forEach(test => {
+
+    let object   = test.object;
+    let expected = test.expected;
+    it(`should create an instance of ${expected.name} when value is ${JSON.stringify(object)}`, () => {
+      let color = kolour(object);
+      assert(color !== null);
+      assert(color instanceof expected.class);
+      assert.deepEqual(color.values(), Object.keys(object).map(key => object[key]));
+    });
+
+  });
+
 });
