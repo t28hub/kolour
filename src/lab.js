@@ -11,4 +11,8 @@ export default class Lab extends Color {
   constructor(l, a, b) {
     super(NAME, [[KEYS.L, l], [KEYS.A, a], [KEYS.B, b]]);
   }
+
+  clone() {
+    return new Lab(NAME, ...this.values());
+  }
 }
