@@ -1,4 +1,5 @@
 import Color from './color';
+import Lab   from './lab';
 import Rgb   from './rgb';
 import Yxy   from './yxy';
 
@@ -32,6 +33,20 @@ export default class Xyz extends Color {
 
   hsv() {
     return this.rgb().hsv();
+  }
+
+  lab() {
+    let x = this.x() / 95.047;
+    let y = this.y() / 100.000;
+    let z = this.z() / 108.883;
+
+    [x, y, z] = [x, y, z].map(value => {
+      if (value > 0.008856) {
+        return Math.pow(value, 1 / 3);
+      }
+      return (7.787 * value) + (16 / 116);
+    });
+    return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z));
   }
 
   rgb() {
