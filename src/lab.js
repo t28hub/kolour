@@ -22,7 +22,7 @@ export default class Lab extends Color {
   }
 
   xyz() {
-    let y = this.l() + 16 / 116;
+    let y = (this.l() + 16) / 116;
     let x = this.a() / 500 + y;
     let z = y - this.b() / 200;
 
@@ -31,7 +31,7 @@ export default class Lab extends Color {
       if (cubed > 0.008856) {
         return cubed;
       }
-      return ((value - 16) / 116) / 7.787;
+      return (value - 16 / 116) / 7.787;
     });
     return new Xyz(95.047 * x, 100.000 * y, 108.883 * z);
   }
