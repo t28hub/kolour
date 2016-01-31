@@ -27,4 +27,13 @@ describe('Yxy', () => {
 
   });
 
+  describe('.prototype.isValid()', () => {
+
+    it('should always return false', () => {
+      let yxy = new Yxy(21.499, 0.61154, 0.31425);
+      assert(yxy.isValid() === false);
+    });
+
+  });
+
 });
