@@ -142,4 +142,15 @@ describe('Yxy', () => {
 
   });
 
+  describe('.prototype.xyz()', () => {
+
+    it('should convert color space from Xyx to XYZ', () => {
+      let yxy = new Yxy(21.499, 0.61154, 0.31425);
+      let xyz = yxy.xyz();
+      assert(xyz !== null);
+      assert(xyz instanceof Xyz);
+    });
+
+  });
+
 });
