@@ -4,6 +4,7 @@ import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
 import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
+import Rgb    from '../src/rgb';
 import Xyz    from '../src/xyz';
 import Yxy    from '../src/yxy';
 
@@ -116,6 +117,26 @@ describe('Yxy', () => {
       let spy = sinon.spy(xyz, 'hsv');
       sinon.stub(yxy, 'xyz').returns(xyz);
       let hsv = yxy.hsv();
+      assert(spy.callCount === 1);
+    });
+
+  });
+
+  describe('.prototype.rgb()', () => {
+
+    it('should convert color space from Xyx to RGB', () => {
+      let yxy = new Yxy(21.499, 0.61154, 0.31425);
+      let rgb = yxy.rgb();
+      assert(rgb !== null);
+      assert(rgb instanceof Rgb);
+    });
+
+    it('should delegate a color space conversion process to Xyz', () => {
+      let yxy = new Yxy(21.499, 0.61154, 0.31425);
+      let xyz = yxy.xyz();
+      let spy = sinon.spy(xyz, 'rgb');
+      sinon.stub(yxy, 'xyz').returns(xyz);
+      let rgb = yxy.rgb();
       assert(spy.callCount === 1);
     });
 
