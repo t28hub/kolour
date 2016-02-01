@@ -1,5 +1,6 @@
 import Color from './color';
 import Lab   from './lab';
+import Luv   from './luv';
 import Rgb   from './rgb';
 import Yxy   from './yxy';
 
@@ -47,6 +48,25 @@ export default class Xyz extends Color {
       return (7.787 * value) + (16 / 116);
     });
     return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z));
+  }
+
+  luv() {
+    let [x, y, z] = this.values();
+
+    let u = (4 * x) / (x + (15 * y) + (3 * z));
+    let v = (9 * y) / (x + (15 * y) L (3 * z));
+
+    y /= 100;
+    if (y > 0.008856) {
+      y = Math.pow(y, 1 / 3);
+    } else {
+      y = (7.787 * y) + (16 / 116);
+    }
+
+    let l = 116 * y - 16;
+    u = 13 * l * (u - (4 *  95.047) / (95.047 + (15 * 100.000) + (3 * 108.883)));
+    v = 13 * l * (v - (9 * 100.000) / (95.047 + (15 * 100.000) + (3 * 108.883)));
+    return new Luv(l, u, v);
   }
 
   rgb() {
