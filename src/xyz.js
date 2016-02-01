@@ -54,7 +54,7 @@ export default class Xyz extends Color {
     let [x, y, z] = this.values();
 
     let u = (4 * x) / (x + (15 * y) + (3 * z));
-    let v = (9 * y) / (x + (15 * y) L (3 * z));
+    let v = (9 * y) / (x + (15 * y) + (3 * z));
 
     y /= 100;
     if (y > 0.008856) {
