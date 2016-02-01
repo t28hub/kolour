@@ -27,7 +27,7 @@ export default class Lab extends Color {
 
     let h = Math.atan(b, a);
     if (h > 0) {
-      h = (h / Math.PI) * 180:
+      h = (h / Math.PI) * 180;
     } else {
       h = 360 - (Math.abs(h) / Math.PI) * 180;
     }
