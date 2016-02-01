@@ -25,7 +25,7 @@ export default class Lab extends Color {
   lch() {
     let [l, a, b] = this.values();
 
-    let h = Math.atan(b, a);
+    let h = Math.atan2(b, a);
     if (h > 0) {
       h = (h / Math.PI) * 180;
     } else {
