@@ -72,6 +72,9 @@ export default class Color {
 
   lab() {
   }
+  
+  luv() {
+  }
 
   rgb() {
   }
