@@ -1,4 +1,5 @@
 import Color from './color';
+import Lch   from './lch';
 import Xyz   from './xyz';
 
 const NAME = Symbol.for('CIE L*a*b*');
@@ -19,6 +20,19 @@ export default class Lab extends Color {
 
   lab() {
     return this;
+  }
+  
+  lch() {
+    let [l, a, b] = this.values();
+
+    let h = Math.atan(b, a);
+    if (h > 0) {
+      h = (h / Math.PI) * 180:
+    } else {
+      h = 360 - (Math.abs(h) / Math.PI) * 180;
+    }
+    let c = Math.sqrt(a * a + b * b);
+    return new Lch(l, c, h);
   }
 
   xyz() {
