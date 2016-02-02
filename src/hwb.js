@@ -1,4 +1,5 @@
 import Color from './color';
+import Hsv   from './hsv';
 
 const NAME = Symbol.for('HWB');
 const KEYS = Object.freeze({
@@ -17,5 +18,10 @@ export default class Hwb extends Color {
 
   clone() {
     return new Hwb(...this.values());
+  }
+
+  hsv() {
+    let [h, s, v] = this.values();
+    return new Hsv(h, 1 - (1 / (1 - b)), 1 - b);
   }
 }
