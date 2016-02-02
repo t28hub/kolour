@@ -30,7 +30,7 @@ export default class Yiq extends Color {
     [r, g, b] = [r, g, b].map(value => {
       value = Math.max(value, 0);
       value = Math.min(value, 1);
-      Math.round(value * 0xFF);
+      return Math.round(value * 0xFF);
     });
 
     return new Rgb(r, g, b);
