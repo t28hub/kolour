@@ -73,16 +73,13 @@ export default class Color {
   lab() {
   }
 
-  lch() {
-  }
-  
-  luv() {
-  }
-
   rgb() {
   }
 
   xyz() {
+  }
+
+  yiq() {
   }
 
   yxy() {
