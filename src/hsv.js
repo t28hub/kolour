@@ -1,5 +1,6 @@
 import Color from './color';
 import Rgb   from './rgb';
+import Hwb   frin './hwb';
 
 const NAME = Symbol.for('HSV');
 const KEYS = Object.freeze({
@@ -31,6 +32,11 @@ export default class Hsv extends Color {
 
   hsv() {
     return this;
+  }
+
+  hwb() {
+    let [h, s, v] = this.values();
+    return new Hwb(h, (1 - s) * v, 1 - v);
   }
 
   rgb() {
