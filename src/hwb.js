@@ -7,6 +7,9 @@ const KEYS = Object.freeze({
   B: Symbol.for('b')
 });
 
+/**
+ * https://en.wikipedia.org/wiki/HWB_color_model
+ */
 export default class Hwb extends Color {
   constructor(h, w, b) {
     super(NAME, [[KEYS.H, h], [KEYS.W, w], [KEYS.B, b]]);
