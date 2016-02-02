@@ -70,6 +70,9 @@ export default class Color {
   hsv() {
   }
 
+  hwb() {
+  }
+
   lab() {
   }
 
