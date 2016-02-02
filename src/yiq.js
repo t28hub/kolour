@@ -14,4 +14,8 @@ export default class Yiq extends Color {
   constructor(y, i, q) {
     super(NAME, [[KEYS.Y, y], [KEYS.I, i], [KEYS.Q, q]]);
   }
+
+  clone() {
+    return new Yiq(...this.values());
+  }
 }
