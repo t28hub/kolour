@@ -14,5 +14,6 @@ This is a list of supported color spaces.
 - HSL
 - HSB
 - HSV
+- HWB
 - CMY
 - CMYK
