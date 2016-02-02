@@ -4,6 +4,7 @@ import Cmy   from './cmy';
 import Hsl   from './hsl';
 import Hsv   from './hsv';
 import Xyz   from './xyz';
+import Yiq   from './yiq';
 
 const NAME = Symbol.for('RGB');
 const KEYS = Object.freeze({
@@ -115,6 +116,15 @@ export default class Rgb extends Color {
     let y = r * 0.2126 + g * 0.7152 + b * 0.0722;
     let z = r * 0.0193 + g * 0.1192 + b * 0.9505;
     return new Xyz(x, y, z);
+  }
+
+  yiq() {
+    let [r, g, b] = this.values().map(value => value /= 0xFF);
+
+    let y = 0.299 * r + 0.587 * g + 0.114 * b;
+    let i = 0.596 * r - 0.274 * g - 0.322 * b;
+    let q = 0.211 * r - 0.523 * g + 0.312 * b;
+    return new Yiq(y, i, q);
   }
 
   yxy() {
