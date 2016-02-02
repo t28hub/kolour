@@ -19,9 +19,9 @@ export default class Yuv extends Color {
   rgb() {
     let [y, u, v] = this.values();
 
-    let r = y +           u + 1.13983 * v;
+    let r = y + 1.13983 * v;
     let g = y - 0.39465 * u - 0.58060 * v;
-    let b = y + 2.03211 * u +           v;
+    let b = y + 2.03211 * u;
     [r, g, b] = [r, g, b].map(value => Math.round(value * 0xFF));
     return new Rgb(r, g, b);
   }
