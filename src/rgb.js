@@ -1,6 +1,7 @@
 import Utils from './utils';
 import Color from './color';
 import Cmy   from './cmy';
+import Hsi   from './hsi';
 import Hsl   from './hsl';
 import Hsv   from './hsv';
 import Xyz   from './xyz';
@@ -45,6 +46,19 @@ export default class Rgb extends Color {
 
   cmyk() {
     return this.cmy().cmyk();
+  }
+
+  hsi() {
+    let [r, g, b] = this.values();
+
+    let i = (r + g + b) / 3;
+    let s = 1 - (3 / (r + g + b)) * Math.min(r, g, b);
+    let h = Math.acos((0.5 * (r - g) + (r - b)) / Math.pow(r - g, 2) + (r - b) * Math.pow(g - b, 0.5));
+
+    if (b > g) {
+      h = 360 - h;
+    }
+    return new Hsi(h, s, i);
   }
 
   hsl() {
