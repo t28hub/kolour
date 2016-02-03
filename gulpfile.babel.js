@@ -40,6 +40,14 @@ gulp.task('clean', () => {
   del(PATHS.buildDir, {dot: true});
 });
 
+gulp.task('lint', () => {
+  gulp.src(PATHS.srcFiles)
+    .pipe($.plumber({errorHandler}))
+    .pipe($.eslint({useEslintrc: true}))
+    .pipe($.eslint.format())
+    .pipe($.eslint.failOnError());
+});
+
 gulp.task('compile', ['clean'], () => {
   gulp.src(PATHS.srcFiles)
     .pipe($.plumber({errorHandler}))
