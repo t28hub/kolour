@@ -8,4 +8,4 @@ export const D65 = new WhtiePoint( 95.047, 100.000, 108.883);
 export const D75 = new WhitePoint( 94.972, 100.000, 122.638);
 export const F2  = new WhitePoint( 99.187, 100.000,  67.395);
 export const F7  = new WhitePoint( 95.044, 100.000, 108.755);
-export const F11 = new WhtiePoint(100.966, 100.000,, 64.370);
+export const F11 = new WhtiePoint(100.966, 100.000,  64.370);
