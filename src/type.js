@@ -23,12 +23,13 @@ export default class Type {
 
   static of(value) {
     let string = Object.prototype.toString.call(value).toLowerCase();
-    let symbol = Object.keys(TYPES).find(type => {
+    let found  = Object.keys(TYPES).find(type => {
       return string === `[object ${type}]`.toLowerCase();
     });
 
-    if (!symbol) {
-      symbol = TYPES.UNKNOWN;
+    let symbol = TYPES.UNKNOWN;
+    if (found) {
+      symbol = TYPES[found];
     }
     return new Type(symbol);
   }
