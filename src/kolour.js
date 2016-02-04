@@ -26,8 +26,7 @@ export default function kolor(value) {
     let color = null;
     if (isObject) {
       color = clazz.fromObject(value);
-    }
-    if (isString) {
+    } else {
       color = clazz.fromString(value);
     }
     if (!color) {
