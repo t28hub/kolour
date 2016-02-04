@@ -1,4 +1,3 @@
-import Utils from './utils';
 import Color from './color';
 import Cmy   from './cmy';
 import Hsi   from './hsi';
@@ -153,16 +152,6 @@ export default class Rgb extends Color {
 
   yxy() {
     return this.xyz().yxy();
-  }
-
-  static from(value) {
-    if (Utils.isObject(value)) {
-      return Rgb.fromObject(value);
-    }
-    if (Utils.isString(value)) {
-      return Rgb.fromString(value);
-    }
-    return null;
   }
 
   static fromObject(object) {
