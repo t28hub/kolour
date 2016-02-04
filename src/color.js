@@ -1,5 +1,3 @@
-import Utils from './utils';
-
 export default class Color {
   constructor(space, components) {
     this.space      = space;
