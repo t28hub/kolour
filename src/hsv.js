@@ -1,6 +1,6 @@
 import Color from './color';
 import Rgb   from './rgb';
-import Hwb   frin './hwb';
+import Hwb   from './hwb';
 
 const NAME = Symbol.for('HSV');
 const KEYS = Object.freeze({
