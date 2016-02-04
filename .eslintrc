@@ -2,13 +2,13 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true,
-    "mocha": true
+    "node": true
   },
   "globals": {
   },
   "ecmaFeatures": {
   },
   "rules": {
+    "no-console": 2
   }
 }
