@@ -1,3 +1,4 @@
+import Type  from './type';
 import Color from './color';
 import Cmy   from './cmy';
 import Cmyk  from './cmyk';
@@ -5,16 +6,14 @@ import Hsl   from './hsl';
 import Hsv   from './hsv';
 import Rgb   from './rgb';
 import Xyz   from './xyz';
-import Utils from './utils';
 
 const COLORS = [
   Cmy, Cmyk, Hsl, Hsv, Rgb, Xyz
 ];
 
 export default function kolor(value) {
-  let isObject = Utils.isObject(value);
-  let isString = Utils.isString(value);
-  if (!isObject && !isString) {
+  let type = Type.of(value);
+  if (!type.isObject() && !type.isString()) {
     throw new TypeError(`value(${value}) must be an object or string`);
   }
 
@@ -24,7 +23,7 @@ export default function kolor(value) {
 
   for (let clazz of COLORS) {
     let color = null;
-    if (isObject) {
+    if (type.isObject()) {
       color = clazz.fromObject(value);
     } else {
       color = clazz.fromString(value);
