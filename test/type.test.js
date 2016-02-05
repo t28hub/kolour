@@ -5,10 +5,25 @@ describe('Type', () => {
 
   describe('.of(value)', () => {
 
-    it('should create an instance of Type', () => {
+    it('should return an instance that represents string type when value is string', () => {
       let type = Type.of('string');
       assert(type !== null);
       assert(type instanceof Type);
+      assert(type.name === 'string');
+    });
+
+    it('should return an instance that represents object type when value is object', () => {
+      let type = Type.of({});
+      assert(type !== null);
+      assert(type instanceof Type);
+      assert(type.name === 'object');
+    });
+
+    it('should return an instance that represents unknown type when value is unsupported', () => {
+      let type = Type.of(null);
+      assert(type !== null);
+      assert(type instanceof Type);
+      assert(type.name === 'unknown');
     });
 
   });
