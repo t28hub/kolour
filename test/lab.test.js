@@ -3,6 +3,7 @@ import sinon  from 'sinon';
 import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
 import Hsl    from '../src/hsl';
+import Hsv    from '../src/hsv';
 import Lab    from '../src/lab';
 
 describe('Lab', () => {
@@ -60,6 +61,17 @@ describe('Lab', () => {
       let hsl = lab.hsl();
       assert(hsl !== null);
       assert(hsl instanceof Hsl);
+    });
+
+  });
+
+  describe('.prototype.hsv()', () => {
+
+    it('should convert color space from L*a*b to HSV', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let hsv = lab.hsv();
+      assert(hsv !== null);
+      assert(hsv instanceof Hsv);
     });
 
   });
