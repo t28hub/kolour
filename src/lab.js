@@ -18,10 +18,30 @@ export default class Lab extends Color {
     return new Lab(...this.values());
   }
 
+  cmy() {
+    return this.xyz().cmy();
+  }
+
+  cmyk() {
+    return this.xyz().cmyk();
+  }
+
+  hsl() {
+    return this.xyz().hsl();
+  }
+
+  hsv() {
+    return this.xyz().hsv();
+  }
+
+  hwb() {
+    return this.xyz().hwb();
+  }
+
   lab() {
     return this;
   }
-  
+
   lch() {
     let [l, a, b] = this.values();
 
@@ -33,6 +53,14 @@ export default class Lab extends Color {
     }
     let c = Math.sqrt(a * a + b * b);
     return new Lch(l, c, h);
+  }
+
+  luv() {
+    return this.xyz().luv();
+  }
+
+  rgb() {
+    return this.xyz().rgb();
   }
 
   xyz() {
@@ -48,5 +76,13 @@ export default class Lab extends Color {
       return (value - 16 / 116) / 7.787;
     });
     return new Xyz(95.047 * x, 100.000 * y, 108.883 * z);
+  }
+
+  yuv() {
+    return this.xyz().yuv();
+  }
+
+  yxy() {
+    return this.xyz().yxy();
   }
 }
