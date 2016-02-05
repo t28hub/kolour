@@ -1,5 +1,6 @@
 import assert from 'power-assert';
 import sinon  from 'sinon';
+import Cmy    from '../src/cmy';
 import Lab    from '../src/lab';
 
 describe('Lab', () => {
@@ -11,6 +12,30 @@ describe('Lab', () => {
       assert(lab !== null);
       assert(lab instanceof Lab);
       assert.deepEqual(lab.values(), [42.782, 63.477, 7.189]);
+    });
+
+  });
+
+  describe('.prototype.clone()', () => {
+
+    it('should create a new instance', () => {
+      let source = new Lab(42.782, 63.477, 7.189);
+      let cloned = source.clone();
+      assert(source !== null);
+      assert(source !== cloned);
+      assert(source instanceof Lab);
+      assert.deepEqual(source.values(), cloned.values());
+    });
+
+  });
+
+  describe('.prototype.cmy()', () => {
+
+    it('should convert color space from L*a*b to CMY', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let cmy = lab.cmy();
+      assert(cmy !== null);
+      assert(cmy instanceof Cmy);
     });
 
   });
