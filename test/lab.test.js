@@ -1,6 +1,7 @@
 import assert from 'power-assert';
 import sinon  from 'sinon';
 import Cmy    from '../src/cmy';
+import Cmyk   from '../src/cmyk';
 import Lab    from '../src/lab';
 
 describe('Lab', () => {
@@ -36,6 +37,17 @@ describe('Lab', () => {
       let cmy = lab.cmy();
       assert(cmy !== null);
       assert(cmy instanceof Cmy);
+    });
+
+  });
+
+  describe('.prototype.cmyk()', () => {
+
+    it('should convert color space from L*a*b to CMYK', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let cmyk = lab.cmyk();
+      assert(cmyk !== null);
+      assert(cmyk instanceof Cmyk);
     });
 
   });
