@@ -15,7 +15,7 @@ export default class Lab extends Color {
   }
 
   clone() {
-    return new Lab(NAME, ...this.values());
+    return new Lab(...this.values());
   }
 
   lab() {
