@@ -63,4 +63,20 @@ describe('kolour', () => {
 
   });
 
+  [
+    {string: '#AAA',    expected: {class: Rgb, name: 'Rgb', values: [170, 170, 170]}},
+    {string: '#FFFFFF', expected: {class: Rgb, name: 'Rgb', values: [255, 255, 255]}}
+  ].forEach(test => {
+
+    let string   = test.string;
+    let expected = test.expected;
+    it(`should create an instance of ${expected.name} when value is ${string}`, () => {
+      let color = kolour(string);
+      assert(color !== null);
+      assert(color instanceof expected.class);
+      assert.deepEqual(color.values(), expected.values);
+    });
+
+  });
+
 });
