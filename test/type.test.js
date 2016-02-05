@@ -3,6 +3,20 @@ import Type   from '../src/type';
 
 describe('Type', () => {
 
+  describe('.prototype.isString()', () => {
+
+    it('should return true when value is string', () => {
+      let type = Type.of('string');
+      assert(type.isString());
+    });
+
+    it('should return true when value is not string', () => {
+      let type = Type.of(null);
+      assert(type.isString() === false);
+    });
+
+  });
+
   describe('.of(value)', () => {
 
     it('should return an instance that represents string type when value is string', () => {
