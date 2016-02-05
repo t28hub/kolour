@@ -6,11 +6,8 @@ const TYPES = Object.freeze({
 
 export default class Type {
   constructor(symbol) {
+    this.name   = Symbol.keyFor(symbol);
     this.symbol = symbol;
-  }
-
-  name() {
-    return Symbol.keyFor(this.symbol);
   }
 
   isString() {
