@@ -10,7 +10,7 @@ describe('Type', () => {
       assert(type.isString());
     });
 
-    it('should return true when value is not string', () => {
+    it('should return false when value is not string', () => {
       let type = Type.of(null);
       assert(type.isString() === false);
     });
