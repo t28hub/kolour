@@ -76,4 +76,13 @@ describe('Lab', () => {
 
   });
 
+  describe('.prototype.lab()', () => {
+
+    it('should return self', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      assert(lab.lab() === lab);
+    });
+
+  });
+
 });
