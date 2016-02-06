@@ -4,6 +4,7 @@ import Cmy    from '../src/cmy';
 import Cmyk   from '../src/cmyk';
 import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
+import Hwb    from '../src/hwb';
 import Lab    from '../src/lab';
 import Luv    from '../src/luv';
 import Rgb    from '../src/rgb';
@@ -76,6 +77,17 @@ describe('Lab', () => {
       let hsv = lab.hsv();
       assert(hsv !== null);
       assert(hsv instanceof Hsv);
+    });
+
+  });
+
+  describe('.prototype.hwb()', () => {
+
+    it('should convert color space from L*a*b to HWB', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let hwb = lab.hwb();
+      assert(hwb !== null);
+      assert(hwb instanceof Hwb);
     });
 
   });
