@@ -8,6 +8,7 @@ import Lab    from '../src/lab';
 import Luv    from '../src/luv';
 import Rgb    from '../src/rgb';
 import Xyz    from '../src/xyz';
+import Yuv    from '../src/yuv';
 
 describe('Lab', () => {
 
@@ -120,4 +121,16 @@ describe('Lab', () => {
     });
 
   });
+
+  describe('.prototype.yuv()', () => {
+
+    it('should convert color space from L*a*b* to YUV', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let yuv = lab.yuv();
+      assert(yuv !== null);
+      assert(yuv instanceof Yuv);
+    });
+
+  });
+
 });
