@@ -8,7 +8,7 @@ This is a list of supported color spaces.
 - [CIE LAB](https://en.m.wikipedia.org/wiki/Lab_color_space)
 - CIE LChuv
 - CIE LUV
-- CIE XYZ
+- [CIE XYZ](https://en.m.wikipedia.org/wiki/CIE_XYZ_color_space)
 - YIQ
 - YUV
 - HSL
