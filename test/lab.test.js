@@ -10,6 +10,7 @@ import Luv    from '../src/luv';
 import Rgb    from '../src/rgb';
 import Xyz    from '../src/xyz';
 import Yuv    from '../src/yuv';
+import Yxy    from '../src/yxy';
 
 describe('Lab', () => {
 
@@ -141,6 +142,17 @@ describe('Lab', () => {
       let yuv = lab.yuv();
       assert(yuv !== null);
       assert(yuv instanceof Yuv);
+    });
+
+  });
+
+  describe('.prototype.yxy()', () => {
+
+    it('should convert color space from L*a*b* to YXY', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let yxy = lab.yxy();
+      assert(yxy !== null);
+      assert(yxy instanceof Yxy);
     });
 
   });
