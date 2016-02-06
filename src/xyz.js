@@ -91,6 +91,10 @@ export default class Xyz extends Color {
     return this;
   }
 
+  yuv() {
+    return this.rgb().yuv();
+  }
+
   yxy() {
     let [x, y, z] = this.values();
     return new Yxy(y, x / (x + y + z), y / (x + y + z));
