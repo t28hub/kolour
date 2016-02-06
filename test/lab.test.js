@@ -6,6 +6,7 @@ import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
 import Hwb    from '../src/hwb';
 import Lab    from '../src/lab';
+import Lch    from '../src/lch';
 import Luv    from '../src/luv';
 import Rgb    from '../src/rgb';
 import Xyz    from '../src/xyz';
@@ -98,6 +99,17 @@ describe('Lab', () => {
     it('should return self', () => {
       let lab = new Lab(42.782, 63.477, 7.189);
       assert(lab.lab() === lab);
+    });
+
+  });
+
+  describe('.prototype.lch()', () => {
+
+    it('should convert color space from L*a*b to LCH', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let lch = lab.lch();
+      assert(lch !== null);
+      assert(lch instanceof Lch);
     });
 
   });
