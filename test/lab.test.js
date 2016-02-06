@@ -5,6 +5,7 @@ import Cmyk   from '../src/cmyk';
 import Hsl    from '../src/hsl';
 import Hsv    from '../src/hsv';
 import Lab    from '../src/lab';
+import Luv    from '../src/luv';
 
 describe('Lab', () => {
 
@@ -81,6 +82,17 @@ describe('Lab', () => {
     it('should return self', () => {
       let lab = new Lab(42.782, 63.477, 7.189);
       assert(lab.lab() === lab);
+    });
+
+  });
+
+  describe('.prototype.luv()', () => {
+
+    it('should convert color space from L*a*b to LUV', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let luv = lab.luv();
+      assert(luv !== null);
+      assert(luv instanceof Luv);
     });
 
   });
