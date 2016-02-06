@@ -111,6 +111,10 @@ export default class Rgb extends Color {
     return new Hsv(h, s, v);
   }
 
+  hwb() {
+    return this.hsv().hwb();
+  }
+
   rgb() {
     return this;
   }
