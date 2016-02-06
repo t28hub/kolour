@@ -36,6 +36,10 @@ export default class Xyz extends Color {
     return this.rgb().hsv();
   }
 
+  hwb() {
+    return this.rgb().hwb();
+  }
+
   lab() {
     let x = this.x() / 95.047;
     let y = this.y() / 100.000;
