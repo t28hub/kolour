@@ -7,6 +7,7 @@ import Hsv    from '../src/hsv';
 import Lab    from '../src/lab';
 import Luv    from '../src/luv';
 import Rgb    from '../src/rgb';
+import Xyz    from '../src/xyz';
 
 describe('Lab', () => {
 
@@ -106,6 +107,17 @@ describe('Lab', () => {
       assert(rgb !== null);
       assert(rgb instanceof Rgb);
     });
+
   });
 
+  describe('.prototype.xyz()', () => {
+
+    it('should convert color space from L*a*b* to XYZ', () => {
+      let lab = new Lab(42.782, 63.477, 7.189);
+      let xyz = lab.xyz();
+      assert(xyz !== null);
+      assert(xyz instanceof Xyz);
+    });
+
+  });
 });
