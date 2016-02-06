@@ -9,7 +9,7 @@ This is a list of supported color spaces.
 - CIE LChuv
 - [CIE LUV](https://en.m.wikipedia.org/wiki/CIELUV)
 - [CIE XYZ](https://en.m.wikipedia.org/wiki/CIE_XYZ_color_space)
-- YIQ
+- [YIQ](https://en.wikipedia.org/wiki/YIQ)
 - YUV
 - HSL
 - HSB
