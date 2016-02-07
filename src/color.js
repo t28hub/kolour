@@ -80,6 +80,9 @@ export default class Color {
   xyz() {
   }
 
+  uvw() {
+  }
+
   yiq() {
   }
 
