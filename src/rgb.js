@@ -4,6 +4,7 @@ import Hsi   from './hsi';
 import Hsl   from './hsl';
 import Hsv   from './hsv';
 import Xyz   from './xyz';
+import YDbDr from './ydbdr';
 import Yiq   from './yiq';
 import Yuv   from './yuv';
 
@@ -138,6 +139,15 @@ export default class Rgb extends Color {
     let y = r * 0.2126 + g * 0.7152 + b * 0.0722;
     let z = r * 0.0193 + g * 0.1192 + b * 0.9505;
     return new Xyz(x, y, z);
+  }
+
+  ydbdr() {
+    let [r, g, b] = this.values().map(value => value /= 0xFF);
+
+    let y  =  0.299 * r + 0.587 * g + 0.114 * b;
+    let db = -0.450 * r - 0.883 * g + 1.333 * b;
+    let dr = -1.333 * r + 1.116 * g + 0.217 * b;
+    return new YDbDr(y, db, dr);
   }
 
   yiq() {
