@@ -83,6 +83,9 @@ export default class Color {
   uvw() {
   }
 
+  ydbdr() {
+  }
+
   yiq() {
   }
 
