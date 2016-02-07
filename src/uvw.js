@@ -1,4 +1,5 @@
 import Color from './color';
+import Xyz   from './xyz';
 
 const NAME = Symbol.for('IEUVW');
 const KEYS = Object.freeze({
@@ -10,5 +11,14 @@ const KEYS = Object.freeze({
 export default class Uvw extends Color {
   constructor(u, v, w) {
     super(NAME, [[KEYS.U, u], [KEYS.V, v], [KEYS.W, w]]);
+  }
+
+  xyz() {
+    let [u, v, w] = this.values();
+    
+    let x = 1.5 * u;
+    let y = v;
+    let z = 1.5 * u - 3 * v + 2;
+    return new Xyz(x, y, z);
   }
 }
