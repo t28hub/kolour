@@ -119,6 +119,10 @@ export default class Rgb extends Color {
     return this;
   }
 
+  uvw() {
+    return this.xyz().uvw();
+  }
+
   xyz() {
     let [r, g, b] = this.values().map(value => {
       value /= 0xFF;
