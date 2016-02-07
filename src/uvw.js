@@ -1,7 +1,7 @@
 import Color from './color';
 import Xyz   from './xyz';
 
-const NAME = Symbol.for('IEUVW');
+const NAME = Symbol.for('CIEUVW');
 const KEYS = Object.freeze({
   U: Symbol.for('u'),
   V: Symbol.for('v'),
