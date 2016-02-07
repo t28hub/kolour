@@ -18,7 +18,7 @@ export default class Uvw extends Color {
     
     let x = 1.5 * u;
     let y = v;
-    let z = 1.5 * u - 3 * v + 2;
+    let z = 1.5 * u - 3 * v + 2 * w;
     return new Xyz(x, y, z);
   }
 }
