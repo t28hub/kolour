@@ -21,4 +21,8 @@ export default class YDbDr extends Color {
     let b = y + 0.664679059978955 * db - 0.000079202543533 * dr;
     return new Rgb(r, g, b);
   }
+
+  ydbdr() {
+    return this;
+  }
 }
