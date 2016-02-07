@@ -86,7 +86,7 @@ export default class Color {
   ycbcr() {
   }
 
-  ydbdr() {
+  ydbdr(kb = 0.114, kr = 0.299) {
   }
 
   yiq() {
