@@ -2,6 +2,7 @@ import Color from './color';
 import Lab   from './lab';
 import Luv   from './luv';
 import Rgb   from './rgb';
+import Uvw   from './uvw';
 import Yxy   from './yxy';
 
 const NAME = Symbol.for('XYZ');
@@ -89,6 +90,15 @@ export default class Xyz extends Color {
     });
 
     return new Rgb(r, g, b);
+  }
+
+  uvw() {
+    let [x, y, z] = this.values();
+
+    let u = 2 / 3 * x;
+    let v = y;
+    let w = - 1 / 2 * x + 3 / 2 * y + 1 / 2 * z;
+    return new Uvw(u, v, w);
   }
 
   xyz() {
