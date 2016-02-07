@@ -16,9 +16,10 @@ export default class YDbDr extends Color {
   rgb() {
     let [y, db, dr] = this.values();
 
-    let r = y * 0.000092303716148 * db - 0.525912630661865 * dr;
+    let r = y + 0.000092303716148 * db - 0.525912630661865 * dr;
     let g = y - 0.129132898890509 * db + 0.267899328207599 * dr;
     let b = y + 0.664679059978955 * db - 0.000079202543533 * dr;
+    [r, g, b] = [r, g, b].map(value => Math.round(value * 0xFF));
     return new Rgb(r, g, b);
   }
 
