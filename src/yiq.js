@@ -21,13 +21,13 @@ export default class Yiq extends Color {
   }
 
   rgb() {
-    let [y, i, q] = this.values();
+    const [y, i, q] = this.values();
 
     let r = 1 * y + 0.956 * i + 0.621 * q;
     let g = 1 * y - 0.272 * i - 0.647 * q;
     let b = 1 * y - 1.106 * i + 1.703 * q;
 
-    [r, g, b] = [r, g, b].map(value => {
+    [r, g, b] = [r, g, b].map((value) => {
       value = Math.max(value, 0);
       value = Math.min(value, 1);
       return Math.round(value * 0xFF);
