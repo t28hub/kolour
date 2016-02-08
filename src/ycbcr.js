@@ -13,6 +13,10 @@ export default class YCbCr extends Color {
     super(NAME, [[KEYS.Y, y], [KEYS.PB, pb], [KEYS.PR, pr]]);
   }
 
+  clone() {
+    return new YCbCr(...this.values());
+  }
+
   rgb() {
     const [y, cb, cr] = this.values();
 
