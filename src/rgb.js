@@ -145,9 +145,9 @@ export default class Rgb extends Color {
   ycbcr(kb = 0.114, kr = 0.299) {
     let [r, g, b] = this.values();
     
-    let y  =  16 + ( 65.481 * r + 128.553 * g +  24.966 * b);
-    let cb = 128 + (-37.797 * r -  74.203 * g + 112.000 * b);
-    let cr = 128 + (112.000 * r -  93.786 * g -  18.214 * b);
+    let y  = Math.round( 0.299 * r + 0.587 * g + 0.114 * b);
+    let cb = Math.round(-0.169 * r - 0.331 * g + 0.500 * b) + 128;
+    let cr = Math.round( 0.500 * r - 0.419 * g - 0.081 * b) + 128;
     return new YCbCr(y, cb, cr);
   }
 
