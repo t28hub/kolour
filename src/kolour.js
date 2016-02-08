@@ -33,4 +33,4 @@ export default function kolor(value) {
     }
     return color;
   }  
-};
+}
