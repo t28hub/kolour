@@ -1,7 +1,7 @@
 import Color from './color';
 import Rgb   from './rgb';
 
-const NAME = Symbol.name('YCbCr');
+const NAME = Symbol.for('YCbCr');
 const KEYS = Object.freeze({
   Y:  Symbol.for('Y'),
   PB: Symbol.for('Pb'),
