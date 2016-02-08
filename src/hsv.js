@@ -42,7 +42,7 @@ export default class Hsv extends Color {
   rgb() {
     let [h, s, v] = this.values();
     let c = v * s;
-    let x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+    let x = c * (1 - Math.abs(h / 60 % 2 - 1));
     let m = v - c;
 
     let [r, g, b] = [0, 0, 0];
