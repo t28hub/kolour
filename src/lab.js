@@ -47,9 +47,9 @@ export default class Lab extends Color {
 
     let h = Math.atan2(b, a);
     if (h > 0) {
-      h = (h / Math.PI) * 180;
+      h = h / Math.PI * 180;
     } else {
-      h = 360 - (Math.abs(h) / Math.PI) * 180;
+      h = 360 - Math.abs(h) / Math.PI * 180;
     }
     let c = Math.sqrt(a * a + b * b);
     return new Lch(l, c, h);
