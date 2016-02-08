@@ -25,4 +25,8 @@ export default class YCbCr extends Color {
     const b = Math.round(y + (cb - 128) * 1.773);
     return new Rgb(r, g, b);
   }
+
+  ycbcr() {
+    return self;
+  }
 }
