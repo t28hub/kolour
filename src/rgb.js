@@ -13,7 +13,7 @@ const NAME = Symbol.for('RGB');
 const KEYS = Object.freeze({
   R: Symbol.for('r'),
   G: Symbol.for('g'),
-  B: Symbol.for('b'),
+  B: Symbol.for('b')
 });
 
 const HEX_PATTERN = /^#([0-9a-f]{6}|[0-9a-f]{3})$/i;
