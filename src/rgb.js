@@ -53,7 +53,7 @@ export default class Rgb extends Color {
     let [r, g, b] = this.values();
 
     let i = (r + g + b) / 3;
-    let s = 1 - (3 / (r + g + b)) * Math.min(r, g, b);
+    let s = 1 - 3 / (r + g + b) * Math.min(r, g, b);
     let h = Math.acos((0.5 * (r - g) + (r - b)) / Math.pow(r - g, 2) + (r - b) * Math.pow(g - b, 0.5));
 
     if (b > g) {
