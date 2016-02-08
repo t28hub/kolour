@@ -22,6 +22,6 @@ export default class Hwb extends Color {
 
   hsv() {
     let [h, s, v] = this.values();
-    return new Hsv(h, 1 - (1 / (1 - b)), 1 - b);
+    return new Hsv(h, 1 - 1 / (1 - b), 1 - b);
   }
 }
