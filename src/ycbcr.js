@@ -4,13 +4,13 @@ import Rgb   from './rgb';
 const NAME = Symbol.for('YCbCr');
 const KEYS = Object.freeze({
   Y:  Symbol.for('Y'),
-  PB: Symbol.for('Pb'),
-  PR: Symbol.for('Pr')
+  CB: Symbol.for('Cb'),
+  CR: Symbol.for('Cr')
 });
 
 export default class YCbCr extends Color {
-  constructor(y, pb, pr) {
-    super(NAME, [[KEYS.Y, y], [KEYS.PB, pb], [KEYS.PR, pr]]);
+  constructor(y, cb, cr) {
+    super(NAME, [[KEYS.Y, y], [KEYS.CB, cb], [KEYS.CR, cr]]);
   }
 
   clone() {
