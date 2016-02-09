@@ -1,5 +1,6 @@
-import assert from 'power-assert';
-import Type   from '../src/type';
+import assert   from 'power-assert';
+import polyfill from 'babel-polyfill';
+import Type     from '../src/type';
 
 describe('Type', () => {
 

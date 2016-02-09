@@ -19,8 +19,8 @@ export default class Type {
   }
 
   static of(value) {
-    let string = Object.prototype.toString.call(value).toLowerCase();
-    let found  = Object.keys(TYPES).find(type => {
+    const string = Reflect.apply(Object.prototype.toString, value).toLowerCase();
+    const found  = Reflect.ownKeys(TYPES).find((type) => {
       return string === `[object ${type}]`.toLowerCase();
     });
 
