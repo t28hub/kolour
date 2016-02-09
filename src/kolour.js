@@ -12,7 +12,7 @@ const COLORS = [
 ];
 
 export default function kolor(value) {
-  let type = Type.of(value);
+  const type = Type.of(value);
   if (!type.isObject() && !type.isString()) {
     throw new TypeError(`value(${value}) must be an object or string`);
   }
@@ -21,7 +21,7 @@ export default function kolor(value) {
     return value.clone();
   }
 
-  for (let clazz of COLORS) {
+  for (const clazz of COLORS) {
     let color = null;
     if (type.isObject()) {
       color = clazz.fromObject(value);
