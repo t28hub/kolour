@@ -13,6 +13,10 @@ export default class Uvw extends Color {
     super(NAME, [[KEYS.U, u], [KEYS.V, v], [KEYS.W, w]]);
   }
 
+  clone() {
+    return new Uvw(...this.values());
+  }
+
   uvw() {
     return this;
   }
