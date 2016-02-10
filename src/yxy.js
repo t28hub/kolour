@@ -42,9 +42,9 @@ export default class Yxy extends Color {
   }
 
   xyz() {
-    let x = this.x() * (this.Y() / this.y());
-    let y = this.Y();
-    let z = (1 - this.x() - this.y()) * (this.Y() / this.y());
+    const x = this.x() * (this.Y() / this.y());
+    const y = this.Y();
+    const z = (1 - this.x() - this.y()) * (this.Y() / this.y());
     return new Xyz(x, y, z);
   }
 
@@ -53,15 +53,15 @@ export default class Yxy extends Color {
   }
 
   static fromObject(object) {
-    let keys1 = Object.keys(object).sort();
-    let keys2 = Object.keys(KEYS).sort();
+    const keys1 = Object.keys(object).sort();
+    const keys2 = Object.keys(KEYS).sort();
     if (keys1.join('') !== keys2.join('')) {
       return null;
     }
 
-    let Y = object.Y;
-    let x = object.x;
-    let y = object.y;
+    const Y = object.Y;
+    const x = object.x;
+    const y = object.y;
     return new Yxy(Y, x, y);
   }
 }
