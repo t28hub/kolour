@@ -14,11 +14,11 @@ export default class Uvw extends Color {
   }
 
   xyz() {
-    let [u, v, w] = this.values();
+    const [u, v, w] = this.values();
     
-    let x = 1.5 * u;
-    let y = v;
-    let z = 1.5 * u - 3 * v + 2 * w;
+    const x = 1.5 * u;
+    const y = v;
+    const z = 1.5 * u - 3 * v + 2 * w;
     return new Xyz(x, y, z);
   }
 }
