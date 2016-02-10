@@ -13,6 +13,10 @@ export default class Uvw extends Color {
     super(NAME, [[KEYS.U, u], [KEYS.V, v], [KEYS.W, w]]);
   }
 
+  uvw() {
+    return this;
+  }
+
   xyz() {
     const [u, v, w] = this.values();
     
