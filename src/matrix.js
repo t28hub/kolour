@@ -56,7 +56,7 @@ export default class Matrix {
         return value + matrix.get(rIndex, cIndex);
       });
     });
-    return new Matrix(data);;
+    return new Matrix(data);
   }
 
   mul(matrix) {
@@ -70,7 +70,7 @@ export default class Matrix {
 
     const m = this.rowSize();
     const n = matrix.columnSize();
-    let data = new Array(m);
+    const data = new Array(m);
     for (let i = 0; i < m; i++) {
       data[i] = new Float32Array(n);
       for (let j = 0; j < n; j++) {
@@ -100,6 +100,7 @@ export default class Matrix {
   }
 }
 
+/*
 const matrix1 = Matrix.from(
     [1, 2, 3],
     [4, 5, 6],
@@ -134,3 +135,4 @@ console.log(
       [3, 4]  
     ))
   );
+*/
