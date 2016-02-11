@@ -18,7 +18,7 @@ export default class Luv extends Color {
 
     let y = (l + 16) / 116;
 
-    let cubedY = Math.pow(y, 3);
+    const cubedY = Math.pow(y, 3);
     if (cubedY >  0.008856) {
       y = cubedY;
     } else {
@@ -29,8 +29,8 @@ export default class Luv extends Color {
     v = v / 13 * l + 9 * 100.00 / (95.047 + 15 * 100.00 + 3 * 108.833);
 
     y *= 100;
-    let x = -(9 * y * u) / ((u - 4) * v - u * v);
-    let z =  (9 * y - 15 * v * y - v * x) / 3 * v;
+    const x = -(9 * y * u) / ((u - 4) * v - u * v);
+    const z =  (9 * y - 15 * v * y - v * x) / 3 * v;
     return new Xyz(x, y, z);
   }
 }
