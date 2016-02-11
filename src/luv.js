@@ -13,6 +13,10 @@ export default class Luv extends Color {
     super(NAME, [[KEYS.L, l], [KEYS.U, u], [KEYS.V, v]]);
   }
 
+  clone() {
+    return new Luv(...this.values());
+  }
+
   luv() {
     return this;
   }
