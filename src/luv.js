@@ -13,6 +13,10 @@ export default class Luv extends Color {
     super(NAME, [[KEYS.L, l], [KEYS.U, u], [KEYS.V, v]]);
   }
 
+  luv() {
+    return this;
+  }
+
   xyz() {
     let [l, u, v] = this.values();
 
