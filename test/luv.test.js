@@ -14,4 +14,17 @@ describe('Luv', () => {
 
   });
 
+  describe('.prototype.clone()', () => {
+
+    it('should create a new instance', () => {
+      let source = new Luv(42.782, 102.260, -3.495);
+      let cloned = source.clone();
+      assert(cloned !== null);
+      assert(cloned !== source);
+      assert(cloned instanceof Luv);
+      assert.deepEqual(cloned.values(), source.values());
+    });
+
+  });
+
 });
