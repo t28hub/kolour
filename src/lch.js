@@ -14,11 +14,11 @@ export default class Lch extends Color {
   }
 
   lab() {
-    let [l, c, h] = this.values();
+    const [l, c, h] = this.values();
 
-    let r = h / 180 * Math.PI;
-    let a = Math.cos(r) * c;
-    let b = Math.sin(r) * c;
+    const r = h / 180 * Math.PI;
+    const a = Math.cos(r) * c;
+    const b = Math.sin(r) * c;
     return new Lab(l, a, b);
   }
 
