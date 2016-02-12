@@ -68,14 +68,14 @@ export default class Xyz extends Color {
       y = 7.787 * y + 16 / 116;
     }
 
-    let l = 116 * y - 16;
+    const l = 116 * y - 16;
     u = 13 * l * (u - 4 *  95.047 / (95.047 + 15 * 100.000 + 3 * 108.883));
     v = 13 * l * (v - 9 * 100.000 / (95.047 + 15 * 100.000 + 3 * 108.883));
     return new Luv(l, u, v);
   }
 
   rgb() {
-    let [x, y, z] = this.values().map((value) => {
+    const [x, y, z] = this.values().map((value) => {
       return value / 100
     });
 
@@ -95,11 +95,11 @@ export default class Xyz extends Color {
   }
 
   uvw() {
-    let [x, y, z] = this.values();
+    const [x, y, z] = this.values();
 
-    let u = 2 / 3 * x;
-    let v = y;
-    let w = - 1 / 2 * x + 3 / 2 * y + 1 / 2 * z;
+    const u = 2 / 3 * x;
+    const v = y;
+    const w = - 1 / 2 * x + 3 / 2 * y + 1 / 2 * z;
     return new Uvw(u, v, w);
   }
 
@@ -112,7 +112,7 @@ export default class Xyz extends Color {
   }
 
   yxy() {
-    let [x, y, z] = this.values();
+    const [x, y, z] = this.values();
     return new Yxy(y, x / (x + y + z), y / (x + y + z));
   }
 }
