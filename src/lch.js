@@ -13,6 +13,10 @@ export default class Lch extends Color {
     super(NAME, [[KEYS.L, l], [KEYS.C, c], [KEYS.H, h]]);
   }
 
+  clone() {
+    return new Lch(...this.values());
+  }
+
   lab() {
     const [l, c, h] = this.values();
 
