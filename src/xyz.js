@@ -46,7 +46,7 @@ export default class Xyz extends Color {
     let y = this.y() / 100.000;
     let z = this.z() / 108.883;
 
-    [x, y, z] = [x, y, z].map(value => {
+    [x, y, z] = [x, y, z].map((value) => {
       if (value > 0.008856) {
         return Math.pow(value, 1 / 3);
       }
@@ -75,12 +75,14 @@ export default class Xyz extends Color {
   }
 
   rgb() {
-    let [x, y, z] = this.values().map(value => value / 100);
+    let [x, y, z] = this.values().map((value) => {
+      return value / 100
+    });
 
     let r = x *  3.2406 + y * -1.5372 + z * -0.4986;
     let g = x * -0.9689 + y *  1.8758 + z *  0.0425;
     let b = x *  0.0557 + y * -0.2040 + z *  1.0570;
-    [r, g, b] = [r, g, b].map(value => {
+    [r, g, b] = [r, g, b].map((value) => {
       if (value > 0.0031308) {
         value = 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
       } else {
