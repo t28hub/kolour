@@ -14,4 +14,17 @@ describe('Lch', () => {
 
   });
 
+  describe('.prototype.clone()', () => {
+
+    it('should clone self', () => {
+      let source = new Lch(42.78161911655091, 63.88270834678947, 6.461019435908064);
+      let cloned = source.clone();
+      assert(cloned !== null);
+      assert(cloned !== source);
+      assert(cloned instanceof Lch);
+      assert.deepEqual(cloned.values(), source.values());
+    });
+
+  });
+
 });
