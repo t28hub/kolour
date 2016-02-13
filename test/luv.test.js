@@ -1,5 +1,6 @@
 import assert from 'power-assert';
 import Luv    from '../src/luv';
+import Xyz    from '../src/xyz';
 
 describe('Luv', () => {
 
@@ -32,6 +33,17 @@ describe('Luv', () => {
     it('should return self', () => {
       let luv = new Luv(42.782, 102.260, -3.495);
       assert(luv.luv() === luv);
+    });
+
+  });
+
+  describe('.prototype.xyz()', () => {
+
+    it('should convert color space from Luv to XYZ', () => {
+      let luv = new Luv(42.782, 102.260, -3.495);
+      let xyz = luv.xyz();
+      assert(xyz !== null);
+      assert(xyz instanceof Xyz);
     });
 
   });
