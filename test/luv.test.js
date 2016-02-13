@@ -27,4 +27,13 @@ describe('Luv', () => {
 
   });
 
+  describe('.prototype.luv()', () => {
+
+    it('should return self', () => {
+      let luv = new Luv(42.782, 102.260, -3.495);
+      assert(luv.luv() === luv);
+    });
+
+  });
+
 });
