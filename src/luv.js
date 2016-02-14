@@ -20,6 +20,10 @@ export default class Luv extends Color {
   cmy() {
     return this.xyz().cmy();
   }
+
+  cmyk() {
+    return this.xyz().cmyk();
+  }
   
   luv() {
     return this;
