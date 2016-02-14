@@ -28,6 +28,10 @@ export default class Luv extends Color {
   hsl() {
     return this.xyz().hsl();
   }
+
+  hsv() {
+    return this.xyz().hsv();
+  }
   
   luv() {
     return this;
