@@ -17,6 +17,10 @@ export default class Luv extends Color {
     return new Luv(...this.values());
   }
 
+  cmy() {
+    return this.xyz().cmy();
+  }
+  
   luv() {
     return this;
   }
