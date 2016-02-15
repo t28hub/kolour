@@ -13,7 +13,7 @@ This is a list of supported color spaces.
 - [YIQ](https://en.wikipedia.org/wiki/YIQ)
 - [YCbCr](https://en.wikipedia.org/wiki/YCbCr)
 - [YDbDr](http://mathjs.org/docs/datatypes/matrices.html)
-- YUV
+- [YUV](https://en.wikipedia.org/wiki/YUV)
 - HSL
 - HSB
 - HSV
