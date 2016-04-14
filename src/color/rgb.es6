@@ -12,81 +12,97 @@ const KEYS = Object.freeze({
 
 /**
  * Class representing a RGB color
- * 
+ *
  * @extends Color
  */
 export default class Rgb extends Color {
   /**
    * Creates a RGB color
    *
-   * @param {number} r  The red component
-   * @param {number} g  The green component
-   * @param {number} b  The blue component
-   * @param {number} [a] The alpha component
+   * @param {number} r - The red value
+   * @param {number} g - The green value
+   * @param {number} b - The blue value
+   * @param {number} [a] - The alpha value
    */
   constructor(r, g, b, a = NO_ALPHA) {
     super(NAME, [[KEYS.R, r], [KEYS.G, g], [KEYS.B, b], [KEYS.A, a]]);
   }
 
   /**
-   * Alias method for the {@see Rgb#red}
-   * @returns {function()} An accessor for the red component
+   * Provides an accessor for the red value
+   *
+   * @returns {function()} An accessor for the red value
+   * @see red
    */
   get r() {
     return this.accessor(KEYS.R);
   }
 
   /**
-   * Alias method for the {@see Rgb#green}
-   * @returns {function()} An accessor for the green component
+   * Provides an accessor for the green value
+   *
+   * @returns {function()} An accessor for the green value
+   * @see green
    */
   get g() {
     return this.accessor(KEYS.G);
   }
 
   /**
-   * Alias method for the {@see Rgb#green}
-   * @returns {function()} An accessor for the blue component
+   * Provides an accessor for the blue value
+   *
+   * @returns {function()} An accessor for the blue value
+   * @see blue
    */
   get b() {
     return this.accessor(KEYS.B);
   }
 
   /**
-   * Alias method for the {@see Rgb#alpha}
-   * @returns {function()} An accessor for the alpha component
+   * Provides an accessor for the alpha value
+   *
+   * @returns {function()} An accessor for the alpha value
+   * @see alpha
    */
   get a() {
     return this.accessor(KEYS.A);
   }
 
   /**
-   * Returns an accessor for the red component
-   * @returns {function()}
+   * Provides an accessor for the red value
+   * 
+   * @returns {function()} An accessor for the red value
+   * @see r
    */
   get red() {
     return this.accessor(KEYS.R);
   }
 
   /**
-   * Returns an accessor for the green component
-   * @returns {function()}
+   * Provides an accessor for the green value
+   *
+   * @returns {function()} An accessor for the green value
+   * @see g
    */
   get green() {
     return this.accessor(KEYS.G);
   }
 
   /**
-   * Returns an accessor for the blue component
-   * @returns {function()}
+   * Provides an accessor for the blue value
+   *
+   * @returns {function()} An accessor for the blue value
+   * @see b
    */
   get blue() {
     return this.accessor(KEYS.B);
   }
 
   /**
-   * Returns an accessor for the alpha component
-   * @returns {function()}
+   * Provides an accessor for the alpha value
+   *
+   * @returns {function()} An accessor for the alpha value
+   * @see a
    */
   get alpha() {
     return this.accessor(KEYS.A);
