@@ -1,10 +1,9 @@
 {
   "name": "kolour",
   "version": "0.0.1",
-  "description": "A simple color manipulation library",
+  "description": "A fluent color conversion and manipulation library",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/gulp test"
   },
   "repository": {
     "type": "git",
@@ -23,33 +22,6 @@
   },
   "homepage": "https://github.com/t28hub/kolour#readme",
   "devDependencies": {
-    "babel-core": "^6.4.0",
-    "babel-eslint": "^4.1.8",
-    "babel-plugin-espower": "^2.1.0",
-    "babel-polyfill": "^6.5.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "browser-sync": "^2.11.1",
-    "del": "^2.2.0",
-    "eslint": "^1.10.3",
-    "event-stream": "^3.3.2",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-eslint": "^1.1.1",
-    "gulp-istanbul": "^0.10.3",
-    "gulp-load-plugins": "^1.2.0",
-    "gulp-mocha": "^2.2.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-sourcemaps": "^1.6.0",
-    "isparta": "^4.0.0",
-    "istanbul": "^0.4.2",
-    "jest-cli": "^0.8.2",
-    "mocha": "^2.3.4",
-    "node-notifier": "^4.4.0",
-    "power-assert": "^1.2.0",
-    "run-sequence": "^1.1.5",
-    "sinon": "^1.17.2"
   },
   "engines": {
     "node": "4.2.6"
