@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "A fluent color conversion and manipulation library",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "compile": "node_modules/.bin/babel src/**/*.es6 --source-maps --out-dir build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/t28hub/kolour.git"
