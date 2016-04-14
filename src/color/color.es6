@@ -5,14 +5,15 @@ const MIN_ALPHA = 0;
 const MAX_ALPHA = 1;
 
 /**
- *
+ * Class representing a Color
  */
 export default class Color {
   /**
-   * @constructor
+   * Creates a color
+   *
    * @protected
-   * @param name {string} Name of color space
-   * @param components {Iterable} Components
+   * @param {string} name - The name of color space
+   * @param {Iterable} components - The color components
    */
   constructor(name, components) {
     this.name = name;
@@ -20,7 +21,8 @@ export default class Color {
   }
 
   /**
-   * Returns a string which represents an instance
+   * Returns a string representing an instance
+   *
    * @public
    * @returns {string} Representation of an instance
    */
@@ -38,9 +40,10 @@ export default class Color {
   }
 
   /**
-   * Checks whether a property exists in the components
+   * Checks whether a property exists in the components or not
+   *
    * @protected
-   * @param property {Symbol} Key of property
+   * @param {Symbol} property - Key of property
    * @returns {boolean} <em>true</em> if the components has a specified property as a key.
    */
   has(property) {
@@ -49,9 +52,10 @@ export default class Color {
 
   /**
    * Returns a value which is mapped to a specified property.
+   *
    * @protected
-   * @param property {Symbol} Key of property
-   * @returns {number} Color value
+   * @param {Symbol} property - Key of property
+   * @returns {number} A color value
    * @throws {TypeError} Argument property must exist in the component as a key.
    */
   get(property) {
@@ -63,9 +67,10 @@ export default class Color {
 
   /**
    * Sets a value to a specified property
+   *
    * @protected
-   * @param property {Symbol} Key of property
-   * @param value {number} Color value
+   * @param {Symbol} property - Key of property
+   * @param {number} value - A color value
    * @returns {Color} Instance of self
    * @throws {TypeError} Argument property must exist in the components as a key.
    * @throws {TypeError} Argument value must be a finite number.
@@ -83,8 +88,9 @@ export default class Color {
 
   /**
    * Creates an accessor for a specific property
+   *
    * @protected
-   * @param property {Symbol}
+   * @param {Symbol} property - Key of property
    * @returns {function()} An accessor for a specified property
    */
   accessor(property) {
@@ -99,8 +105,9 @@ export default class Color {
 
   /**
    * Clones an instance
+   *
    * @public
-   * @returns {Color} Cloned instance
+   * @returns {Color} A cloned instance
    */
   clone() {
     const cloned = new this.constructor();
@@ -109,6 +116,12 @@ export default class Color {
     return cloned;
   }
 
+  /**
+   * Compares this instance with a specified value
+   *
+   * @param {*} value - Any types of value
+   * @returns {boolean} <em>true</em> if this instance is same as the value argument.
+   */
   equals(value) {
     if (!(value instanceof Color)) {
       return false;
@@ -131,6 +144,7 @@ export default class Color {
 
   /**
    * Checks whether the instance is valid or invalid.
+   *
    * @public
    * @returns {boolean} <em>true</em> if the instance is valid
    */
@@ -140,7 +154,9 @@ export default class Color {
 
   /**
    * Creates a new color which is darker than the current color.
-   * @param factor {number}
+   *
+   * @public
+   * @param {number} factor
    * @throws {TypeError} Argument factor must be within range 0 and 1
    */
   darken(factor) {
@@ -151,7 +167,9 @@ export default class Color {
 
   /**
    * Creates a new color which is lighter than the current color.
-   * @param factor {number}
+   *
+   * @public
+   * @param {number} factor
    * @throws {TypeError} Argument factor must be within range 0 and 1
    */
   lighten(factor) {
@@ -165,6 +183,7 @@ export default class Color {
 
   /**
    * Converts color to a hex string
+   *
    * @public
    * @returns {string} A hex string
    */
@@ -182,6 +201,8 @@ export default class Color {
 
   /**
    * Converts color to a css string
+   *
+   * @public
    * @returns {string} A css string
    */
   css() {
@@ -190,9 +211,10 @@ export default class Color {
 
   /**
    * Converts color space to CMY
+   *
    * @abstract
    * @public
-   * @returns {Cmy} A converted CMY color
+   * @returns {Cmy} A CMY color
    */
   cmy() {
     throw new Error('This method must be implemented by a child class');
@@ -200,9 +222,10 @@ export default class Color {
 
   /**
    * Converts color space to CMYK
+   *
    * @abstract
    * @public
-   * @returns {Cmyk} A converted CMYK color
+   * @returns {Cmyk} A CMYK color
    */
   cmyk() {
     throw new Error('This method must be implemented by a child class');
@@ -210,9 +233,10 @@ export default class Color {
 
   /**
    * Converts color space to HSL
+   *
    * @abstract
    * @public
-   * @returns {Hsl} A converted HSL color
+   * @returns {Hsl} A HSL color
    */
   hsl() {
     throw new Error('This method must be implemented by a child class');
@@ -220,9 +244,10 @@ export default class Color {
 
   /**
    * Converts color space to HSV
+   *
    * @abstract
    * @public
-   * @returns {Hsl} A converted HSL color
+   * @returns {Hsl} A HSL color
    */
   hsv() {
     throw new Error('This method must be implemented by a child class');
@@ -230,9 +255,10 @@ export default class Color {
 
   /**
    * Converts color space to HWB
+   *
    * @abstract
    * @public
-   * @returns {Hwb} A converted HWB color
+   * @returns {Hwb} A HWB color
    */
   hwb() {
     throw new Error('This method must be implemented by a child class');
@@ -240,6 +266,7 @@ export default class Color {
 
   /**
    * Converts color space to RGB
+   *
    * @abstract
    * @public
    * @returns {Rgb} A converted RGB color
@@ -249,9 +276,12 @@ export default class Color {
   }
 
   /**
+   * Checks whether the alpha value is set or not
+   *
    * @protected
-   * @param key
-   * @returns {boolean}
+   * @param {Symbol} key - The key of alpha value
+   * @returns {boolean} <em>true</em> if the alpha value is set
+   * @see isValidAlpha
    */
   hasAlpha(key) {
     const value = this.components.get(key);
@@ -259,9 +289,12 @@ export default class Color {
   }
 
   /**
+   * Checks whether the alpha value is set or not
+   *
    * @protected
-   * @param key
-   * @returns {boolean}
+   * @param {Symbol} key - The key of alpha value
+   * @returns {boolean} <em>true</em> if the alpha value is valid
+   * @see hasAlpha
    */
   isValidAlpha(key) {
     const value = this.components.get(key);
@@ -270,6 +303,7 @@ export default class Color {
 
   /**
    * Creates an invalid instance
+   *
    * @public
    * @static
    * @returns {Color} An invalid color
