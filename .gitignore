@@ -53,9 +53,6 @@ logs
 *.log
 npm-debug.log*
 
-# Coverage directory used by tools like istanbul
-coverage
-
 # Dependency directory
 node_modules
 
@@ -64,3 +61,6 @@ node_modules
 
 # Build directory defined in this project
 build
+
+# Coverage directory used by nyc
+.nyc_output
