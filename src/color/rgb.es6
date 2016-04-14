@@ -12,6 +12,7 @@ const KEYS = Object.freeze({
 
 /**
  * Class representing a RGB color
+ * 
  * @extends Color
  */
 export default class Rgb extends Color {
@@ -91,6 +92,9 @@ export default class Rgb extends Color {
     return this.accessor(KEYS.A);
   }
 
+  /**
+   * @override
+   */
   isValid() {
     if (this.hasAlpha(KEYS.A) && !this.isValidAlpha(KEYS.A)) {
       return false;
@@ -105,6 +109,9 @@ export default class Rgb extends Color {
     });
   }
 
+  /**
+   * @override
+   */
   css() {
     const [r, g, b, a] = [this.r(), this.g(), this.b(), this.a()];
     if (this.hasAlpha(KEYS.A)) {
@@ -114,9 +121,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   *
-   * @param factor {number}
-   * @returns {Rgb}
+   * @override
    */
   darken(factor) {
     super.darken(factor);
@@ -130,9 +135,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   *
-   * @param factor {number}
-   * @returns {Rgb}
+   * @override
    */
   lighten(factor) {
     super.lighten(factor);
@@ -146,8 +149,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   *
-   * @returns {Rgb}
+   * @override
    */
   rgb() {
     //noinspection JSValidateTypes
