@@ -15,7 +15,11 @@
     "parser",
     "converter"
   ],
-  "author": "Tatsuya Maki",
+  "author": {
+    "name": "Tatsuya Maki",
+    "email": "t28oogle@gmail.com",
+    "url": "http://t28.io/"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/t28hub/kolour/issues"
