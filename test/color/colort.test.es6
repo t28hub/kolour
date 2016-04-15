@@ -1,5 +1,5 @@
 import assert from 'power-assert';
-import Color  from '../../src/color/color';
+import Color from '../../src/color/color.es6';
 
 const NAME = 'TEST';
 const KEYS = Object.freeze({
