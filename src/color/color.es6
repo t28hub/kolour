@@ -247,7 +247,7 @@ export default class Color {
    *
    * @abstract
    * @public
-   * @returns {Hsl} A HSL color
+   * @returns {Hsv} A HSV color
    */
   hsv() {
     throw new Error('This method must be implemented by a child class');
