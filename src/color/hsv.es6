@@ -1,4 +1,5 @@
 import Color, {NO_ALPHA} from './color.es6';
+import Hwb from './hwb.es6';
 import Rgb from './rgb.es6';
 
 const MIN_H = 0;
@@ -184,6 +185,15 @@ export default class Hsv extends Color {
     return this.clone();
   }
 
+  /**
+   * @override
+   */
+  hwb() {
+    const [h, s, v, a] = [this.h(), this.s(), this.v(), this.a()];
+    const w = (1 - s) * v;
+    const b = 1 - v;
+    return new Hwb(h, w, b, a);
+  }
 
   /**
    * @override
