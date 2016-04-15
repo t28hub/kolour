@@ -1,4 +1,5 @@
 import {NO_ALPHA} from './color/color.es6';
+import Cmy from './color/cmy.es6';
 import Hsl from './color/hsl.es6';
 import Hsv from './color/hsv.es6';
 import Hwb from './color/hwb.es6';
@@ -15,6 +16,18 @@ function kolour(value) {
  * @default
  */
 kolour.VERSION = '1.0.0';
+
+/**
+ * Creates a CMY color from values
+ *
+ * @param {number} c - The cyan value
+ * @param {number} m - The magenta value
+ * @param {number} y - The yellow value
+ * @param {number} [a] - The alpha value
+ */
+kolour.cmy = (c, m, y, a = NO_ALPHA) => {
+  return new Cmy(c, m, y, a);
+};
 
 /**
  * Creates a HSL color from values
