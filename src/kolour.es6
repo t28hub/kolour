@@ -1,9 +1,10 @@
 import {NO_ALPHA} from './color/color.es6';
-import Cmy from './color/cmy.es6';
-import Hsl from './color/hsl.es6';
-import Hsv from './color/hsv.es6';
-import Hwb from './color/hwb.es6';
-import Rgb from './color/rgb.es6';
+import Cmy  from './color/cmy.es6';
+import Cmyk from './color/cmyk.es6';
+import Hsl  from './color/hsl.es6';
+import Hsv  from './color/hsv.es6';
+import Hwb  from './color/hwb.es6';
+import Rgb  from './color/rgb.es6';
 
 function kolour(value) {
 }
@@ -27,6 +28,20 @@ kolour.VERSION = '1.0.0';
  */
 kolour.cmy = (c, m, y, a = NO_ALPHA) => {
   return new Cmy(c, m, y, a);
+};
+
+/**
+ * Creates a CMYK color
+ *
+ * @param {number} c - The cyan value
+ * @param {number} m - The magenta value
+ * @param {number} y - The yellow value
+ * @param {number} k - The black value
+ * @param {number} [a] - The alpha value
+ * @returns {Cmyk} A CMYK color
+ */
+kolour.cmyk = (c, m, y, k, a = NO_ALPHA) => {
+  return new Cmyk(c, m, y, k, a);
 };
 
 /**
