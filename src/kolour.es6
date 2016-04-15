@@ -7,6 +7,13 @@ import Rgb from './color/rgb.es6';
 function kolour(value) {
 }
 
+/**
+ * Version of kolour
+ *
+ * @constant
+ * @type {string}
+ * @default
+ */
 kolour.VERSION = '1.0.0';
 
 /**
