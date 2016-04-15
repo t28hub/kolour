@@ -25,6 +25,7 @@ kolour.VERSION = '1.0.0';
  * @param {number} m - The magenta value
  * @param {number} y - The yellow value
  * @param {number} [a] - The alpha value
+ * @returns {Cmy} A CMY color
  */
 kolour.cmy = (c, m, y, a = NO_ALPHA) => {
   return new Cmy(c, m, y, a);
