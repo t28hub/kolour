@@ -1,4 +1,5 @@
 import Color, {NO_ALPHA} from './color.es6';
+import Cmy from './cmy.es6';
 import Hsl from './hsl.es6';
 import Hsv from './hsv.es6';
 
@@ -164,6 +165,17 @@ export default class Rgb extends Color {
       return Math.max(Math.min(value, MAX), MIN);
     });
     return new Rgb(...values, a);
+  }
+
+  /**
+   * @override
+   */
+  cmy() {
+    const [r, g, b, a] = [this.r(), this.g(), this.b(), this.a()];
+    const values = [r, g, b].map((value) => {
+      return 1 - value / MAX;
+    });
+    return new Cmy(...values, a);
   }
 
   /**
