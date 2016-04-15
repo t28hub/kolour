@@ -1,6 +1,7 @@
 import {NO_ALPHA} from './color/color.es6';
 import Hsl from './color/hsl.es6';
 import Hsv from './color/hsv.es6';
+import Hwb from './color/hwb.es6';
 import Rgb from './color/rgb.es6';
 
 function kolour(value) {
@@ -32,6 +33,18 @@ kolour.hsl = (h, s, l, a = NO_ALPHA) => {
  */
 kolour.hsv = (h, s, v, a = NO_ALPHA) => {
   return new Hsv(h, s, v, a);
+};
+
+/**
+ * Creates a HWB color from values
+ *
+ * @param {number} h - The hue value
+ * @param {number} w - The whiteness value
+ * @param {number} b - The blackness value
+ * @param {number} [a] - The alpha value
+ */
+kolour.hwb = (h, w, b, a = NO_ALPHA) => {
+  return new Hwb(h, w, b, a);
 };
 
 /**
