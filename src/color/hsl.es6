@@ -157,6 +157,20 @@ export default class Hsl extends Color {
   /**
    * @override
    */
+  hsv() {
+    return this.rgb().hsv();
+  }
+
+  /**
+   * @override
+   */
+  hwb() {
+    return this.rgb().hwb();
+  }
+
+  /**
+   * @override
+   */
   rgb() {
     const h = this.h();
     const s = this.s() / MAX_S;
