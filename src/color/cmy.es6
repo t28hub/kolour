@@ -1,5 +1,6 @@
 import Color, {NO_ALPHA} from './color.es6';
-import Rgb from './rgb.es6';
+import Cmyk from './cmyk.es6';
+import Rgb  from './rgb.es6';
 
 const MIN = 0;
 const MAX = 1;
@@ -145,6 +146,51 @@ export default class Cmy extends Color {
   cmy() {
     //noinspection JSValidateTypes
     return this.clone();
+  }
+
+  /**
+   * @override
+   */
+  cmyk() {
+    const [c, m, y, a] = [this.c(), this.m(), this.y(), this.a()];
+    const black = [c, m, y].reduce((previous, value) => {
+      if (value < previous) {
+        return value;
+      }
+      return previous;
+    }, Cmyk.MAX);
+
+    if (black === Cmyk.MAX) {
+      return new Cmyk(Cmyk.MIN, Cmyk.MIN, Cmyk.MIN, black, a);
+    }
+
+    const white = Cmyk.MAX - black;
+    const values = [c, m, y].map((value) => {
+      value = (value - black) / white;
+      return Math.max(Math.min(value, Cmyk.MAX), Cmyk.MIN);
+    });
+    return new Cmyk(...values, black, a);
+  }
+
+  /**
+   * @override
+   */
+  hsl() {
+    return this.rgb().hsl();
+  }
+
+  /**
+   * @override
+   */
+  hsv() {
+    return this.rgb().hsv();
+  }
+
+  /**
+   * @override
+   */
+  hwb() {
+    return this.rgb().hwb();
   }
 
   /**
