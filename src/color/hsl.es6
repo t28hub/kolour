@@ -156,6 +156,13 @@ export default class Hsl extends Color {
   /**
    * @override
    */
+  cmyk() {
+    return this.rgb().cmyk();
+  }
+
+  /**
+   * @override
+   */
   hsl() {
     //noinspection JSValidateTypes
     return this.clone();

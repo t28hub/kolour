@@ -181,6 +181,13 @@ export default class Rgb extends Color {
   /**
    * @override
    */
+  cmyk() {
+    return this.cmy().cmyk();
+  }
+
+  /**
+   * @override
+   */
   hsl() {
     const [r, g, b] = [this.r(), this.g(), this.b()].map((value) => {
       return value / MAX;
