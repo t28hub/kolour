@@ -1,5 +1,6 @@
 import Color, {NO_ALPHA} from './color.es6';
 import Hsl from './hsl.es6';
+import Hsv from './hsv.es6';
 
 const MIN = 0x00;
 const MAX = 0xFF;
@@ -192,6 +193,40 @@ export default class Rgb extends Color {
     const l = total / 2;
     const s = delta / (1 - Math.abs(2 * l - 1));
     return new Hsl(h, s * Hsl.MAX_S, l * Hsl.MAX_L, this.alpha());
+  }
+
+  /**
+   * @override
+   */
+  hsv() {
+    const [r, g, b] = [this.r(), this.g(), this.b()].map((value) => {
+      return value / MAX;
+    });
+
+    const min = Math.min(r, g, b);
+    const max = Math.max(r, g, b);
+    const delta = max - min;
+
+    let h;
+    if (delta === 0) {
+      h = 0;
+    } else if (max === r) {
+      h = 60 * ((g - b) / delta % 6);
+    } else if (max === g) {
+      h = 60 * ((b - r) / delta + 2);
+    } else {
+      h = 60 * ((r - g) / delta + 4);
+    }
+
+    let s;
+    if (max === 0) {
+      s = 0;
+    } else {
+      s = delta / max;
+    }
+
+    const v = max;
+    return new Hsv(h, s, v, this.a());
   }
 
   /**
