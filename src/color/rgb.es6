@@ -251,6 +251,13 @@ export default class Rgb extends Color {
   /**
    * @override
    */
+  hwb() {
+    return this.hsv().hwb();
+  }
+
+  /**
+   * @override
+   */
   rgb() {
     //noinspection JSValidateTypes
     return this.clone();
