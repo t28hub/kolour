@@ -165,6 +165,7 @@ export default class ObjectParser extends Parser {
       if (!factory.isAcceptable(object)) {
         continue;
       }
+      //noinspection JSValidateTypes
       return factory.create(object);
     }
     return Color.invalid();
