@@ -99,26 +99,26 @@ DEFAULTS.add(new class extends Factory {
 
 DEFAULTS.add(new class extends Factory {
   constructor() {
-    super(/^\s*hsl\(\s*(\d{1,3})\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*\)\s*$/);
+    super(/^\s*hsl\(\s*(\d{1,3})\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*\)\s*$/);
   }
 
   create(h, s, l) {
     h = Number.parseInt(h);
-    s = Number.parseInt(s) / Hsl.MAX_S;
-    l = Number.parseInt(l) / Hsl.MAX_L;
+    s = Number.parseFloat(s) / Hsl.MAX_S;
+    l = Number.parseFloat(l) / Hsl.MAX_L;
     return new Hsl(h, s, l);
   }
 });
 
 DEFAULTS.add(new class extends Factory {
   constructor() {
-    super(/^\s*hsla\(\s*(\d{1,3})\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*,\s*(0|1|0\.\d+)\s*\)\s*$/);
+    super(/^\s*hsla\(\s*(\d{1,3})\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(0|1|0\.\d+)\s*\)\s*$/);
   }
 
   create(h, s, l, a) {
     h = Number.parseInt(h);
-    s = Number.parseInt(s) / Hsl.MAX_S;
-    l = Number.parseInt(l) / Hsl.MAX_L;
+    s = Number.parseFloat(s) / Hsl.MAX_S;
+    l = Number.parseFloat(l) / Hsl.MAX_L;
     a = Number.parseFloat(a);
     return new Hsl(h, s, l, a);
   }
@@ -126,26 +126,26 @@ DEFAULTS.add(new class extends Factory {
 
 DEFAULTS.add(new class extends Factory {
   constructor() {
-    super(/^\s*hwb\(\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*\)\s*$/);
+    super(/^\s*hwb\(\s*(\d{1,3})\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*\)\s*$/);
   }
 
   create(h, w, b) {
     h = Number.parseInt(h);
-    w = Number.parseFloat(w);
-    b = Number.parseFloat(b);
+    w = Number.parseFloat(w) / 100;
+    b = Number.parseFloat(b) / 100;
     return new Hwb(h, w, b);
   }
 });
 
 DEFAULTS.add(new class extends Factory {
   constructor() {
-    super(/^\s*hwb\(\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(0|1|0\.\d+)\s*\)\s*$/);
+    super(/^\s*hwb\(\s*(\d{1,3})\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%\s*,\s*(\d{1,3}|\d{1,2}\.\d+)%,\s*(0|1|0\.\d+)\s*\s*\)\s*$/);
   }
 
   create(h, w, b, a) {
     h = Number.parseInt(h);
-    w = Number.parseFloat(w);
-    b = Number.parseFloat(b);
+    w = Number.parseFloat(w) / 100;
+    b = Number.parseFloat(b) / 100;
     a = Number.parseFloat(a);
     return new Hwb(h, w, b, a);
   }
@@ -157,11 +157,10 @@ DEFAULTS.add(new class extends Factory {
   }
 
   create(c, m, y, k) {
-    c = Number.parseFloat(c);
-    m = Number.parseFloat(m);
-    y = Number.parseFloat(y);
-    k = Number.parseFloat(k);
-    return new Cmyk(c, m, y, k);
+    const values = [c, m, y, k].map((value) => {
+      return Number.parseFloat(value) / 100;
+    });
+    return new Cmyk(...values);
   }
 });
 
