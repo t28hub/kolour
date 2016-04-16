@@ -7,6 +7,8 @@ import Rgb    from '../color/rgb.es6';
 
 /**
  * Class which creates a color from matched string
+ *
+ * @abstract
  */
 export class Factory {
   /**
