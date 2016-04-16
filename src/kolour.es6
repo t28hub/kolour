@@ -1,12 +1,32 @@
-import {NO_ALPHA} from './color/color.es6';
+import Color, {NO_ALPHA} from './color/color.es6';
 import Cmy  from './color/cmy.es6';
 import Cmyk from './color/cmyk.es6';
 import Hsl  from './color/hsl.es6';
 import Hsv  from './color/hsv.es6';
 import Hwb  from './color/hwb.es6';
 import Rgb  from './color/rgb.es6';
+import StringParser from './parser/string-parser.es6';
+import isObject from './utils/is-object.es6';
+import isString from './utils/is-string.es6';
 
+/**
+ * Creates a color
+ *
+ * @param {*} value - The value to convert a color
+ * @returns {Color} A color
+ */
 function kolour(value) {
+  if (isObject(value)) {
+    
+  }
+  if (isString(value)) {
+    return StringParser.defaults().parse(value);
+  }
+
+  if (value instanceof Color) {
+    return value.clone();
+  }
+  return Color.invalid();
 }
 
 /**
