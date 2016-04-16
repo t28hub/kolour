@@ -309,6 +309,35 @@ export default class Color {
    * @returns {Color} An invalid color
    */
   static invalid() {
-    return new Color(NO_NAME, []);
+    //noinspection JSValidateTypes
+    return new class extends Color {
+      constructor() {
+        super(NO_NAME, []);
+      }
+
+      cmy() {
+        return this;
+      }
+
+      cmyk() {
+        return this;
+      }
+
+      hsl() {
+        return this;
+      }
+
+      hsv() {
+        return this;
+      }
+
+      hwb() {
+        return this;
+      }
+
+      rgb() {
+        return this;
+      }
+    };
   }
 }
