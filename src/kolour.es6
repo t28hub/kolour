@@ -5,6 +5,7 @@ import Hsl  from './color/hsl.es6';
 import Hsv  from './color/hsv.es6';
 import Hwb  from './color/hwb.es6';
 import Rgb  from './color/rgb.es6';
+import ObjectParser from './parser/object-parser.es6';
 import StringParser from './parser/string-parser.es6';
 import isObject from './utils/is-object.es6';
 import isString from './utils/is-string.es6';
@@ -16,17 +17,19 @@ import isString from './utils/is-string.es6';
  * @returns {Color} A color
  */
 function kolour(value) {
-  if (isObject(value)) {
-    
-  }
-  if (isString(value)) {
-    return StringParser.defaults().parse(value);
+  let color;
+  if (value instanceof Color) {
+    color = value.clone();
+  } else if (isObject(value)) {
+    color = ObjectParser.defaults().parse(value);
+  } else if (isString(value)) {
+    color = StringParser.defaults().parse(value);
   }
 
-  if (value instanceof Color) {
-    return value.clone();
+  if (!color || !color.isValid()) {
+    return Color.invalid();
   }
-  return Color.invalid();
+  return color;
 }
 
 /**
