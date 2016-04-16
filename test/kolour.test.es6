@@ -1,8 +1,10 @@
 import assert from 'power-assert';
 import kolour from '../src/kolour.es6';
 import Color  from '../src/color/color.es6';
+import Cmy    from '../src/color/cmy.es6';
 import Cmyk   from '../src/color/cmyk.es6';
 import Hsl    from '../src/color/hsl.es6';
+import Hsv    from '../src/color/hsv.es6';
 import Hwb    from '../src/color/hwb.es6';
 import Rgb    from '../src/color/rgb.es6';
 import metadata from '../package.json';
@@ -115,6 +117,50 @@ describe('kolour', () => {
 
     // verify
     assert(color instanceof Color);
+    assert(color.isValid() === false);
+  });
+
+  [
+    {argument: {c: 0.2, m: 0.4, y: 0.6},                expected: new Cmy(0.2, 0.4, 0.6)},
+    {argument: {c: 0.2, m: 0.4, y: 0.6, a: 0.5},        expected: new Cmy(0.2, 0.4, 0.6, 0.5)},
+    {argument: {c: 0.2, m: 0.4, y: 0.6, k: 0.8},        expected: new Cmyk(0.2, 0.4, 0.6, 0.8)},
+    {argument: {c: 0.2, m: 0.4, y: 0.6, k:0.8, a: 0.5}, expected: new Cmyk(0.2, 0.4, 0.6, 0.8, 0.5)},
+    {argument: {h: 120, s: 0.4, l: 0.6},                expected: new Hsl(120, 0.4, 0.6)},
+    {argument: {h: 120, s: 0.4, l: 0.6, a: 0.5},        expected: new Hsl(120, 0.4, 0.6, 0.5)},
+    {argument: {h: 120, s: 0.4, v: 0.6},                expected: new Hsv(120, 0.4, 0.6)},
+    {argument: {h: 120, s: 0.4, v: 0.6, a: 0.5},        expected: new Hsv(120, 0.4, 0.6, 0.5)},
+    {argument: {h: 120, w: 0.4, b: 0.6},                expected: new Hwb(120, 0.4, 0.6)},
+    {argument: {h: 120, w: 0.4, b: 0.6, a: 0.5},        expected: new Hwb(120, 0.4, 0.6, 0.5)},
+    {argument: {r: 32, g: 64, b: 96},                   expected: new Rgb(32, 64, 96)},
+    {argument: {r: 32, g: 64, b: 96, a: 0.5},           expected: new Rgb(32, 64, 96, 0.5)}
+  ].forEach((test) => {
+
+    const {argument, expected} = test;
+    
+    it(`should create ${expected.name} with ${JSON.stringify(argument)}`, () => {
+      // exercise
+      const color = kolour(argument);
+
+      // verify
+      assert(color.isValid());
+      assert(color.equals(expected));
+    });
+    
+  });
+
+  it('should create an invalid color with an object contained non finite number', () => {
+    // exercise
+    const color = kolour({r: 32, g: 64, b: NaN});
+
+    // verify
+    assert(color.isValid() === false);
+  });
+
+  it('should create an invalid color with an unsupported object', () => {
+    // exercise
+    const color = kolour({a: 32, b: 64, c: 96});
+
+    // verify
     assert(color.isValid() === false);
   });
 
