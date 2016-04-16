@@ -14,6 +14,6 @@ export default class Parser {
    * @returns {Color} A color
    */
   parse(object) {
-    throw new Error();
+    throw new Error('This method must be implemented by a child class');
   }
 }
