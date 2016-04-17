@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && npm run test && npm run build:webpack",
-    "build:babel": "node_modules/.bin/babel src/**/*.es6 --source-maps --out-dir build",
+    "build:babel": "node_modules/.bin/babel src --source-maps --out-dir build",
     "build:webpack": "node_modules/.bin/webpack",
     "clean": "node_modules/.bin/rimraf build/*",
     "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.config.json src",
