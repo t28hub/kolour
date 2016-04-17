@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import assert from 'power-assert';
 import Color from '../../src/color/color.es6';
 
