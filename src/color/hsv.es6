@@ -1,4 +1,4 @@
-import Color, {NO_ALPHA} from './color.es6';
+import Color, { NO_ALPHA } from './color.es6';
 import Hwb from './hwb.es6';
 import Rgb from './rgb.es6';
 
@@ -14,18 +14,16 @@ const KEYS = Object.freeze({
   H: Symbol.for('h'),
   S: Symbol.for('s'),
   V: Symbol.for('v'),
-  A: Symbol.for('a')
+  A: Symbol.for('a'),
 });
 
 /**
  * Class representing a HSV color
- *
  * @extends Color
  */
 export default class Hsv extends Color {
   /**
    * Creates a HSV color
-   *
    * @param {number} h - The hue value
    * @param {number} s - The saturation value
    * @param {number} v - The value value
@@ -37,7 +35,6 @@ export default class Hsv extends Color {
 
   /**
    * Provides an accessor for the hue value
-   *
    * @returns {function()} An accessor for the hue value
    * @see hue
    */
@@ -47,7 +44,6 @@ export default class Hsv extends Color {
 
   /**
    * Provides an accessor for the saturation value
-   *
    * @returns {function()} An accessor for the saturation value
    * @see saturation
    */
@@ -57,7 +53,6 @@ export default class Hsv extends Color {
 
   /**
    * Provides an accessor for the value value
-   *
    * @returns {function()} An accessor for the value value
    * @see value
    */
@@ -67,7 +62,6 @@ export default class Hsv extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see alpha
    */
@@ -77,7 +71,6 @@ export default class Hsv extends Color {
 
   /**
    * Provides an accessor for the hue value
-   *
    * @returns {function()} An accessor for the hue value
    * @see h
    */
@@ -87,7 +80,6 @@ export default class Hsv extends Color {
 
   /**
    * Provides an accessor for the saturation value
-   *
    * @returns {function()} An accessor for the saturation value
    * @see s
    */
@@ -97,7 +89,6 @@ export default class Hsv extends Color {
 
   /**
    * Provides an accessor for the value value
-   *
    * @returns {function()} An accessor for the value value
    * @see v
    */
@@ -107,7 +98,6 @@ export default class Hsv extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see a
    */
@@ -124,11 +114,11 @@ export default class Hsv extends Color {
     }
 
     return [
-      {min: MIN_H, max: MAX_H, value: this.h()},
-      {min: MIN_S, max: MAX_S, value: this.s()},
-      {min: MIN_V, max: MAX_V, value: this.v()}
+      { min: MIN_H, max: MAX_H, value: this.h() },
+      { min: MIN_S, max: MAX_S, value: this.s() },
+      { min: MIN_V, max: MAX_V, value: this.v() },
     ].every((object) => {
-      const {min, max, value} = object;
+      const { min, max, value } = object;
       if (!Number.isFinite(value)) {
         return false;
       }
@@ -181,7 +171,7 @@ export default class Hsv extends Color {
    * @override
    */
   hsv() {
-    //noinspection JSValidateTypes
+    // noinspection JSValidateTypes
     return this.clone();
   }
 
@@ -228,8 +218,7 @@ export default class Hsv extends Color {
     }
 
     const values = [r, g, b].map((value) => {
-      value = Math.round(Rgb.MAX * (value + m));
-      return Math.min(Math.max(value, Rgb.MIN), Rgb.MAX);
+      return Math.round(Rgb.MAX * (value + m));
     });
     return new Rgb(...values, this.a());
   }

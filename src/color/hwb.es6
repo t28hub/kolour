@@ -1,4 +1,4 @@
-import Color, {NO_ALPHA} from './color.es6';
+import Color, { NO_ALPHA } from './color.es6';
 import Hsv from './hsv.es6';
 
 const MIN_H = 0;
@@ -13,18 +13,16 @@ const KEYS = Object.freeze({
   H: Symbol.for('h'),
   W: Symbol.for('w'),
   B: Symbol.for('b'),
-  A: Symbol.for('a')
+  A: Symbol.for('a'),
 });
 
 /**
  * Class representing a HSB color
- *
  * @extends Color
  */
 export default class Hwb extends Color {
   /**
    * Creates a HWB color
-   *
    * @param {number} h - The hue value
    * @param {number} w - The whiteness value
    * @param {number} b - The blackness value
@@ -36,7 +34,6 @@ export default class Hwb extends Color {
 
   /**
    * Provides an accessor for the hue value
-   *
    * @returns {function()} An accessor for the hue value
    * @see hue
    */
@@ -46,7 +43,6 @@ export default class Hwb extends Color {
 
   /**
    * Provides an accessor for the whiteness value
-   *
    * @returns {function()} An accessor for the whiteness value
    * @see whiteness
    */
@@ -56,7 +52,6 @@ export default class Hwb extends Color {
 
   /**
    * Provides an accessor for the blackness value
-   *
    * @returns {function()} An accessor for the blackness value
    * @see blackness
    */
@@ -66,7 +61,6 @@ export default class Hwb extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see alpha
    */
@@ -76,7 +70,6 @@ export default class Hwb extends Color {
 
   /**
    * Provides an accessor for the hue value
-   *
    * @returns {function()} An accessor for the hue value
    * @see h
    */
@@ -86,7 +79,6 @@ export default class Hwb extends Color {
 
   /**
    * Provides an accessor for the whiteness value
-   *
    * @returns {function()} An accessor for the whiteness value
    * @see w
    */
@@ -96,7 +88,6 @@ export default class Hwb extends Color {
 
   /**
    * Provides an accessor for the blackness value
-   *
    * @returns {function()} An accessor for the blackness value
    * @see b
    */
@@ -106,7 +97,6 @@ export default class Hwb extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see a
    */
@@ -123,11 +113,11 @@ export default class Hwb extends Color {
     }
 
     return [
-      {min: MIN_H, max: MAX_H, value: this.h()},
-      {min: MIN_W, max: MAX_W, value: this.w()},
-      {min: MIN_B, max: MAX_B, value: this.b()}
+      { min: MIN_H, max: MAX_H, value: this.h() },
+      { min: MIN_W, max: MAX_W, value: this.w() },
+      { min: MIN_B, max: MAX_B, value: this.b() },
     ].every((object) => {
-      const {min, max, value} = object;
+      const { min, max, value } = object;
       if (!Number.isFinite(value)) {
         return false;
       }
@@ -181,7 +171,7 @@ export default class Hwb extends Color {
    * @override
    */
   hwb() {
-    //noinspection JSValidateTypes
+    // noinspection JSValidateTypes
     return this.clone();
   }
 

@@ -1,19 +1,17 @@
 import assert from 'power-assert';
-import Cmy    from '../../src/color/cmy.es6';
-import Cmyk   from '../../src/color/cmyk.es6';
-import Hsl    from '../../src/color/hsl.es6';
-import Hsv    from '../../src/color/hsv.es6';
-import Hwb    from '../../src/color/hwb.es6';
-import Rgb    from '../../src/color/rgb.es6';
+import Cmy from '../../src/color/cmy.es6';
+import Cmyk from '../../src/color/cmyk.es6';
+import Hsl from '../../src/color/hsl.es6';
+import Hsv from '../../src/color/hsv.es6';
+import Hwb from '../../src/color/hwb.es6';
+import Rgb from '../../src/color/rgb.es6';
 
 describe('Cmy', () => {
-  
   describe('.constructor(c, m, y, a)', () => {
-    
     it('should create an instance with cyan, magenta and yellow values', () => {
       // exercise
       const cmy = new Cmy(0.2, 0.4, 0.6);
-      
+
       // verify
       assert(cmy instanceof Cmy);
       assert(cmy.isValid());
@@ -27,18 +25,16 @@ describe('Cmy', () => {
       assert(cmy instanceof Cmy);
       assert(cmy.isValid());
     });
-    
   });
-  
+
   describe('.prototype.isValid()', () => {
-    
     it('should return true when an instance has valid values', () => {
       // setup
       const cmy = new Cmy(0.2, 0.4, 0.6);
-      
+
       // exercise
       const isValid = cmy.isValid();
-      
+
       // verify
       assert(isValid === true);
     });
@@ -97,43 +93,39 @@ describe('Cmy', () => {
       // verify
       assert(isValid === false);
     });
-
   });
-  
+
   describe('.prototype.cmy()', () => {
-    
     it('should returns a cloned instance', () => {
       // setup
       const cmy = new Cmy(0.2, 0.4, 0.6);
-      
+
       // exercise
       const color = cmy.cmy();
-      
+
       // verify
       assert(color.equals(cmy));
     });
-    
   });
 
   describe('.prototype.cmyk()', () => {
-    
     it('should convert color space to CMYK', () => {
       // setup
       const cmy = new Cmy(0.2, 0.4, 0.6, 0.5);
-      
+
       // exercise
       const cmyk = cmy.cmyk();
-      
+
       // verify
       assert(cmyk instanceof Cmyk);
       assert(cmyk.isValid());
       assert(cmyk.cmy().equals(cmy));
     });
-    
+
     it('should return a black color when all values are equal to 1', () => {
       // setup
       const cmy = new Cmy(1, 1, 1);
-      
+
       // exercise
       const cmyk = cmy.cmyk();
 
@@ -142,11 +134,9 @@ describe('Cmy', () => {
       assert(cmyk.isValid());
       assert(cmyk.cmy().equals(cmy));
     });
-  
   });
 
   describe('.prototype.hsl()', () => {
-
     it('should convert color space to HSL', () => {
       // setup
       const cmy = new Cmy(0.2, 0.4, 0.6, 0.5);
@@ -159,11 +149,9 @@ describe('Cmy', () => {
       assert(hsl.isValid());
       assert(hsl.rgb().equals(cmy.rgb()));
     });
-    
   });
 
   describe('.prototype.hsv()', () => {
-
     it('should convert color space to HSV', () => {
       // setup
       const cmy = new Cmy(0.2, 0.4, 0.6, 0.5);
@@ -176,11 +164,9 @@ describe('Cmy', () => {
       assert(hsv.isValid());
       assert(hsv.rgb().equals(cmy.rgb()));
     });
-
   });
 
   describe('.prototype.hwb()', () => {
-
     it('should convert color space to HWB', () => {
       // setup
       const cmy = new Cmy(0.2, 0.4, 0.6, 0.5);
@@ -193,11 +179,9 @@ describe('Cmy', () => {
       assert(hwb.isValid());
       assert(hwb.rgb().equals(cmy.rgb()));
     });
-
   });
 
   describe('.prototype.rgb()', () => {
-
     it('should convert color space to RGB', () => {
       // setup
       const cmy = new Cmy(0.2, 0.4, 0.6, 0.5);
@@ -210,7 +194,5 @@ describe('Cmy', () => {
       assert(rgb.isValid());
       assert(rgb.cmy().equals(cmy));
     });
-
   });
-
 });

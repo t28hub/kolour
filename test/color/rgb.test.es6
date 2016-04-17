@@ -1,16 +1,14 @@
-import assert     from 'power-assert';
-import {NO_ALPHA} from '../../src/color/color.es6';
-import Cmy        from '../../src/color/cmy.es6';
-import Cmyk       from '../../src/color/cmyk.es6';
-import Hsl        from '../../src/color/hsl.es6';
-import Hsv        from '../../src/color/hsv.es6';
-import Hwb        from '../../src/color/hwb.es6';
-import Rgb        from '../../src/color/rgb.es6';
+import assert from 'power-assert';
+import { NO_ALPHA } from '../../src/color/color.es6';
+import Cmy from '../../src/color/cmy.es6';
+import Cmyk from '../../src/color/cmyk.es6';
+import Hsl from '../../src/color/hsl.es6';
+import Hsv from '../../src/color/hsv.es6';
+import Hwb from '../../src/color/hwb.es6';
+import Rgb from '../../src/color/rgb.es6';
 
 describe('Rgb', () => {
-
   describe('.constructor(r, g, b, a)', () => {
-
     it('should create an instance', () => {
       // exercise
       const rgb = new Rgb(0, 128, 255);
@@ -28,11 +26,9 @@ describe('Rgb', () => {
       assert(rgb instanceof Rgb);
       assert(rgb.isValid());
     });
-
   });
 
   describe('.prototype.red', () => {
-
     it('should return a function', () => {
       // setup
       const rgb = new Rgb(0, 128, 255);
@@ -68,7 +64,6 @@ describe('Rgb', () => {
   });
 
   describe('.prototype.isValid()', () => {
-
     it('should return true when an instance is valid', () => {
       // setup
       const rgb = new Rgb(0, 128, 255);
@@ -134,26 +129,22 @@ describe('Rgb', () => {
       // verify
       assert(isValid === false);
     });
-    
   });
-  
+
   describe('.prototype.int()', () => {
-    
     it('should return a number representing a color', () => {
       // setup
-      const rgb = new Rgb(32, 64, 96, 0.5);   
-      
+      const rgb = new Rgb(32, 64, 96, 0.5);
+
       // exercise
       const int = rgb.int();
-      
+
       // verify
       assert(int === 0x20406080);
     });
-    
   });
 
   describe('.prototype.css()', () => {
-
     it('should return a string which is specified with rgb(r, g, b)', () => {
       // setup
       const rgb = new Rgb(0, 128, 255);
@@ -175,13 +166,11 @@ describe('Rgb', () => {
       // verify
       assert(css === 'rgba(0, 128, 255, 0.5)');
     });
-
   });
 
   describe('.prototype.darken(factor)', () => {
-
     it('should return darken color', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -194,7 +183,7 @@ describe('Rgb', () => {
     });
 
     it('should return black color when a factor is 0', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -207,7 +196,7 @@ describe('Rgb', () => {
     });
 
     it('should return valid color when a factor is greater than 1', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -220,7 +209,7 @@ describe('Rgb', () => {
     });
 
     it('should return valid color when a factor is less than 0', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -233,7 +222,7 @@ describe('Rgb', () => {
     });
 
     it('should throw TypeError when a factor is no finite number', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // verify
@@ -242,13 +231,11 @@ describe('Rgb', () => {
         rgb.darken(Number.NEGATIVE_INFINITY);
       }, TypeError);
     });
-
   });
 
   describe('.prototype.lighten(factor)', () => {
-
     it('should return lighten color', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -261,7 +248,7 @@ describe('Rgb', () => {
     });
 
     it('should return valid color when a factor is greater than 1', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -274,7 +261,7 @@ describe('Rgb', () => {
     });
 
     it('should return valid color when a factor is less than 0', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -287,7 +274,7 @@ describe('Rgb', () => {
     });
 
     it('should throw TypeError when a factor is 0', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // verify
@@ -296,13 +283,11 @@ describe('Rgb', () => {
         rgb.lighten(0);
       }, TypeError);
     });
-
   });
 
   describe('.prototype.cmy()', () => {
-
     it('should convert color space to CMY', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -313,13 +298,11 @@ describe('Rgb', () => {
       assert(cmy.isValid());
       assert(cmy.rgb().equals(rgb));
     });
-    
   });
 
   describe('.prototype.cmyk()', () => {
-
     it('should convert color space to CMYK', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -330,13 +313,11 @@ describe('Rgb', () => {
       assert(cmyk.isValid());
       assert(cmyk.rgb().equals(rgb));
     });
-
   });
 
   describe('.prototype.hsl()', () => {
-
     it('should convert color space to HSL', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255, 0.5);
 
       // exercise
@@ -349,7 +330,7 @@ describe('Rgb', () => {
     });
 
     it('should convert color space to HSL when minimum component is green', () => {
-      //setup
+      // setup
       const rgb = new Rgb(255, 0, 128, 0.5);
 
       // exercise
@@ -362,7 +343,7 @@ describe('Rgb', () => {
     });
 
     it('should convert color space to HSL when minimum component is blue', () => {
-      //setup
+      // setup
       const rgb = new Rgb(128, 255, 0, 0.5);
 
       // exercise
@@ -375,7 +356,7 @@ describe('Rgb', () => {
     });
 
     it('should convert color space to HSL when the instance is grayscaled color', () => {
-      //setup
+      // setup
       const rgb = new Rgb(128, 128, 128, 0.5);
 
       // exercise
@@ -386,13 +367,11 @@ describe('Rgb', () => {
       assert(hsl.isValid());
       assert(hsl.equals(new Hsl(Hsl.MIN_H, Hsl.MIN_S, 128 / Rgb.MAX, rgb.a())));
     });
-
   });
-  
-  describe('.prototype.hsv()', () => {
 
+  describe('.prototype.hsv()', () => {
     it('should convert color space to HSV', () => {
-      //setup
+      // setup
       const rgb = new Rgb(92, 98, 168);
 
       // exercise
@@ -403,13 +382,11 @@ describe('Rgb', () => {
       assert(hsv.isValid());
       assert(hsv.rgb().equals(rgb));
     });
-
   });
 
   describe('.prototype.hwb()', () => {
-
     it('should convert color space to HWB', () => {
-      //setup
+      // setup
       const rgb = new Rgb(92, 98, 168);
 
       // exercise
@@ -420,13 +397,11 @@ describe('Rgb', () => {
       assert(hwb.isValid());
       assert(hwb.rgb().equals(rgb));
     });
-
   });
 
   describe('.prototype.rgb()', () => {
-
     it('should create an instance which has same properties and values', () => {
-      //setup
+      // setup
       const rgb = new Rgb(0, 128, 255);
 
       // exercise
@@ -437,7 +412,5 @@ describe('Rgb', () => {
       assert(converted !== rgb);
       assert(converted.rgb().equals(rgb));
     });
-    
   });
-
 });

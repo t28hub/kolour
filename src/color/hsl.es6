@@ -1,4 +1,4 @@
-import Color, {NO_ALPHA} from './color.es6';
+import Color, { NO_ALPHA } from './color.es6';
 import Rgb from './rgb.es6';
 
 const MIN_H = 0;
@@ -13,18 +13,16 @@ const KEYS = Object.freeze({
   H: Symbol.for('h'),
   S: Symbol.for('s'),
   L: Symbol.for('l'),
-  A: Symbol.for('a')
+  A: Symbol.for('a'),
 });
 
 /**
  * Class representing a HSL color
- * 
  * @extends Color
  */
 export default class Hsl extends Color {
   /**
    * Creates a HSL color
-   * 
    * @param {number} h - The hue value
    * @param {number} s - The saturation value
    * @param {number} l - The lightness value
@@ -36,7 +34,6 @@ export default class Hsl extends Color {
 
   /**
    * Provides an accessor for the hue value
-   * 
    * @returns {function()} An accessor for the hue value
    * @see hue
    */
@@ -46,7 +43,6 @@ export default class Hsl extends Color {
 
   /**
    * Provides an accessor for the saturation value
-   * 
    * @returns {function()} An accessor for the saturation value
    * @see saturation
    */
@@ -56,7 +52,6 @@ export default class Hsl extends Color {
 
   /**
    * Provides an accessor for the lightness value
-   *
    * @returns {function()} An accessor for the lightness value
    * @see lightness
    */
@@ -66,7 +61,6 @@ export default class Hsl extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see alpha
    */
@@ -76,7 +70,6 @@ export default class Hsl extends Color {
 
   /**
    * Provides an accessor for the hue value
-   *
    * @returns {function()} An accessor for the hue value
    * @see h
    */
@@ -86,7 +79,6 @@ export default class Hsl extends Color {
 
   /**
    * Provides an accessor for the saturation value
-   *
    * @returns {function()} An accessor for the saturation value
    * @see s
    */
@@ -96,7 +88,6 @@ export default class Hsl extends Color {
 
   /**
    * Provides an accessor for the lightness value
-   *
    * @returns {function()} An accessor for the lightness value
    * @see l
    */
@@ -106,7 +97,6 @@ export default class Hsl extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see  a
    */
@@ -124,10 +114,10 @@ export default class Hsl extends Color {
 
     const [h, s, l] = [this.h(), this.s(), this.l()];
     return [
-      {min: MIN_H, max: MAX_H, value: h},
-      {min: MIN_S, max: MAX_S, value: s},
-      {min: MIN_L, max: MAX_L, value: l}
-    ].every(({min, max, value}) => {
+      { min: MIN_H, max: MAX_H, value: h },
+      { min: MIN_S, max: MAX_S, value: s },
+      { min: MIN_L, max: MAX_L, value: l },
+    ].every(({ min, max, value }) => {
       if (!Number.isFinite(value)) {
         return false;
       }
@@ -164,7 +154,7 @@ export default class Hsl extends Color {
    * @override
    */
   hsl() {
-    //noinspection JSValidateTypes
+    // noinspection JSValidateTypes
     return this.clone();
   }
 
@@ -211,26 +201,26 @@ export default class Hsl extends Color {
 
   /**
    * Converts the hue value to a RGB value
-   * 
    * @private
    */
   static hueToRgb(m1, m2, h) {
-    if (h < MIN_H) {
-      h += MAX_H;
+    let hue = h;
+    if (hue < MIN_H) {
+      hue += MAX_H;
     }
-    if (h > MAX_H) {
-      h -= MAX_H;
+    if (hue > MAX_H) {
+      hue -= MAX_H;
     }
-    h /= MAX_H;
+    hue /= MAX_H;
 
-    if (6 * h < 1) {
-      return m1 + (m2 - m1) * 6 * h;
+    if (6 * hue < 1) {
+      return m1 + (m2 - m1) * 6 * hue;
     }
-    if (2 * h < 1) {
+    if (2 * hue < 1) {
       return m2;
     }
-    if (3 * h < 2) {
-      return m1 + (m2 - m1) * (2 / 3 - h) * 6;
+    if (3 * hue < 2) {
+      return m1 + (m2 - m1) * (2 / 3 - hue) * 6;
     }
     return m1;
   }

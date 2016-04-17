@@ -1,6 +1,5 @@
 /**
  * Returns a string representing the specified value
- *
  * @module utils/to-string
  * @param {*} object - The object to be a string
  */

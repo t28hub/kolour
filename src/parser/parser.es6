@@ -1,13 +1,11 @@
 /**
  * Class representing an abstract parser
- *
  * @abstract
  * @template T
  */
 export default class Parser {
   /**
    * Parses the specified object to a color
-   *
    * @public
    * @abstract
    * @param {T} object - The object to be parsed

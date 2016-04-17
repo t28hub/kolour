@@ -6,5 +6,29 @@
     "node": true
   },
   "rules": {
+    "no-console": [
+      "error"
+    ],
+    "max-len": [
+      "error",
+      160,
+      4
+    ],
+    "no-trailing-spaces": [
+      "error",
+      {
+        "skipBlankLines": true
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "none"
+      }
+    ],
+    "arrow-body-style": [
+      0
+    ]
   }
 }

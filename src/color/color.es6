@@ -9,8 +9,7 @@ const MAX_ALPHA = 1;
  */
 export default class Color {
   /**
-   * Creates a color
-   *
+   * Creates a color with name and components
    * @protected
    * @param {string} name - The name of color space
    * @param {Iterable} components - The color components
@@ -22,7 +21,6 @@ export default class Color {
 
   /**
    * Returns a string representing an instance
-   *
    * @public
    * @returns {string} Representation of an instance
    */
@@ -33,15 +31,17 @@ export default class Color {
       .reduce((previous, entry) => {
         const key = entry[0];
         const value = entry[1];
-        previous[Symbol.keyFor(key)] = value;
-        return previous;
+        
+        const current = Object.create(null);
+        current[Symbol.keyFor(key)] = value;
+        
+        return Object.assign(previous, current);
       }, Object.create(null));
     return JSON.stringify(object);
   }
 
   /**
    * Checks whether a property exists in the components or not
-   *
    * @protected
    * @param {Symbol} property - Key of property
    * @returns {boolean} <em>true</em> if the components has a specified property as a key.
@@ -52,7 +52,6 @@ export default class Color {
 
   /**
    * Returns a value which is mapped to a specified property.
-   *
    * @protected
    * @param {Symbol} property - Key of property
    * @returns {number} A color value
@@ -60,14 +59,14 @@ export default class Color {
    */
   get(property) {
     if (!this.has(property)) {
-      throw new TypeError("Specified property does not exist in a component:" + this.components);
+      const keys = Array.from(this.components).join(',');
+      throw new TypeError(`Specified property does not exist in a component:${keys}`);
     }
     return this.components.get(property);
   }
 
   /**
    * Sets a value to a specified property
-   *
    * @protected
    * @param {Symbol} property - Key of property
    * @param {number} value - A color value
@@ -77,10 +76,11 @@ export default class Color {
    */
   set(property, value) {
     if (!this.has(property)) {
-      throw new TypeError("Specified property does not exist in a component:" + this.components);
+      const keys = Array.from(this.components).join(',');
+      throw new TypeError(`Specified property does not exist in a component:${keys}`);
     }
     if (!Number.isFinite(value)) {
-      throw new TypeError("Specified value must be a finite number");
+      throw new TypeError('Specified value must be a finite number');
     }
     this.components.set(property, value);
     return this;
@@ -88,7 +88,6 @@ export default class Color {
 
   /**
    * Creates an accessor for a specific property
-   *
    * @protected
    * @param {Symbol} property - Key of property
    * @returns {function()} An accessor for a specified property
@@ -105,7 +104,6 @@ export default class Color {
 
   /**
    * Clones an instance
-   *
    * @public
    * @returns {Color} A cloned instance
    */
@@ -118,7 +116,6 @@ export default class Color {
 
   /**
    * Compares this instance with a specified value
-   *
    * @param {*} value - Any types of value
    * @returns {boolean} <em>true</em> if this instance is same as the value argument.
    */
@@ -144,7 +141,6 @@ export default class Color {
 
   /**
    * Checks whether the instance is valid or invalid.
-   *
    * @public
    * @returns {boolean} <em>true</em> if the instance is valid
    */
@@ -154,7 +150,6 @@ export default class Color {
 
   /**
    * Creates a new color which is darker than the current color.
-   *
    * @public
    * @param {number} factor
    * @throws {TypeError} Argument factor must be within range 0 and 1
@@ -167,23 +162,21 @@ export default class Color {
 
   /**
    * Creates a new color which is lighter than the current color.
-   *
    * @public
    * @param {number} factor
    * @throws {TypeError} Argument factor must be within range 0 and 1
    */
   lighten(factor) {
     if (!Number.isFinite(factor)) {
-      throw new TypeError("Factor(" + factor + ") must be a finite number");
+      throw new TypeError(`Factor(${factor}) must be a finite number`);
     }
     if (factor === 0) {
-      throw new TypeError("Factor(" + factor + ") must not be zero");
+      throw new TypeError(`Factor(${factor}) must not be zero`);
     }
   }
 
   /**
    * Converts color to a hex string
-   *
    * @public
    * @returns {string} A hex string
    */
@@ -201,7 +194,6 @@ export default class Color {
 
   /**
    * Converts color to an integer
-   *
    * @public
    * @returns {number} An integer
    */
@@ -211,7 +203,6 @@ export default class Color {
 
   /**
    * Converts color to a css string
-   *
    * @public
    * @returns {string} A css string
    */
@@ -221,7 +212,6 @@ export default class Color {
 
   /**
    * Converts color space to CMY
-   *
    * @abstract
    * @public
    * @returns {Cmy} A CMY color
@@ -232,7 +222,6 @@ export default class Color {
 
   /**
    * Converts color space to CMYK
-   *
    * @abstract
    * @public
    * @returns {Cmyk} A CMYK color
@@ -243,7 +232,6 @@ export default class Color {
 
   /**
    * Converts color space to HSL
-   *
    * @abstract
    * @public
    * @returns {Hsl} A HSL color
@@ -254,7 +242,6 @@ export default class Color {
 
   /**
    * Converts color space to HSV
-   *
    * @abstract
    * @public
    * @returns {Hsv} A HSV color
@@ -265,7 +252,6 @@ export default class Color {
 
   /**
    * Converts color space to HWB
-   *
    * @abstract
    * @public
    * @returns {Hwb} A HWB color
@@ -276,7 +262,6 @@ export default class Color {
 
   /**
    * Converts color space to RGB
-   *
    * @abstract
    * @public
    * @returns {Rgb} A converted RGB color
@@ -287,7 +272,6 @@ export default class Color {
 
   /**
    * Checks whether the alpha value is set or not
-   *
    * @protected
    * @param {Symbol} key - The key of alpha value
    * @returns {boolean} <em>true</em> if the alpha value is set
@@ -300,7 +284,6 @@ export default class Color {
 
   /**
    * Checks whether the alpha value is set or not
-   *
    * @protected
    * @param {Symbol} key - The key of alpha value
    * @returns {boolean} <em>true</em> if the alpha value is valid
@@ -313,13 +296,12 @@ export default class Color {
 
   /**
    * Creates an invalid instance
-   *
    * @public
    * @static
    * @returns {Color} An invalid color
    */
   static invalid() {
-    //noinspection JSValidateTypes
+    // noinspection JSValidateTypes
     return new class extends Color {
       constructor() {
         super(NO_NAME, []);

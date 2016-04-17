@@ -6,13 +6,11 @@ const NAME = 'TEST';
 const KEYS = Object.freeze({
   A: Symbol.for('a'),
   B: Symbol.for('b'),
-  C: Symbol.for('c')
+  C: Symbol.for('c'),
 });
 
 describe('Color', () => {
-
   describe('.constructor(name, components)', () => {
-
     it('should create an instance with name and components', () => {
       // exercise
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -22,11 +20,9 @@ describe('Color', () => {
       assert(color.name === NAME);
       assert(color.components, new Map([[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]));
     });
-
   });
 
   describe('.prototype.toString()', () => {
-
     it('should return a JSON string which contains name and components', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -37,11 +33,9 @@ describe('Color', () => {
       // verify
       assert(string === '{"name":"TEST","components":{"a":10,"b":20,"c":30}}');
     });
-
   });
 
   describe('.prototype.has(property)', () => {
-
     it('should return true when a specified property exists', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -63,11 +57,9 @@ describe('Color', () => {
       // verify
       assert(!has);
     });
-
   });
 
-  describe('.prototype.get(property)', ()=> {
-
+  describe('.prototype.get(property)', () => {
     it('should return value which is mapped a specified property', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -84,16 +76,14 @@ describe('Color', () => {
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.get(Symbol.for('x'));
       }, TypeError);
     });
-
   });
 
-  describe('.prototype.get(property, value)', ()=> {
-
+  describe('.prototype.get(property, value)', () => {
     it('should set value to a specified property', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -110,7 +100,7 @@ describe('Color', () => {
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.set(Symbol.for('x'), 100);
       }, TypeError);
@@ -121,16 +111,14 @@ describe('Color', () => {
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.set(KEYS.A, Number.NaN);
       }, TypeError);
     });
-
   });
 
   describe('.prototype.accessor(property)', () => {
-
     it('should return an accessor', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -163,11 +151,9 @@ describe('Color', () => {
       // verify
       assert(color.get(KEYS.A) === 100);
     });
-
   });
 
   describe('.prototype.clone()', () => {
-
     it('should return another instance', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -196,11 +182,9 @@ describe('Color', () => {
       assert(cloned !== color);
       assert(cloned.equals(color));
     });
-
   });
 
   describe('.prototype.equals(value)', () => {
-
     it('should return true when a value is same class and has same components', () => {
       // setup
       const color1 = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -247,11 +231,9 @@ describe('Color', () => {
       // verify
       assert(!equals);
     });
-
   });
 
   describe('.prototype.isValid()', () => {
-
     it('should always return false', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -262,26 +244,22 @@ describe('Color', () => {
       // verify
       assert(!isValid);
     });
-
   });
-  
+
   describe('.prototype.int()', () => {
-    
     it('should return 0', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
-      
+
       // exercise
       const int = color.int();
-      
+
       // verify
       assert(int === 0);
     });
-    
   });
 
   describe('.prototype.css()', () => {
-
     it('should return empty string', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -292,101 +270,87 @@ describe('Color', () => {
       // verify
       assert(css === '');
     });
-
   });
 
   describe('.prototype.cmy()', () => {
-
     it('should throw Error', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.cmy();
       }, Error);
     });
-
   });
 
   describe('.prototype.cmyk()', () => {
-
     it('should throw Error', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.cmyk();
       }, Error);
     });
-
   });
 
   describe('.prototype.hsl()', () => {
-
     it('should throw Error', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.hsl();
       }, Error);
     });
-
   });
 
   describe('.prototype.hsv()', () => {
-
     it('should throw Error', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.hsv();
       }, Error);
     });
-
   });
 
   describe('.prototype.hwb()', () => {
-
     it('should throw Error', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.hwb();
       }, Error);
     });
-
   });
 
   describe('.prototype.rgb()', () => {
-
     it('should throw Error', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // verify
-      assert.throws(()=> {
+      assert.throws(() => {
         // exercise
         color.rgb();
       }, Error);
     });
-
   });
 
   describe('.invalid()', () => {
-
     it('should return invalid instance', () => {
       // exercise
       const color = Color.invalid();
@@ -394,7 +358,5 @@ describe('Color', () => {
       // verify
       assert(!color.isValid());
     });
-
   });
-
 });

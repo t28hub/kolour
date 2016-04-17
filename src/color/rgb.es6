@@ -1,4 +1,4 @@
-import Color, {NO_ALPHA} from './color.es6';
+import Color, { NO_ALPHA } from './color.es6';
 import Cmy from './cmy.es6';
 import Hsl from './hsl.es6';
 import Hsv from './hsv.es6';
@@ -10,18 +10,16 @@ const KEYS = Object.freeze({
   R: Symbol.for('r'),
   G: Symbol.for('g'),
   B: Symbol.for('b'),
-  A: Symbol.for('a')
+  A: Symbol.for('a'),
 });
 
 /**
  * Class representing a RGB color
- *
  * @extends Color
  */
 export default class Rgb extends Color {
   /**
    * Creates a RGB color
-   *
    * @param {number} r - The red value
    * @param {number} g - The green value
    * @param {number} b - The blue value
@@ -33,7 +31,6 @@ export default class Rgb extends Color {
 
   /**
    * Provides an accessor for the red value
-   *
    * @returns {function()} An accessor for the red value
    * @see red
    */
@@ -43,7 +40,6 @@ export default class Rgb extends Color {
 
   /**
    * Provides an accessor for the green value
-   *
    * @returns {function()} An accessor for the green value
    * @see green
    */
@@ -53,7 +49,6 @@ export default class Rgb extends Color {
 
   /**
    * Provides an accessor for the blue value
-   *
    * @returns {function()} An accessor for the blue value
    * @see blue
    */
@@ -63,7 +58,6 @@ export default class Rgb extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see alpha
    */
@@ -73,7 +67,6 @@ export default class Rgb extends Color {
 
   /**
    * Provides an accessor for the red value
-   * 
    * @returns {function()} An accessor for the red value
    * @see r
    */
@@ -83,7 +76,6 @@ export default class Rgb extends Color {
 
   /**
    * Provides an accessor for the green value
-   *
    * @returns {function()} An accessor for the green value
    * @see g
    */
@@ -93,7 +85,6 @@ export default class Rgb extends Color {
 
   /**
    * Provides an accessor for the blue value
-   *
    * @returns {function()} An accessor for the blue value
    * @see b
    */
@@ -103,7 +94,6 @@ export default class Rgb extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see a
    */
@@ -138,9 +128,8 @@ export default class Rgb extends Color {
     } else {
       a = MAX;
     }
-    
+
     const int = [this.r(), this.g(), this.b(), a].reduce((result, value, index) => {
-      console.log(result);
       return result | value << (8 * (3 - index));
     }, 0);
     return int >>> 0;
@@ -164,9 +153,9 @@ export default class Rgb extends Color {
     super.darken(factor);
     const [r, g, b, a] = [this.r(), this.g(), this.b(), this.a()];
     const values = [r, g, b].map((value) => {
-      value *= factor;
-      value = Math.round(value);
-      return Math.max(Math.min(value, MAX), MIN);
+      let newValue = value * factor;
+      newValue = Math.round(newValue);
+      return Math.max(Math.min(newValue, MAX), MIN);
     });
     return new Rgb(...values, a);
   }
@@ -178,9 +167,9 @@ export default class Rgb extends Color {
     super.lighten(factor);
     const [r, g, b, a] = [this.r(), this.g(), this.b(), this.a()];
     const values = [r, g, b].map((value) => {
-      value /= factor;
-      value = Math.round(value);
-      return Math.max(Math.min(value, MAX), MIN);
+      let newValue = value / factor;
+      newValue = Math.round(newValue);
+      return Math.max(Math.min(newValue, MAX), MIN);
     });
     return new Rgb(...values, a);
   }
@@ -277,7 +266,7 @@ export default class Rgb extends Color {
    * @override
    */
   rgb() {
-    //noinspection JSValidateTypes
+    // noinspection JSValidateTypes
     return this.clone();
   }
 

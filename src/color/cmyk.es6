@@ -1,4 +1,4 @@
-import Color, {NO_ALPHA} from './color.es6';
+import Color, { NO_ALPHA } from './color.es6';
 import Cmy from './cmy.es6';
 import Rgb from './rgb.es6';
 
@@ -10,18 +10,16 @@ const KEYS = Object.freeze({
   M: Symbol.for('m'),
   Y: Symbol.for('y'),
   K: Symbol.for('k'),
-  A: Symbol.for('a')
+  A: Symbol.for('a'),
 });
 
 /**
  * Class representing a CMYK color
- *
  * @extends Color
  */
 export default class Cmyk extends Color {
   /**
    * Creates a CMYK color
-   *
    * @param {number} c - The cyan value
    * @param {number} m - The magenta value
    * @param {number} y - The yellow value
@@ -34,7 +32,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the cyan value
-   *
    * @returns {function()} An accessor for the cyan value
    * @see cyan
    */
@@ -44,7 +41,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the magenta value
-   *
    * @returns {function()} An accessor for the magenta value
    * @see magenta
    */
@@ -54,7 +50,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the yellow value
-   *
    * @returns {function()} An accessor for the yellow value
    * @see yellow
    */
@@ -64,7 +59,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the black value
-   *
    * @returns {function()} An accessor for the black value
    * @see black
    */
@@ -74,7 +68,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see alpha
    */
@@ -84,7 +77,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the cyan value
-   *
    * @returns {function()} An accessor for the cyan value
    * @see c
    */
@@ -94,7 +86,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the magenta value
-   *
    * @returns {function()} An accessor for the magenta value
    * @see m
    */
@@ -104,7 +95,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the yellow value
-   *
    * @returns {function()} An accessor for the yellow value
    * @see y
    */
@@ -114,7 +104,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the black value
-   *
    * @returns {function()} An accessor for the black value
    * @see k
    */
@@ -124,7 +113,6 @@ export default class Cmyk extends Color {
 
   /**
    * Provides an accessor for the alpha value
-   *
    * @returns {function()} An accessor for the alpha value
    * @see a
    */
@@ -180,8 +168,8 @@ export default class Cmyk extends Color {
     const black = this.k();
     const white = MAX - black;
     const values = [this.c(), this.m(), this.y()].map((value) => {
-      value = value * white + black;
-      return Math.max(Math.min(value, Cmy.MAX), Cmy.MIN);
+      const newValue = value * white + black;
+      return Math.max(Math.min(newValue, Cmy.MAX), Cmy.MIN);
     });
     return new Cmy(...values, this.a());
   }
@@ -190,7 +178,7 @@ export default class Cmyk extends Color {
    * @override
    */
   cmyk() {
-    //noinspection JSValidateTypes
+    // noinspection JSValidateTypes
     return this.clone();
   }
 
@@ -221,9 +209,8 @@ export default class Cmyk extends Color {
   rgb() {
     const white = MAX - this.k();
     const values = [this.c(), this.m(), this.y()].map((value) => {
-      value = Rgb.MAX * (MAX - value) * white;
-      value = Math.round(value);
-      return Math.max(Math.min(value, Rgb.MAX), Rgb.MIN);
+      const newValue = Rgb.MAX * (MAX - value) * white;
+      return Math.round(newValue);
     });
     return new Rgb(...values, this.a());
   }

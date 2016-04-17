@@ -1,10 +1,10 @@
-import Color, {NO_ALPHA} from './color/color.es6';
-import Cmy  from './color/cmy.es6';
+import Color, { NO_ALPHA } from './color/color.es6';
+import Cmy from './color/cmy.es6';
 import Cmyk from './color/cmyk.es6';
-import Hsl  from './color/hsl.es6';
-import Hsv  from './color/hsv.es6';
-import Hwb  from './color/hwb.es6';
-import Rgb  from './color/rgb.es6';
+import Hsl from './color/hsl.es6';
+import Hsv from './color/hsv.es6';
+import Hwb from './color/hwb.es6';
+import Rgb from './color/rgb.es6';
 import ObjectParser from './parser/object-parser.es6';
 import StringParser from './parser/string-parser.es6';
 import isObject from './utils/is-object.es6';
@@ -12,7 +12,6 @@ import isString from './utils/is-string.es6';
 
 /**
  * Creates a color
- *
  * @param {*} value - The value to convert a color
  * @returns {Color} A color
  */
@@ -34,7 +33,6 @@ function kolour(value) {
 
 /**
  * Version of kolour
- *
  * @constant
  * @type {string}
  * @default
@@ -43,8 +41,6 @@ kolour.VERSION = '1.0.0';
 
 /**
  * Creates a CMY color from values
- *
- * @function
  * @param {number} c - The cyan value
  * @param {number} m - The magenta value
  * @param {number} y - The yellow value
@@ -57,7 +53,6 @@ kolour.cmy = (c, m, y, a = NO_ALPHA) => {
 
 /**
  * Creates a CMYK color
- *
  * @param {number} c - The cyan value
  * @param {number} m - The magenta value
  * @param {number} y - The yellow value
@@ -71,7 +66,6 @@ kolour.cmyk = (c, m, y, k, a = NO_ALPHA) => {
 
 /**
  * Creates a HSL color from values
- *
  * @param {number} h - The hue value
  * @param {number} s - The saturation value
  * @param {number} l - The lightness value
@@ -84,7 +78,6 @@ kolour.hsl = (h, s, l, a = NO_ALPHA) => {
 
 /**
  * Creates a HSV color from values
- *
  * @param {number} h - The hue value
  * @param {number} s - The saturation value
  * @param {number} v - The value value
@@ -97,7 +90,6 @@ kolour.hsv = (h, s, v, a = NO_ALPHA) => {
 
 /**
  * Creates a HWB color from values
- *
  * @param {number} h - The hue value
  * @param {number} w - The whiteness value
  * @param {number} b - The blackness value
@@ -110,7 +102,6 @@ kolour.hwb = (h, w, b, a = NO_ALPHA) => {
 
 /**
  * Creates a RGB color from values
- *
  * @param {number} r - The red value
  * @param {number} g - The green value
  * @param {number} b - The blue value

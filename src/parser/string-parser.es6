@@ -1,19 +1,17 @@
 import Parser from './parser.es6';
-import Color  from '../color/color.es6';
-import Cmyk   from '../color/cmyk.es6';
-import Hsl    from '../color/hsl.es6';
-import Hwb    from '../color/hwb.es6';
-import Rgb    from '../color/rgb.es6';
+import Color from '../color/color.es6';
+import Cmyk from '../color/cmyk.es6';
+import Hsl from '../color/hsl.es6';
+import Hwb from '../color/hwb.es6';
+import Rgb from '../color/rgb.es6';
 
 /**
  * Class which creates a color from matched string
- *
  * @abstract
  */
 export class Factory {
   /**
    * Creates a factory
-   *
    * @param {RegExp} regexp - The pattern which is supported by this factory
    */
   constructor(regexp) {
@@ -22,7 +20,6 @@ export class Factory {
 
   /**
    * Creates a color from matched items
-   *
    * @public
    * @abstract
    * @param {...string} matched - The matched items for each capturing
@@ -40,7 +37,7 @@ DEFAULTS.add(new class extends Factory {
 
   create(r, g, b) {
     const values = [r, g, b].map((value) => {
-      return Number.parseInt(value);
+      return Number.parseInt(value, 10);
     });
     return new Rgb(...values);
   }
@@ -53,7 +50,7 @@ DEFAULTS.add(new class extends Factory {
 
   create(r, g, b, a) {
     const values = [r, g, b].map((value) => {
-      return Number.parseInt(value);
+      return Number.parseInt(value, 10);
     });
     return new Rgb(...values, Number.parseFloat(a));
   }
@@ -105,10 +102,11 @@ DEFAULTS.add(new class extends Factory {
   }
 
   create(h, s, l) {
-    h = Number.parseInt(h);
-    s = Number.parseFloat(s) / Hsl.MAX_S;
-    l = Number.parseFloat(l) / Hsl.MAX_L;
-    return new Hsl(h, s, l);
+    return new Hsl(
+      Number.parseInt(h, 10),
+      Number.parseFloat(s) / Hsl.MAX_S,
+      Number.parseFloat(l) / Hsl.MAX_L
+    );
   }
 });
 
@@ -118,11 +116,12 @@ DEFAULTS.add(new class extends Factory {
   }
 
   create(h, s, l, a) {
-    h = Number.parseInt(h);
-    s = Number.parseFloat(s) / Hsl.MAX_S;
-    l = Number.parseFloat(l) / Hsl.MAX_L;
-    a = Number.parseFloat(a);
-    return new Hsl(h, s, l, a);
+    return new Hsl(
+      Number.parseInt(h, 10),
+      Number.parseFloat(s) / Hsl.MAX_S,
+      Number.parseFloat(l) / Hsl.MAX_L,
+      Number.parseFloat(a)
+    );
   }
 });
 
@@ -132,10 +131,11 @@ DEFAULTS.add(new class extends Factory {
   }
 
   create(h, w, b) {
-    h = Number.parseInt(h);
-    w = Number.parseFloat(w) / 100;
-    b = Number.parseFloat(b) / 100;
-    return new Hwb(h, w, b);
+    return new Hwb(
+      Number.parseInt(h, 10),
+      Number.parseFloat(w) / 100,
+      Number.parseFloat(b) / 100
+    );
   }
 });
 
@@ -145,11 +145,12 @@ DEFAULTS.add(new class extends Factory {
   }
 
   create(h, w, b, a) {
-    h = Number.parseInt(h);
-    w = Number.parseFloat(w) / 100;
-    b = Number.parseFloat(b) / 100;
-    a = Number.parseFloat(a);
-    return new Hwb(h, w, b, a);
+    return new Hwb(
+      Number.parseInt(h, 10),
+      Number.parseFloat(w) / 100,
+      Number.parseFloat(b) / 100,
+      Number.parseFloat(a)
+    );
   }
 });
 
@@ -168,13 +169,11 @@ DEFAULTS.add(new class extends Factory {
 
 /**
  * Class which creates color from a string
- *
  * @extends Parser.<string>
  */
 export default class StringParser extends Parser {
   /**
    * Creates a StringParser from factories
-   *
    * @param {Iterable.<Factory>} factories - The supported factories
    */
   constructor(factories) {
@@ -184,13 +183,12 @@ export default class StringParser extends Parser {
 
   /**
    * Parses the specified string and creates a color
-   *
    * @param {string} string - The string to be parsed
    * @returns {Color} - The parsed color
    */
   parse(string) {
     const iterator = this.factories.values();
-    for (let factory of iterator) {
+    for (const factory of iterator) {
       const matched = string.match(factory.regexp);
       if (!matched) {
         continue;
@@ -202,7 +200,6 @@ export default class StringParser extends Parser {
 
   /**
    * Creates a default StringParser
-   *
    * @returns {StringParser} The default StringParser
    */
   static defaults() {

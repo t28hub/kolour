@@ -9,7 +9,7 @@
     "build:webpack": "node_modules/.bin/webpack",
     "clean": "node_modules/.bin/rimraf build/*",
     "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.config.json src",
-    "lint": "node_modules/.bin/eslint --ext .es6 src test",
+    "lint": "node_modules/.bin/eslint --ext .es6 src",
     "test": "node_modules/.bin/nyc npm run test:mocha",
     "test:karma": "node_modules/.bin/karma start karma.config.js",
     "test:mocha": "node_modules/.bin/mocha",
