@@ -4,14 +4,14 @@
   "description": "A fluent color conversion and manipulation library",
   "main": "index.js",
   "scripts": {
-    "clean": "node_modules/.bin/rimraf build/*",
+    "build": "npm run clean && npm run test && npm run build:webpack",
     "build:babel": "node_modules/.bin/babel src/**/*.es6 --source-maps --out-dir build",
     "build:webpack": "node_modules/.bin/webpack",
-    "test": "node_modules/.bin/mocha",
+    "clean": "node_modules/.bin/rimraf build/*",
+    "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.config.json src",
+    "test": "node_modules/.bin/nyc npm run test:mocha",
     "test:karma": "node_modules/.bin/karma start karma.config.js",
-    "test:mocha": "node_modules/.bin/mocha",
-    "coverage": "node_modules/.bin/nyc --require babel-core/register --extension .es6 --report-dir build/coverage --reporter html --reporter lcov npm run test",
-    "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.config.json src"
+    "test:mocha": "node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -61,5 +61,14 @@
   },
   "engines": {
     "node": "~5.10.0"
+  },
+  "nyc": {
+    "require": "babel-core/register",
+    "extension": ".es6",
+    "report-dir": "build/coverage",
+    "reporter": [
+      "html",
+      "lcov"
+    ]
   }
 }
