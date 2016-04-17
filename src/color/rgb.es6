@@ -131,6 +131,24 @@ export default class Rgb extends Color {
   /**
    * @override
    */
+  int() {
+    let a;
+    if (this.hasAlpha(KEYS.A)) {
+      a = Math.round(this.a() * MAX);
+    } else {
+      a = MAX;
+    }
+    
+    const int = [this.r(), this.g(), this.b(), a].reduce((result, value, index) => {
+      console.log(result);
+      return result | value << (8 * (3 - index));
+    }, 0);
+    return int >>> 0;
+  }
+
+  /**
+   * @override
+   */
   css() {
     const [r, g, b, a] = [this.r(), this.g(), this.b(), this.a()];
     if (this.hasAlpha(KEYS.A)) {

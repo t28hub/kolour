@@ -200,6 +200,16 @@ export default class Color {
   }
 
   /**
+   * Converts color to an integer
+   *
+   * @public
+   * @returns {number} An integer
+   */
+  int() {
+    return 0;
+  }
+
+  /**
    * Converts color to a css string
    *
    * @public

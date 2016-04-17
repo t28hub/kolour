@@ -264,6 +264,21 @@ describe('Color', () => {
     });
 
   });
+  
+  describe('.prototype.int()', () => {
+    
+    it('should return 0', () => {
+      // setup
+      const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
+      
+      // exercise
+      const int = color.int();
+      
+      // verify
+      assert(int === 0);
+    });
+    
+  });
 
   describe('.prototype.css()', () => {
 

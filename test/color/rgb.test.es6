@@ -136,6 +136,21 @@ describe('Rgb', () => {
     });
     
   });
+  
+  describe('.prototype.int()', () => {
+    
+    it('should return a number representing a color', () => {
+      // setup
+      const rgb = new Rgb(32, 64, 96, 0.5);   
+      
+      // exercise
+      const int = rgb.int();
+      
+      // verify
+      assert(int === 0x20406080);
+    });
+    
+  });
 
   describe('.prototype.css()', () => {
 
