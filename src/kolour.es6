@@ -44,6 +44,7 @@ kolour.VERSION = '1.0.0';
 /**
  * Creates a CMY color from values
  *
+ * @function
  * @param {number} c - The cyan value
  * @param {number} m - The magenta value
  * @param {number} y - The yellow value
@@ -101,6 +102,7 @@ kolour.hsv = (h, s, v, a = NO_ALPHA) => {
  * @param {number} w - The whiteness value
  * @param {number} b - The blackness value
  * @param {number} [a] - The alpha value
+ * @returns {Hwb} A HWB color
  */
 kolour.hwb = (h, w, b, a = NO_ALPHA) => {
   return new Hwb(h, w, b, a);
@@ -113,7 +115,7 @@ kolour.hwb = (h, w, b, a = NO_ALPHA) => {
  * @param {number} g - The green value
  * @param {number} b - The blue value
  * @param {number} [a] - The alpha value
- * @returns {Rgb} A Rgb color
+ * @returns {Rgb} A RGB color
  */
 kolour.rgb = (r, g, b, a = NO_ALPHA) => {
   return new Rgb(r, g, b, a);

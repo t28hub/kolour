@@ -25,7 +25,7 @@ export class Factory {
    *
    * @public
    * @abstract
-   * @param {string...} matched - The matched items for each capturing
+   * @param {...string} matched - The matched items for each capturing
    */
   create(...matched) {
   }

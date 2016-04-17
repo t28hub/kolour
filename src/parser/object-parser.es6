@@ -18,7 +18,7 @@ export class Factory {
   /**
    * Creates a factory
    *
-   * @param {string...} keys - The required keys
+   * @param {...string} keys - The required keys
    */
   constructor(...keys) {
     this.keys = keys;

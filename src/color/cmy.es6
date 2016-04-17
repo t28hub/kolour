@@ -206,7 +206,6 @@ export default class Cmy extends Color {
 
   /**
    * @returns {number}
-   * @constructor
    */
   static get MIN() {
     return MIN;
@@ -214,7 +213,6 @@ export default class Cmy extends Color {
 
   /**
    * @returns {number}
-   * @constructor
    */
   static get MAX() {
     return MAX;
