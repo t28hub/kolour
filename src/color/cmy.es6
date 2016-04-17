@@ -196,7 +196,7 @@ export default class Cmy extends Color {
   rgb() {
     const [c, m, y, a] = [this.c(), this.m(), this.y(), this.a()];
     const [r, g, b] = [c, m, y].map((value) => {
-      const newValue = Rgb.MAX * MAX - value;
+      const newValue = Rgb.MAX * (MAX - value);
       return Math.round(newValue);
     });
     return new Rgb(r, g, b, a);
