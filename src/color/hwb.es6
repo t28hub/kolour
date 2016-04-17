@@ -128,6 +128,13 @@ export default class Hwb extends Color {
   /**
    * @override
    */
+  int() {
+    return this.rgb().int();
+  }
+  
+  /**
+   * @override
+   */
   css() {
     const [h, w, b, a] = [this.h(), this.w(), this.b(), this.a()];
     if (a === NO_ALPHA) {

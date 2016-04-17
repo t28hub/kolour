@@ -133,6 +133,13 @@ export default class Cmy extends Color {
   /**
    * @override
    */
+  int() {
+    return this.rgb().int();
+  }
+
+  /**
+   * @override
+   */
   cmy() {
     // noinspection JSValidateTypes
     return this.clone();

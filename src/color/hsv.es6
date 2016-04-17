@@ -125,6 +125,13 @@ export default class Hsv extends Color {
       return min <= value && value <= max;
     });
   }
+  
+  /**
+   * @override
+   */
+  int() {
+    return this.rgb().int();
+  }
 
   /**
    * @override

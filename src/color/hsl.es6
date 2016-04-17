@@ -128,6 +128,13 @@ export default class Hsl extends Color {
   /**
    * @override
    */
+  int() {
+    return this.rgb().int();
+  }
+  
+  /**
+   * @override
+   */
   css() {
     const [h, s, l, a] = [this.h(), this.s(), this.l(), this.a()];
     if (this.hasAlpha(KEYS.A)) {

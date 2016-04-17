@@ -139,6 +139,13 @@ export default class Cmyk extends Color {
   /**
    * @override
    */
+  int() {
+    return this.rgb().int();
+  }
+
+  /**
+   * @override
+   */
   css() {
     const [c, m, y, k, a] = [this.c(), this.m(), this.y(), this.k(), this.a()];
     if (a === NO_ALPHA) {
