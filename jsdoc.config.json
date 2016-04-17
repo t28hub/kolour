@@ -3,11 +3,9 @@
     "includePattern": ".+\\.es6$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
-  "plugins": ["plugins/markdown"],
   "opts": {
-    "template": "templates/default",
     "encoding": "utf8",
-    "destination": "build/doc/",
+    "destination": "build/doc",
     "recurse": true
   }
 }
