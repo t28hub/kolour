@@ -11,7 +11,7 @@
     "test:karma": "node_modules/.bin/karma start karma.config.js",
     "test:mocha": "node_modules/.bin/mocha",
     "coverage": "node_modules/.bin/nyc --require babel-core/register --extension .es6 --report-dir build/coverage --reporter html --reporter lcov npm run test",
-    "document": "node_modules/.bin/jsdoc -c jsdoc.json src"
+    "document": "node_modules/.bin/jsdoc -c jsdoc.config.json src"
   },
   "repository": {
     "type": "git",
