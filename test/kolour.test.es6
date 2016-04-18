@@ -12,6 +12,30 @@ import metadata from '../package.json';
 describe('kolour', () => {
   [
     {
+      argument: 'black',
+      expected: new Rgb(0, 0, 0),
+    },
+    {
+      argument: 'white',
+      expected: new Rgb(255, 255, 255),
+    },
+    {
+      argument: 'limegreen',
+      expected: new Rgb(50, 205, 50),
+    },
+    {
+      argument: 'mediumvioletred',
+      expected: new Rgb(199, 21, 133),
+    },
+    {
+      argument: '#24D668',
+      expected: new Rgb(36, 214, 104),
+    },
+    {
+      argument: '#ABC',
+      expected: new Rgb(170, 187, 204),
+    },
+    {
       argument: 'rgb(64, 92, 120)',
       expected: new Rgb(64, 92, 120),
     },
@@ -22,14 +46,6 @@ describe('kolour', () => {
     {
       argument: 'rgba(20%, 40%, 60%, 0.5)',
       expected: new Rgb(51, 102, 153, 0.5),
-    },
-    {
-      argument: '#24D668',
-      expected: new Rgb(36, 214, 104),
-    },
-    {
-      argument: '#ABC',
-      expected: new Rgb(170, 187, 204),
     },
     {
       argument: 'hsl(30, 50%, 25.4%)',
@@ -59,7 +75,7 @@ describe('kolour', () => {
 
       // verify
       assert(color.isValid());
-      assert(color.equals(expected));
+      assert(color.int() === expected.int());
     });
   });
 
@@ -170,7 +186,7 @@ describe('kolour', () => {
     assert(color instanceof Color);
     assert(color.isValid() === false);
   });
-
+  
   describe('.VERSION', () => {
     it('should be equal to version defined in the package.json', () => {
       // verify
