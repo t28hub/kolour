@@ -296,7 +296,7 @@ describe('Rgb', () => {
       // verify
       assert(cmy instanceof Cmy);
       assert(cmy.isValid());
-      assert(cmy.rgb().equals(rgb));
+      assert(cmy.int() === rgb.int());
     });
   });
 
@@ -311,7 +311,7 @@ describe('Rgb', () => {
       // verify
       assert(cmyk instanceof Cmyk);
       assert(cmyk.isValid());
-      assert(cmyk.rgb().equals(rgb));
+      assert(cmyk.int() === rgb.int());
     });
   });
 
@@ -326,7 +326,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.rgb().equals(rgb));
+      assert(hsl.int() === rgb.int());
     });
 
     it('should convert color space to HSL when minimum component is green', () => {
@@ -339,7 +339,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.rgb().equals(rgb));
+      assert(hsl.int() === rgb.int());
     });
 
     it('should convert color space to HSL when minimum component is blue', () => {
@@ -352,7 +352,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.rgb().equals(rgb));
+      assert(hsl.int() === rgb.int());
     });
 
     it('should convert color space to HSL when the instance is grayscaled color', () => {
@@ -365,7 +365,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.equals(new Hsl(Hsl.MIN_H, Hsl.MIN_S, 128 / Rgb.MAX, rgb.a())));
+      assert(hsl.int() === new Hsl(Hsl.MIN_H, Hsl.MIN_S, 128 / Rgb.MAX, rgb.a()).int());
     });
   });
 
@@ -380,7 +380,7 @@ describe('Rgb', () => {
       // verify
       assert(hsv instanceof Hsv);
       assert(hsv.isValid());
-      assert(hsv.rgb().equals(rgb));
+      assert(hsv.int() === rgb.int());
     });
   });
 
@@ -395,7 +395,7 @@ describe('Rgb', () => {
       // verify
       assert(hwb instanceof Hwb);
       assert(hwb.isValid());
-      assert(hwb.rgb().equals(rgb));
+      assert(hwb.int() === rgb.int());
     });
   });
 
@@ -408,9 +408,10 @@ describe('Rgb', () => {
       const converted = rgb.rgb();
 
       // verify
-      assert(converted instanceof Rgb);
       assert(converted !== rgb);
-      assert(converted.rgb().equals(rgb));
+      assert(converted instanceof Rgb);
+      assert(converted.isValid());
+      assert(converted.int() === rgb.int());
     });
   });
 });

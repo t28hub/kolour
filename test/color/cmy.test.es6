@@ -104,7 +104,7 @@ describe('Cmy', () => {
       const color = cmy.cmy();
 
       // verify
-      assert(color.equals(cmy));
+      assert(color.int() === cmy.int())
     });
   });
 
@@ -119,7 +119,7 @@ describe('Cmy', () => {
       // verify
       assert(cmyk instanceof Cmyk);
       assert(cmyk.isValid());
-      assert(cmyk.cmy().equals(cmy));
+      assert(cmyk.int() === cmy.int())
     });
 
     it('should return a black color when all values are equal to 1', () => {
@@ -132,7 +132,7 @@ describe('Cmy', () => {
       // verify
       assert(cmyk instanceof Cmyk);
       assert(cmyk.isValid());
-      assert(cmyk.cmy().equals(cmy));
+      assert(cmyk.int() === cmy.int())
     });
   });
 
@@ -147,7 +147,7 @@ describe('Cmy', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.rgb().equals(cmy.rgb()));
+      assert(hsl.int() === cmy.int())
     });
   });
 
@@ -162,7 +162,7 @@ describe('Cmy', () => {
       // verify
       assert(hsv instanceof Hsv);
       assert(hsv.isValid());
-      assert(hsv.rgb().equals(cmy.rgb()));
+      assert(hsv.int() === cmy.int())
     });
   });
 
@@ -177,7 +177,7 @@ describe('Cmy', () => {
       // verify
       assert(hwb instanceof Hwb);
       assert(hwb.isValid());
-      assert(hwb.rgb().equals(cmy.rgb()));
+      assert(hwb.int() === cmy.int())
     });
   });
 
@@ -192,7 +192,7 @@ describe('Cmy', () => {
       // verify
       assert(rgb instanceof Rgb);
       assert(rgb.isValid());
-      assert(rgb.cmy().equals(cmy));
+      assert(rgb.int() === cmy.int())
     });
   });
 });
