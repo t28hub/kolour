@@ -49,7 +49,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^7.0.0",
-    "eslint-plugin-import": "^1.4.0",
+    "eslint-plugin-import": "^1.5.0",
     "jsdoc": "^3.4.0",
     "json-loader": "^0.5.4",
     "karma": "^0.13.22",
