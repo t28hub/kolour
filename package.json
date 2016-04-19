@@ -1,7 +1,7 @@
 {
   "name": "kolour",
   "version": "1.0.0",
-  "description": "A fluent color conversion and manipulation library",
+  "description": "A fluent color manipulation library",
   "main": "lib/kolour.js",
   "scripts": {
     "build": "npm run clean && npm run lint && npm run test && npm run build:webpack",
@@ -23,8 +23,9 @@
   "keywords": [
     "color",
     "color-space",
+    "color-model",
     "parser",
-    "converter"
+    "convert"
   ],
   "author": {
     "name": "Tatsuya Maki",
