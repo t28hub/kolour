@@ -35,7 +35,7 @@ export default class Cmy extends Color {
    * @see cyan
    */
   c(value = NO_VALUE) {
-    return this.access(KEYS.C, value);
+    return this.cyan(value);
   }
 
   /**
@@ -45,7 +45,7 @@ export default class Cmy extends Color {
    * @see magenta
    */
   m(value = NO_VALUE) {
-    return this.access(KEYS.M, value);
+    return this.magenta(value);
   }
 
   /**
@@ -55,7 +55,7 @@ export default class Cmy extends Color {
    * @see yellow
    */
   y(value = NO_VALUE) {
-    return this.access(KEYS.Y, value);
+    return this.yellow(value);
   }
 
   /**
@@ -65,7 +65,7 @@ export default class Cmy extends Color {
    * @see alpha
    */
   a(value = NO_VALUE) {
-    return this.access(KEYS.A, value);
+    return this.alpha(value);
   }
 
   /**
