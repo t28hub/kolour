@@ -1,4 +1,6 @@
 import path from 'path';
+import webpack from 'webpack';
+import metadata from './package.json';
 
 const DIRS = {
   SRC: path.resolve(__dirname, 'src'),
@@ -12,21 +14,18 @@ export default {
   ],
   output: {
     path: DIRS.DST,
-    filename: 'bundle.js',
+    filename: 'kolour.js',
     library: 'kolour',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    sourceMapFilename: 'kolour.js.map',
   },
   resolve: {
     extensions: [
       '',
       'js',
       'es6'
-    ]
+    ],
   },
-  target: 'web',
-  debug: true,
-  profile: true,
-  progress: true,
   module: {
     loaders: [
       {
@@ -39,8 +38,20 @@ export default {
             'es2015',
             'stage-0'
           ]
-        }
+        },
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(metadata.version)
+    })
+  ],
+  node: {
+    process: false,
+  },
+  debug: true,
+  profile: true,
+  progress: true,
 };
+

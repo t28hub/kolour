@@ -7,7 +7,6 @@ import Hsl from '../src/color/hsl.es6';
 import Hsv from '../src/color/hsv.es6';
 import Hwb from '../src/color/hwb.es6';
 import Rgb from '../src/color/rgb.es6';
-import metadata from '../package.json';
 
 describe('kolour', () => {
   [
@@ -185,13 +184,6 @@ describe('kolour', () => {
     // verify
     assert(color instanceof Color);
     assert(color.isValid() === false);
-  });
-  
-  describe('.VERSION', () => {
-    it('should be equal to version defined in the package.json', () => {
-      // verify
-      assert(kolour.VERSION === metadata.version);
-    });
   });
   
   describe('.cmy()', () => {

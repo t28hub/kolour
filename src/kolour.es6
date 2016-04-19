@@ -37,7 +37,7 @@ function kolour(value) {
  * @type {string}
  * @default
  */
-kolour.VERSION = '1.0.0';
+kolour.VERSION = (typeof VERSION !== 'undefined') ? VERSION : '';
 
 /**
  * Creates a CMY color from values
