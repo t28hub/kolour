@@ -50,6 +50,7 @@ export default {
   node: {
     process: false,
   },
+  devtool: 'source-map',
   debug: true,
   profile: true,
   progress: true,
