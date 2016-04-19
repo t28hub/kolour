@@ -1,4 +1,4 @@
-import Color, { NO_ALPHA } from './color.es6';
+import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Rgb from './rgb.es6';
 
 const MIN_H = 0;
@@ -33,75 +33,83 @@ export default class Hsl extends Color {
   }
 
   /**
-   * Provides an accessor for the hue value
-   * @returns {function()} An accessor for the hue value
+   * Provides an access for the hue value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see hue
    */
-  get h() {
-    return this.accessor(KEYS.H);
+  h(value = NO_VALUE) {
+    return this.access(KEYS.H, value);
   }
 
   /**
-   * Provides an accessor for the saturation value
-   * @returns {function()} An accessor for the saturation value
+   * Provides an access for the saturation value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see saturation
    */
-  get s() {
-    return this.accessor(KEYS.S);
+  s(value = NO_VALUE) {
+    return this.access(KEYS.S, value);
   }
 
   /**
-   * Provides an accessor for the lightness value
-   * @returns {function()} An accessor for the lightness value
+   * Provides an access for the lightness value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see lightness
    */
-  get l() {
-    return this.accessor(KEYS.L);
+  l(value = NO_VALUE) {
+    return this.access(KEYS.L, value);
   }
 
   /**
-   * Provides an accessor for the alpha value
-   * @returns {function()} An accessor for the alpha value
+   * Provides an access for the alpha value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see alpha
    */
-  get a() {
-    return this.accessor(KEYS.A);
+  a(value = NO_VALUE) {
+    return this.access(KEYS.A, value);
   }
 
   /**
-   * Provides an accessor for the hue value
-   * @returns {function()} An accessor for the hue value
+   * Provides an access for the hue value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see h
    */
-  get hue() {
-    return this.accessor(KEYS.H);
+  hue(value = NO_VALUE) {
+    return this.access(KEYS.H, value);
   }
 
   /**
-   * Provides an accessor for the saturation value
-   * @returns {function()} An accessor for the saturation value
+   * Provides an access for the saturation value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see s
    */
-  get saturation() {
-    return this.accessor(KEYS.S);
+  saturation(value = NO_VALUE) {
+    return this.access(KEYS.S, value);
   }
 
   /**
-   * Provides an accessor for the lightness value
-   * @returns {function()} An accessor for the lightness value
+   * Provides an access for the lightness value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see l
    */
-  get lightness() {
-    return this.accessor(KEYS.L);
+  lightness(value = NO_VALUE) {
+    return this.access(KEYS.L, value);
   }
 
   /**
-   * Provides an accessor for the alpha value
-   * @returns {function()} An accessor for the alpha value
+   * Provides an access for the alpha value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see  a
    */
-  get alpha() {
-    return this.accessor(KEYS.A);
+  alpha(value = NO_VALUE) {
+    return this.access(KEYS.A, value);
   }
 
   /**

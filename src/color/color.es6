@@ -1,4 +1,5 @@
 export const NO_NAME = 'NULL';
+export const NO_VALUE = Number.POSITIVE_INFINITY;
 export const NO_ALPHA = Number.POSITIVE_INFINITY;
 
 const MIN_ALPHA = 0;
@@ -87,19 +88,17 @@ export default class Color {
   }
 
   /**
-   * Creates an accessor for a specific property
+   * Accesses the specified property
    * @protected
-   * @param {Symbol} property - Key of property
-   * @returns {function()} An accessor for a specified property
+   * @param {Symbol} property - The property
+   * @param {number} [value] - The new value of the specified key
+   * @returns {Color|number} Either value of the specified key or self
    */
-  accessor(property) {
-    // The below anonymous function works as a setter and a getter.
-    return (value) => {
-      if (!Number.isFinite(value)) {
-        return this.get(property);
-      }
-      return this.set(property, value);
-    };
+  access(property, value = NO_VALUE) {
+    if (!Number.isFinite(value)) {
+      return this.get(property);
+    }
+    return this.set(property, value);
   }
 
   /**

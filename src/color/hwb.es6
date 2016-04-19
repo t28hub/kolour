@@ -1,4 +1,4 @@
-import Color, { NO_ALPHA } from './color.es6';
+import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Hsv from './hsv.es6';
 
 const MIN_H = 0;
@@ -33,75 +33,83 @@ export default class Hwb extends Color {
   }
 
   /**
-   * Provides an accessor for the hue value
-   * @returns {function()} An accessor for the hue value
+   * Provides an access for the hue value
+   * @param {number} [value] - The new value
+   * @returns {Hwb|number}
    * @see hue
    */
-  get h() {
-    return this.accessor(KEYS.H);
+  h(value = NO_VALUE) {
+    return this.access(KEYS.H, value);
   }
 
   /**
-   * Provides an accessor for the whiteness value
-   * @returns {function()} An accessor for the whiteness value
+   * Provides an access for the whiteness value
+   * @param {number} [value] - The new value
+   * @returns {Hwb|number}
    * @see whiteness
    */
-  get w() {
-    return this.accessor(KEYS.W);
+  w(value = NO_VALUE) {
+    return this.access(KEYS.W, value);
   }
 
   /**
-   * Provides an accessor for the blackness value
-   * @returns {function()} An accessor for the blackness value
+   * Provides an access for the blackness value
+   * @param {number} [value] - The new value
+   * @returns {Hwb|number}
    * @see blackness
    */
-  get b() {
-    return this.accessor(KEYS.B);
+  b(value = NO_VALUE) {
+    return this.access(KEYS.B, value);
   }
 
   /**
-   * Provides an accessor for the alpha value
-   * @returns {function()} An accessor for the alpha value
+   * Provides an access for the alpha value
+   * @param {number} [value] - The new value
+   * @returns {Hwb|number}
    * @see alpha
    */
-  get a() {
-    return this.accessor(KEYS.A);
+  a(value = NO_VALUE) {
+    return this.access(KEYS.A, value);
   }
 
   /**
-   * Provides an accessor for the hue value
-   * @returns {function()} An accessor for the hue value
+   * Provides an access for the hue value
+   * @param {number} [value] - The new value
+   * @returns {Hwb|number}
    * @see h
    */
-  get hue() {
-    return this.accessor(KEYS.H);
+  hue(value = NO_VALUE) {
+    return this.access(KEYS.H, value);
   }
 
   /**
-   * Provides an accessor for the whiteness value
-   * @returns {function()} An accessor for the whiteness value
+   * Provides an access for the whiteness value
+   * @param {number} [value] - The new value
+   * @returns {Hwb|number}
    * @see w
    */
-  get whiteness() {
-    return this.accessor(KEYS.W);
+  whiteness(value = NO_VALUE) {
+    return this.access(KEYS.W, value);
   }
 
   /**
-   * Provides an accessor for the blackness value
-   * @returns {function()} An accessor for the blackness value
+   * Provides an access for the blackness value
+   * @param {number} [value] - The new value
+   * @returns {Hwb|number}
    * @see b
    */
-  get blackness() {
-    return this.accessor(KEYS.B);
+  blackness(value = NO_VALUE) {
+    return this.access(KEYS.B, value);
   }
 
   /**
-   * Provides an accessor for the alpha value
-   * @returns {function()} An accessor for the alpha value
+   * Provides an access for the alpha value
+   * @param {number} [value] - The new value
+   * @returns {Hwb|number}
    * @see a
    */
-  get alpha() {
-    return this.accessor(KEYS.A);
+  alpha(value = NO_VALUE) {
+    return this.access(KEYS.A, value);
   }
 
   /**

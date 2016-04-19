@@ -1,4 +1,4 @@
-import Color, { NO_ALPHA } from './color.es6';
+import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Cmy from './cmy.es6';
 import Hsl from './hsl.es6';
 import Hsv from './hsv.es6';
@@ -30,75 +30,83 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an accessor for the red value
-   * @returns {function()} An accessor for the red value
+   * Provides an access for the red value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see red
    */
-  get r() {
-    return this.accessor(KEYS.R);
+  r(value = NO_VALUE) {
+    return this.access(KEYS.R, value);
   }
 
   /**
-   * Provides an accessor for the green value
-   * @returns {function()} An accessor for the green value
+   * Provides an access for the green value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see green
    */
-  get g() {
-    return this.accessor(KEYS.G);
+  g(value = NO_VALUE) {
+    return this.access(KEYS.G, value);
   }
 
   /**
-   * Provides an accessor for the blue value
-   * @returns {function()} An accessor for the blue value
+   * Provides an access for the blue value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see blue
    */
-  get b() {
-    return this.accessor(KEYS.B);
+  b(value = NO_VALUE) {
+    return this.access(KEYS.B, value);
   }
 
   /**
-   * Provides an accessor for the alpha value
-   * @returns {function()} An accessor for the alpha value
+   * Provides an access for the alpha value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see alpha
    */
-  get a() {
-    return this.accessor(KEYS.A);
+  a(value = NO_VALUE) {
+    return this.access(KEYS.A, value);
   }
 
   /**
-   * Provides an accessor for the red value
-   * @returns {function()} An accessor for the red value
+   * Provides an access for the red value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see r
    */
-  get red() {
-    return this.accessor(KEYS.R);
+  red(value = NO_VALUE) {
+    return this.access(KEYS.R, value);
   }
 
   /**
-   * Provides an accessor for the green value
-   * @returns {function()} An accessor for the green value
+   * Provides an access for the green value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see g
    */
-  get green() {
-    return this.accessor(KEYS.G);
+  green(value = NO_VALUE) {
+    return this.access(KEYS.G, value);
   }
 
   /**
-   * Provides an accessor for the blue value
-   * @returns {function()} An accessor for the blue value
+   * Provides an access for the blue value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see b
    */
-  get blue() {
-    return this.accessor(KEYS.B);
+  blue(value = NO_VALUE) {
+    return this.access(KEYS.B, value);
   }
 
   /**
-   * Provides an accessor for the alpha value
-   * @returns {function()} An accessor for the alpha value
+   * Provides an access for the alpha value
+   * @param {number} [value] - The new value
+   * @returns {Rgb|number}
    * @see a
    */
-  get alpha() {
-    return this.accessor(KEYS.A);
+  alpha(value = NO_VALUE) {
+    return this.access(KEYS.A, value);
   }
 
   /**

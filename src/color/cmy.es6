@@ -1,4 +1,4 @@
-import Color, { NO_ALPHA } from './color.es6';
+import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Cmyk from './cmyk.es6';
 import Rgb from './rgb.es6';
 
@@ -29,75 +29,83 @@ export default class Cmy extends Color {
   }
 
   /**
-   * Provides an accessor for the cyan value
-   * @returns {function()} An accessor for the cyan value
+   * Provides an access for the cyan value
+   * @param {number} [value] - The new value
+   * @returns {Cmy|number}
    * @see cyan
    */
-  get c() {
-    return this.accessor(KEYS.C);
+  c(value = NO_VALUE) {
+    return this.access(KEYS.C, value);
   }
 
   /**
-   * Provides an accessor for the magenta value
-   * @returns {function()} An accessor for the magenta value
+   * Provides an access for the magenta value
+   * @param {number} [value] - The new value
+   * @returns {Cmy|number}
    * @see magenta
    */
-  get m() {
-    return this.accessor(KEYS.M);
+  m(value = NO_VALUE) {
+    return this.access(KEYS.M, value);
   }
 
   /**
-   * Provides an accessor for the yellow value
-   * @returns {function()} An accessor for the yellow value
+   * Provides an access for the yellow value
+   * @param {number} [value] - The new value
+   * @returns {Cmy|number}
    * @see yellow
    */
-  get y() {
-    return this.accessor(KEYS.Y);
+  y(value = NO_VALUE) {
+    return this.access(KEYS.Y, value);
   }
 
   /**
-   * Provides an accessor for the alpha value
-   * @returns {function()} An accessor for the alpha value
+   * Provides an access for the alpha value
+   * @param {number} [value] - The new value
+   * @returns {Cmy|number}
    * @see alpha
    */
-  get a() {
-    return this.accessor(KEYS.A);
+  a(value = NO_VALUE) {
+    return this.access(KEYS.A, value);
   }
 
   /**
-   * Provides an accessor for the cyan value
-   * @returns {function()} An accessor for the cyan value
+   * Provides an access for the cyan value
+   * @param {number} [value] - The new value
+   * @returns {Cmy|number}
    * @see c
    */
-  get cyan() {
-    return this.accessor(KEYS.C);
+  cyan(value = NO_VALUE) {
+    return this.access(KEYS.C, value);
   }
 
   /**
-   * Provides an accessor for the magenta value
-   * @returns {function()} An accessor for the magenta value
+   * Provides an access for the magenta value
+   * @param {number} [value] - The new value
+   * @returns {Cmy|number}
    * @see m
    */
-  get magenta() {
-    return this.accessor(KEYS.M);
+  magenta(value = NO_VALUE) {
+    return this.access(KEYS.M, value);
   }
 
   /**
-   * Provides an accessor for the yellow value
-   * @returns {function()} An accessor for the yellow value
+   * Provides an access for the yellow value
+   * @param {number} [value] - The new value
+   * @returns {Cmy|number}
    * @see y
    */
-  get yellow() {
-    return this.accessor(KEYS.Y);
+  yellow(value = NO_VALUE) {
+    return this.access(KEYS.Y, value);
   }
 
   /**
-   * Provides an accessor for the alpha value
-   * @returns {function()} An accessor for the alpha value
+   * Provides an access for the alpha value
+   * @param {number} [value] - The new value
+   * @returns {Cmy|number}
    * @see a
    */
-  get alpha() {
-    return this.accessor(KEYS.A);
+  alpha(value = NO_VALUE) {
+    return this.access(KEYS.A, value);
   }
 
   /**

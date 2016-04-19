@@ -118,35 +118,24 @@ describe('Color', () => {
     });
   });
 
-  describe('.prototype.accessor(property)', () => {
-    it('should return an accessor', () => {
+  describe('.prototype.access(property)', () => {
+    it('access should return a value without value', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // exercise
-      const accessor = color.accessor(KEYS.A);
-
-      // verify
-      assert(accessor instanceof Function);
-    });
-
-    it('accessor should return a value without value', () => {
-      // setup
-      const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
-
-      // exercise
-      const value = color.accessor(KEYS.A)();
+      const value = color.access(KEYS.A);
 
       // verify
       assert(value === 10);
     });
 
-    it('accessor should set a value with value', () => {
+    it('access should set a value with value', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
 
       // exercise
-      color.accessor(KEYS.A)(100);
+      color.access(KEYS.A, 100);
 
       // verify
       assert(color.get(KEYS.A) === 100);
