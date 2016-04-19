@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && npm run lint && npm run test && npm run build:webpack",
-    "build:babel": "node_modules/.bin/babel src --source-maps inline --out-dir build",
-    "build:watch": "node_modules/.bin/babel src --source-maps inline --out-dir build --watch",
+    "build:babel": "node_modules/.bin/babel src --source-maps inline --out-dir lib",
+    "build:watch": "node_modules/.bin/babel src --source-maps inline --out-dir lib --watch",
     "build:webpack": "node_modules/.bin/webpack",
-    "clean": "node_modules/.bin/rimraf build/*",
+    "clean": "node_modules/.bin/rimraf lib coverage doc",
     "jsdoc": "node_modules/.bin/jsdoc -c jsdoc.config.json src",
     "lint": "node_modules/.bin/eslint --ext .es6 src",
     "test": "node_modules/.bin/nyc npm run test:mocha",
@@ -71,7 +71,7 @@
   "nyc": {
     "require": "babel-core/register",
     "extension": ".es6",
-    "report-dir": "build/coverage",
+    "report-dir": "coverage",
     "reporter": [
       "html",
       "lcov"

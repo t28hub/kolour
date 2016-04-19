@@ -60,7 +60,11 @@ node_modules
 .npm
 
 # Build directory defined in this project
-build
+lib
+
+# Document directory used by JSDoc
+doc
 
 # Coverage directory used by nyc
 .nyc_output
+coverage

@@ -4,7 +4,7 @@ import metadata from './package.json';
 
 const DIRS = {
   SRC: path.resolve(__dirname, 'src'),
-  DST: path.resolve(__dirname, 'build')
+  DST: path.resolve(__dirname, 'lib')
 };
 
 export default {

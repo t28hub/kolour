@@ -5,7 +5,7 @@
   },
   "opts": {
     "encoding": "utf8",
-    "destination": "build/doc",
+    "destination": "doc",
     "recurse": true
   }
 }
