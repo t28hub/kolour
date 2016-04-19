@@ -3,7 +3,10 @@
   "env": {
     "browser": true,
     "mocha": true,
-    "node": true
+    "node": true,
+  },
+  "globals": {
+    "VERSION": false
   },
   "rules": {
     "no-console": [
