@@ -6,6 +6,7 @@ module.exports = function (config) {
       'mocha'
     ],
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'test/**/*.test.es6'
     ],
     exclude: [
@@ -25,8 +26,7 @@ module.exports = function (config) {
     },
     webpack: {
       entry: [
-        'babel-polyfill',
-        'src/kolour.es6'
+        './src/kolour.es6'
       ],
       module: {
         loaders: [
