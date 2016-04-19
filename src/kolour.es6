@@ -122,7 +122,7 @@ kolour.random = () => {
     random >> 24 & Rgb.MAX,
     random >> 16 & Rgb.MAX,
     random >> 8 & Rgb.MAX,
-    random & Rgb.MAX / Rgb.MAX
+    (random & Rgb.MAX) / Rgb.MAX
   );
 };
 
