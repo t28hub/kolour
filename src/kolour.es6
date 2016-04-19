@@ -112,4 +112,18 @@ kolour.rgb = (r, g, b, a = NO_ALPHA) => {
   return new Rgb(r, g, b, a);
 };
 
+/**
+ * Creates a random RGB color
+ * @returns {Rgb} A RGB color
+ */
+kolour.random = () => {
+  const random = Math.round(Math.random() * 0xFFFFFFFF);
+  return new Rgb(
+    random >> 24 & Rgb.MAX,
+    random >> 16 & Rgb.MAX,
+    random >> 8 & Rgb.MAX,
+    random & Rgb.MAX / Rgb.MAX
+  );
+};
+
 export default kolour;

@@ -343,4 +343,15 @@ describe('kolour', () => {
       assert(color.a() === 0.5);
     });
   });
+  
+  describe('.random()', () => {
+    it('should create a random RGB color', () => {
+      // exercise
+      const color = kolour.random();
+      
+      // verify
+      assert(color instanceof Rgb);
+      assert(color.isValid() === true);
+    });
+  });
 });
