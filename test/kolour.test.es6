@@ -1,6 +1,6 @@
 import assert from 'power-assert';
 import kolour from '../src/kolour.es6';
-import Color from '../src/color/color.es6';
+import Color, { NO_ALPHA } from '../src/color/color.es6';
 import Cmy from '../src/color/cmy.es6';
 import Cmyk from '../src/color/cmyk.es6';
 import Hsl from '../src/color/hsl.es6';
@@ -191,6 +191,164 @@ describe('kolour', () => {
     it('should be equal to version defined in the package.json', () => {
       // verify
       assert(kolour.VERSION === metadata.version);
+    });
+  });
+  
+  describe('.cmy()', () => {
+    it('should create a CMY color without alpha value', () => {
+      // exercise
+      const color = kolour.cmy(0.2, 0.4, 0.6);
+      
+      // verify
+      assert(color instanceof Cmy);
+      assert(color.c() === 0.2);
+      assert(color.m() === 0.4);
+      assert(color.y() === 0.6);
+      assert(color.a() === NO_ALPHA);
+    });
+    
+    it('should create a CMY color with alpha value', () => {
+      // exercise
+      const color = kolour.cmy(0.2, 0.4, 0.6, 0.5);
+
+      // verify
+      assert(color instanceof Cmy);
+      assert(color.c() === 0.2);
+      assert(color.m() === 0.4);
+      assert(color.y() === 0.6);
+      assert(color.a() === 0.5);
+    });
+  });
+  
+  describe('.cmyk()', () => {
+    it('should create a CMYK color without alpha value', () => {
+      // exercise
+      const color = kolour.cmyk(0.2, 0.4, 0.6, 0.8);
+      
+      // verify
+      assert(color instanceof Cmyk);
+      assert(color.c() === 0.2);
+      assert(color.m() === 0.4);
+      assert(color.y() === 0.6);
+      assert(color.k() === 0.8);
+      assert(color.a() === NO_ALPHA);
+    });
+    
+    it('should create a CMY color with alpha value', () => {
+      // exercise
+      const color = kolour.cmyk(0.2, 0.4, 0.6, 0.8, 0.5);
+
+      // verify
+      assert(color instanceof Cmyk);
+      assert(color.c() === 0.2);
+      assert(color.m() === 0.4);
+      assert(color.y() === 0.6);
+      assert(color.k() === 0.8);
+      assert(color.a() === 0.5);
+    });
+  });
+  
+  describe('.hsl()', () => {
+    it('should create a HSL color without alpha value', () => {
+      // exercise
+      const color = kolour.hsl(120, 0.4, 0.6);
+
+      // verify
+      assert(color instanceof Hsl);
+      assert(color.h() === 120);
+      assert(color.s() === 0.4);
+      assert(color.l() === 0.6);
+      assert(color.a() === NO_ALPHA);
+    });
+
+    it('should create a HSL color with alpha value', () => {
+      // exercise
+      const color = kolour.hsl(120, 0.4, 0.6, 0.5);
+
+      // verify
+      assert(color instanceof Hsl);
+      assert(color.h() === 120);
+      assert(color.s() === 0.4);
+      assert(color.l() === 0.6);
+      assert(color.a() === 0.5);
+    });
+  });
+  
+  describe('.hsv()', () => {
+    it('should create a HSV color without alpha value', () => {
+      // exercise
+      const color = kolour.hsv(120, 0.4, 0.6);
+
+      // verify
+      assert(color instanceof Hsv);
+      assert(color.h() === 120);
+      assert(color.s() === 0.4);
+      assert(color.v() === 0.6);
+      assert(color.a() === NO_ALPHA);
+    });
+
+    it('should create a HSV color with alpha value', () => {
+      // exercise
+      const color = kolour.hsv(120, 0.4, 0.6, 0.5);
+
+      // verify
+      assert(color instanceof Hsv);
+      assert(color.h() === 120);
+      assert(color.s() === 0.4);
+      assert(color.v() === 0.6);
+      assert(color.a() === 0.5);
+    });
+  });
+  
+  describe('.hwb()', () => {
+    it('should create a HWB color without alpha value', () => {
+      // exercise
+      const color = kolour.hwb(120, 0.4, 0.6);
+
+      // verify
+      assert(color instanceof Hwb);
+      assert(color.h() === 120);
+      assert(color.w() === 0.4);
+      assert(color.b() === 0.6);
+      assert(color.a() === NO_ALPHA);
+    });
+
+    it('should create a HWB color with alpha value', () => {
+      // exercise
+      const color = kolour.hwb(120, 0.4, 0.6, 0.5);
+
+      // verify
+      assert(color instanceof Hwb);
+      assert(color.h() === 120);
+      assert(color.w() === 0.4);
+      assert(color.b() === 0.6);
+      assert(color.a() === 0.5);
+    });
+  });
+  
+  describe('.rgb()', () => {
+    it('should create a RGB color without alpha value', () => {
+      // exercise
+      const color = kolour.rgb(32, 64, 128);
+
+      // verify
+      assert(color instanceof Rgb);
+      assert(color.r() === 32);
+      assert(color.g() === 64);
+      assert(color.b() === 128);
+      assert(color.a() === NO_ALPHA);
+    });
+
+    it('should create a HWB color with alpha value', () => {
+      // exercise
+      const color = kolour.rgb(32, 64, 128, 0.5);
+
+      // verify
+      assert(color instanceof Rgb);
+      assert(color.r() === 32);
+      assert(color.g() === 64);
+      assert(color.b() === 128);
+      assert(color.a() === 0.5);
     });
   });
 });
