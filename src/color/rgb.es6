@@ -36,7 +36,7 @@ export default class Rgb extends Color {
    * @see red
    */
   r(value = NO_VALUE) {
-    return this.access(KEYS.R, value);
+    return this.red(value);
   }
 
   /**
@@ -46,7 +46,7 @@ export default class Rgb extends Color {
    * @see green
    */
   g(value = NO_VALUE) {
-    return this.access(KEYS.G, value);
+    return this.green(value);
   }
 
   /**
@@ -56,7 +56,7 @@ export default class Rgb extends Color {
    * @see blue
    */
   b(value = NO_VALUE) {
-    return this.access(KEYS.B, value);
+    return this.blue(value);
   }
 
   /**
@@ -66,7 +66,7 @@ export default class Rgb extends Color {
    * @see alpha
    */
   a(value = NO_VALUE) {
-    return this.access(KEYS.A, value);
+    return this.alpha(value);
   }
 
   /**

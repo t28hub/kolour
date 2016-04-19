@@ -27,42 +27,99 @@ describe('Rgb', () => {
       assert(rgb.isValid());
     });
   });
-
-  describe('.prototype.red', () => {
-    it('should return a function', () => {
+  
+  describe('.prototype.r()', () => {
+    it('should return the red value without new value', () => {
       // setup
-      const rgb = new Rgb(0, 128, 255);
-
+      const rgb = new Rgb(32, 64, 128);
+      
       // exercise
-      const red = rgb.red;
-
-      // verify
-      assert(red instanceof Function);
+      const red = rgb.r();
+      
+      assert(red === 32);
     });
-
-    it('should return a value of red when return value is executed without value', () => {
+    
+    it('should set new red value with a value', () => {
       // setup
-      const rgb = new Rgb(0, 128, 255);
+      const rgb = new Rgb(32, 64, 128);
 
       // exercise
-      const red = rgb.red();
+      const self = rgb.r(96);
 
-      // verify
-      assert(red === 0);
-    });
-
-    it('should set a value as red when return value is executed with value', () => {
-      // setup
-      const rgb = new Rgb(0, 128, 255);
-
-      // exercise
-      rgb.red(64);
-
-      // verify
-      assert(rgb.red() === 64);
+      assert(self === rgb);
+      assert(rgb.r() === 96);
     });
   });
 
+  describe('.prototype.g()', () => {
+    it('should return the green value without new value', () => {
+      // setup
+      const rgb = new Rgb(32, 64, 128);
+
+      // exercise
+      const green = rgb.g();
+
+      assert(green === 64);
+    });
+
+    it('should set new green value with a value', () => {
+      // setup
+      const rgb = new Rgb(32, 64, 128);
+
+      // exercise
+      const self = rgb.g(96);
+
+      assert(self === rgb);
+      assert(rgb.g() === 96);
+    });
+  });
+
+  describe('.prototype.b()', () => {
+    it('should return the blue value without new value', () => {
+      // setup
+      const rgb = new Rgb(32, 64, 128);
+
+      // exercise
+      const blue = rgb.b();
+
+      assert(blue === 128);
+    });
+
+    it('should set new blue value with a value', () => {
+      // setup
+      const rgb = new Rgb(32, 64, 128);
+
+      // exercise
+      const self = rgb.b(96);
+
+      assert(self === rgb);
+      assert(rgb.b() === 96);
+    });
+  });
+
+  describe('.prototype.a()', () => {
+    it('should return the alpha value without new value', () => {
+      // setup
+      const rgb = new Rgb(32, 64, 128, 0.5);
+
+      // exercise
+      const alpha = rgb.a();
+
+      assert(alpha === 0.5);
+    });
+
+    it('should set new alpha value with a value', () => {
+      // setup
+      const rgb = new Rgb(32, 64, 128, 0.5);
+
+      // exercise
+      const self = rgb.a(0.8);
+
+      assert(self === rgb);
+      assert(rgb.a() === 0.8);
+    });
+  });
+  
   describe('.prototype.isValid()', () => {
     it('should return true when an instance is valid', () => {
       // setup
@@ -373,6 +430,61 @@ describe('Rgb', () => {
     it('should convert color space to HSV', () => {
       // setup
       const rgb = new Rgb(92, 98, 168);
+
+      // exercise
+      const hsv = rgb.hsv();
+
+      // verify
+      assert(hsv instanceof Hsv);
+      assert(hsv.isValid());
+      assert(hsv.int() === rgb.int());
+    });
+
+    it('should return a HSV color when a color is black', () => {
+      // setup
+      const rgb = new Rgb(0, 0, 0);
+
+      // exercise
+      const hsv = rgb.hsv();
+
+      // verify
+      assert(hsv instanceof Hsv);
+      assert(hsv.isValid());
+      assert(hsv.h() === 0);
+      assert(hsv.s() === 0);
+      assert(hsv.v() === 0);
+      assert(hsv.a() === NO_ALPHA);
+    });
+    
+    it('should return a HSV color when red value is max', () => {
+      // setup
+      const rgb = new Rgb(128, 64, 32);
+
+      // exercise
+      const hsv = rgb.hsv();
+
+      // verify
+      assert(hsv instanceof Hsv);
+      assert(hsv.isValid());
+      assert(hsv.int() === rgb.int());
+    });
+
+    it('should return a HSV color when green value is max', () => {
+      // setup
+      const rgb = new Rgb(32, 128, 64);
+
+      // exercise
+      const hsv = rgb.hsv();
+
+      // verify
+      assert(hsv instanceof Hsv);
+      assert(hsv.isValid());
+      assert(hsv.int() === rgb.int());
+    });
+    
+    it('should return a HSV color when blue value is max', () => {
+      // setup
+      const rgb = new Rgb(64, 32, 128);
 
       // exercise
       const hsv = rgb.hsv();
