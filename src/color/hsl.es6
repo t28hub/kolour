@@ -146,9 +146,9 @@ export default class Hsl extends Color {
   css() {
     const [h, s, l, a] = [this.h(), this.s(), this.l(), this.a()];
     if (this.hasAlpha(KEYS.A)) {
-      return `hsla(${h}, ${s * 100}%, ${l * 100}%, ${a})`;
+      return `hsla(${h}, ${s}%, ${l}%, ${a})`;
     }
-    return `hsla(${h}, ${s * 100}%, ${l * 100}%)`;
+    return `hsl(${h}, ${s}%, ${l}%)`;
   }
 
   /**
