@@ -37,7 +37,7 @@ export default class Cmyk extends Color {
    * @see cyan
    */
   c(value = NO_VALUE) {
-    return this.access(KEYS.C, value);
+    return this.cyan(value);
   }
 
   /**
@@ -47,7 +47,7 @@ export default class Cmyk extends Color {
    * @see magenta
    */
   m(value = NO_VALUE) {
-    return this.access(KEYS.M, value);
+    return this.magenta(value);
   }
 
   /**
@@ -57,7 +57,7 @@ export default class Cmyk extends Color {
    * @see yellow
    */
   y(value = NO_VALUE) {
-    return this.access(KEYS.Y, value);
+    return this.yellow(value);
   }
 
   /**
@@ -67,7 +67,7 @@ export default class Cmyk extends Color {
    * @see black
    */
   k(value = NO_VALUE) {
-    return this.access(KEYS.K, value);
+    return this.black(value);
   }
 
   /**
@@ -77,7 +77,7 @@ export default class Cmyk extends Color {
    * @see alpha
    */
   a(value = NO_VALUE) {
-    return this.access(KEYS.A, value);
+    return this.alpha(value);
   }
 
   /**
