@@ -161,7 +161,7 @@ export default class Cmyk extends Color {
     if (a === NO_ALPHA) {
       return `device-cmyk(${c * 100}%, ${m * 100}%, ${y * 100}%, ${k * 100}%)`;
     }
-    return `device-cmyk(${c * 100}%, ${m * 100}%, ${y * 100}%, ${k * 100}%, a)`;
+    return `device-cmyk(${c * 100}%, ${m * 100}%, ${y * 100}%, ${k * 100}%, ${a * 100}%)`;
   }
 
   /**
