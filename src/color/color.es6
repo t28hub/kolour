@@ -188,7 +188,7 @@ export default class Color {
       }
       return string.toLowerCase();
     });
-    return `#${values.join('')}`;
+    return `#${values.join('')}`.toUpperCase();
   }
 
   /**

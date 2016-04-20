@@ -1,5 +1,6 @@
 import assert from 'power-assert';
 import Color from '../../src/color/color.es6';
+import Rgb from '../../src/color/rgb.es6';
 
 const NAME = 'TEST';
 const KEYS = Object.freeze({
@@ -43,7 +44,7 @@ describe('Color', () => {
       const has = color.has(KEYS.A);
 
       // verify
-      assert(has);
+      assert(has === true);
     });
 
     it('should return false when a specified property does not exist', () => {
@@ -54,7 +55,7 @@ describe('Color', () => {
       const has = color.has(Symbol.for('x'));
 
       // verify
-      assert(!has);
+      assert(has === false);
     });
   });
 
@@ -77,12 +78,12 @@ describe('Color', () => {
       // verify
       assert.throws(() => {
         // exercise
-        color.get(Symbol.for('x'));
+        color.get(null);
       }, TypeError);
     });
   });
 
-  describe('.prototype.get(property, value)', () => {
+  describe('.prototype.set(property, value)', () => {
     it('should set value to a specified property', () => {
       // setup
       const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
@@ -101,7 +102,7 @@ describe('Color', () => {
       // verify
       assert.throws(() => {
         // exercise
-        color.set(Symbol.for('x'), 100);
+        color.set(null, 100);
       }, TypeError);
     });
 
@@ -234,6 +235,23 @@ describe('Color', () => {
     });
   });
 
+  describe('.prototype.hex()', () => {
+    it('should return a hex string', () => {
+      // setup
+      const color = new class extends Color {
+        rgb() {
+          return new Rgb(0, 255, 255);
+        }
+      };
+      
+      // exercise
+      const hex = color.hex();
+      
+      // verify
+      assert(hex === '#00FFFF');
+    });   
+  });
+  
   describe('.prototype.int()', () => {
     it('should return 0', () => {
       // setup
@@ -344,7 +362,13 @@ describe('Color', () => {
       const color = Color.invalid();
 
       // verify
-      assert(!color.isValid());
+      assert(color.isValid() === false);
+      assert(color.cmy() === color);
+      assert(color.cmyk() === color);
+      assert(color.hsl() === color);
+      assert(color.hsv() === color);
+      assert(color.hwb() === color);
+      assert(color.rgb() === color);
     });
   });
 });
