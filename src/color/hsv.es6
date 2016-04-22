@@ -40,7 +40,7 @@ export default class Hsv extends Color {
    * @see hue
    */
   h(value = NO_VALUE) {
-    return this.access(KEYS.H, value);
+    return this.hue(value);
   }
 
   /**
@@ -50,7 +50,7 @@ export default class Hsv extends Color {
    * @see saturation
    */
   s(value = NO_VALUE) {
-    return this.access(KEYS.S, value);
+    return this.saturation(value);
   }
 
   /**
@@ -60,7 +60,7 @@ export default class Hsv extends Color {
    * @see value
    */
   v(value = NO_VALUE) {
-    return this.access(KEYS.V, value);
+    return this.value(value);
   }
 
   /**
@@ -70,7 +70,7 @@ export default class Hsv extends Color {
    * @see alpha
    */
   a(value = NO_VALUE) {
-    return this.access(KEYS.A, value);
+    return this.alpha(value);
   }
 
   /**
