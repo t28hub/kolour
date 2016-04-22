@@ -10,7 +10,7 @@ describe('Hsl', () => {
   describe('.constructor(h, s, l, a)', () => {
     it('should create an instance with hue, saturation and lightness', () => {
       // exercise
-      const hsl = new Hsl(120, 0.5, 0.2);
+      const hsl = new Hsl(120, 50, 20);
       
       // verify
       assert(hsl instanceof Hsl);
@@ -19,7 +19,7 @@ describe('Hsl', () => {
     
     it('should create an instance with hue, saturation, lightness and alpha', () => {
       // exercise
-      const hsl = new Hsl(120, 0.5, 0.2, 0.5);
+      const hsl = new Hsl(120, 50, 20, 0.5);
 
       // verify
       assert(hsl instanceof Hsl);
@@ -30,7 +30,7 @@ describe('Hsl', () => {
   describe('.prototype.isValid()', () => {
     it('should return true when all values are valid', () => {
       // setup
-      const hsl = new Hsl(120, 0.5, 0.2);
+      const hsl = new Hsl(120, 50, 20);
       
       // exercise
       const isValid = hsl.isValid();
