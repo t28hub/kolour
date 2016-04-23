@@ -177,7 +177,8 @@ export default class Hwb extends Color {
    */
   hsv() {
     const [h, w, b] = [this.h(), this.w(), this.b()];
-    let s, v;
+    let s;
+    let v;
     if (w + b >= 1) {
       s = 0;
       v = w / (w + b);
