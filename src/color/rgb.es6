@@ -212,20 +212,34 @@ export default class Rgb extends Color {
     const max = Math.max(r, g, b);
     const delta = max - min;
     const total = max + min;
-    if (delta === 0) {
-      return new Hsl(Hsl.MIN_H, Hsl.MIN_S, max, this.alpha());
-    }
 
     let h;
-    if (min === b) {
-      h = 60 * (g - r) / delta + 60;
-    } else if (min === r) {
-      h = 60 * (b - g) / delta + 180;
+    if (max === min) {
+      h = 0;
+    } else if (max === r) {
+      h = 60 * (g - b) / delta;
+    } else if (max === g) {
+      h = 60 * (b - r) / delta + 120;
     } else {
-      h = 60 * (r - b) / delta + 300;
+      h = 60 * (r - g) / delta + 240;
     }
+    
+    if (h < Hsl.MIN_H) {
+      h += Hsl.MAX_H;
+    } else if (h > Hsl.MAX_H) {
+      h -= Hsl.MAX_H;
+    }
+    
     const l = total / 2;
-    const s = delta / (1 - Math.abs(2 * l - 1));
+
+    let s;
+    if (min === max) {
+      s = 0;
+    } else if (l <= 0.5) {
+      s = delta / total;
+    } else {
+      s = delta / (2 - total);
+    }
     return new Hsl(h, s * Hsl.MAX_S, l * Hsl.MAX_L, this.alpha());
   }
 

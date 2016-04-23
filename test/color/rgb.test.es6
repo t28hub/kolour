@@ -386,7 +386,7 @@ describe('Rgb', () => {
       assert(hsl.int() === rgb.int());
     });
 
-    it('should convert color space to HSL when minimum component is green', () => {
+    it('should convert color space to HSL when max value is red', () => {
       // setup
       const rgb = new Rgb(255, 0, 128, 0.5);
 
@@ -399,9 +399,22 @@ describe('Rgb', () => {
       assert(hsl.int() === rgb.int());
     });
 
-    it('should convert color space to HSL when minimum component is blue', () => {
+    it('should convert color space to HSL when max value is green', () => {
       // setup
       const rgb = new Rgb(128, 255, 0, 0.5);
+
+      // exercise
+      const hsl = rgb.hsl();
+
+      // verify
+      assert(hsl instanceof Hsl);
+      assert(hsl.isValid());
+      assert(hsl.int() === rgb.int());
+    });
+
+    it('should convert color space to HSL when max value is blue', () => {
+      // setup
+      const rgb = new Rgb(0, 128, 255, 0.5);
 
       // exercise
       const hsl = rgb.hsl();
@@ -422,7 +435,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.int() === new Hsl(Hsl.MIN_H, Hsl.MIN_S, 128 / Rgb.MAX, rgb.a()).int());
+      assert(hsl.int() === new Hsl(0, 0, 50, rgb.a()).int());
     });
   });
 
