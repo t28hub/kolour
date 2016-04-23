@@ -158,28 +158,14 @@ export default class Rgb extends Color {
    * @override
    */
   darken(factor) {
-    super.darken(factor);
-    const [r, g, b, a] = [this.r(), this.g(), this.b(), this.a()];
-    const values = [r, g, b].map((value) => {
-      let newValue = value * factor;
-      newValue = Math.round(newValue);
-      return Math.max(Math.min(newValue, MAX), MIN);
-    });
-    return new Rgb(...values, a);
+    return this.hsl().darken(factor).rgb();
   }
 
   /**
    * @override
    */
   lighten(factor) {
-    super.lighten(factor);
-    const [r, g, b, a] = [this.r(), this.g(), this.b(), this.a()];
-    const values = [r, g, b].map((value) => {
-      let newValue = value / factor;
-      newValue = Math.round(newValue);
-      return Math.max(Math.min(newValue, MAX), MIN);
-    });
-    return new Rgb(...values, a);
+    return this.hsl().lighten(factor).rgb();
   }
 
   /**

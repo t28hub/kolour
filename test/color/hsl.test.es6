@@ -74,7 +74,18 @@ describe('Hsl', () => {
 
       // verify
       assert(darken instanceof Hsl);
-      assert(darken.int() === new Hsl(180, 100, 40));
+      assert(darken.int() === new Hsl(180, 100, 40).int());
+    });
+    
+    it('should throw TypeError when a factor is not finite', () => {
+      // setup
+      const hsl = new Hsl(180, 100, 50);
+
+      // verify
+      assert.throws(() => {
+        // exercise
+        hsl.darken(Number.POSITIVE_INFINITY);
+      }, TypeError);
     });
   });
   
@@ -88,7 +99,18 @@ describe('Hsl', () => {
 
       // verify
       assert(lighten instanceof Hsl);
-      assert(lighten.int() === new Hsl(180, 100, 60));
+      assert(lighten.int() === new Hsl(180, 100, 60).int());
+    });
+
+    it('should throw TypeError when a factor is not finite', () => {
+      // setup
+      const hsl = new Hsl(180, 100, 50);
+
+      // verify
+      assert.throws(() => {
+        // exercise
+        hsl.lighten(Number.POSITIVE_INFINITY);
+      }, TypeError);
     });
   });
   

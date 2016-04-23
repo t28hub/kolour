@@ -98,26 +98,28 @@ describe('Cmy', () => {
   describe('.prototype.darken(factor)', () => {
     it('should return a darken color', () => {
       // setup
-      const cmy = new Cmy(1, 0, 0);
+      const cmy = new Cmy(1, 0.25, 0);
 
       // exercise
-      const darken = cmy.darken(0.5);
+      const darken = cmy.darken(0.1);
 
       // verify
-      assert(darken.int() === new Cmy(1, 0.5, 0.5).int())
+      assert(darken instanceof Cmy);
+      assert(darken.int() === new Cmy(1, 0.4, 0.2).int())
     });
   });
 
   describe('.prototype.lighten(factor)', () => {
-    it('should return a darken color', () => {
+    it('should return a lighten color', () => {
       // setup
-      const cmy = new Cmy(1, 0.5, 0.5);
+      const cmy = new Cmy(1, 0.25, 0);
 
       // exercise
-      const lighten = cmy.lighten(0.5);
+      const lighten = cmy.lighten(0.1);
 
       // verify
-      assert(lighten.int() === new Cmy(1, 0.25, 0.25).int())
+      assert(lighten instanceof Cmy);
+      assert(lighten.int() === new Cmy(0.8, 0.2, 0).int())
     });
   });
   

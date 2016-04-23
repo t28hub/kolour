@@ -76,13 +76,33 @@ describe('Hsv', () => {
       assert(int === 0x00FFFFFF);
     });
   });
-  
-  describe.skip('.prototype.darken(factor)', () => {
-    // TODO: Write tests
+
+  describe('.prototype.darken(factor)', () => {
+    it('should return a darken color', () => {
+      // setup
+      const hsv = new Hsv(60, 0.8, 1);
+
+      // exercise
+      const darken = hsv.darken(0.2);
+
+      // verify
+      assert(darken instanceof Hsv);
+      assert(darken.int() === new Hsv(60, 1, 0.8).int())
+    });
   });
 
-  describe.skip('.prototype.lighten(factor)', () => {
-    // TODO: Write tests
+  describe('.prototype.lighten(factor)', () => {
+    it('should return a lighten color', () => {
+      // setup
+      const hsv = new Hsv(60, 0.8, 1);
+
+      // exercise
+      const lighten = hsv.lighten(0.2);
+
+      // verify
+      assert(lighten instanceof Hsv);
+      assert(lighten.int() === new Hsv(60, 0.4, 1).int())
+    });
   });
 
   describe('.prototype.cmy()', () => {

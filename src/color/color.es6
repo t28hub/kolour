@@ -150,28 +150,21 @@ export default class Color {
   /**
    * Creates a new color which is darker than the current color.
    * @public
+   * @abstract
    * @param {number} factor
    * @throws {TypeError} Argument factor must be within range 0 and 1
    */
   darken(factor) {
-    if (!Number.isFinite(factor)) {
-      throw new TypeError(`Argument factor(${factor}) must be a finite number`);
-    }
   }
 
   /**
    * Creates a new color which is lighter than the current color.
    * @public
+   * @abstract
    * @param {number} factor
    * @throws {TypeError} Argument factor must be within range 0 and 1
    */
   lighten(factor) {
-    if (!Number.isFinite(factor)) {
-      throw new TypeError(`Factor(${factor}) must be a finite number`);
-    }
-    if (factor === 0) {
-      throw new TypeError(`Factor(${factor}) must not be zero`);
-    }
   }
 
   /**

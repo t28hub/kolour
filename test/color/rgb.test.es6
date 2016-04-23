@@ -226,119 +226,30 @@ describe('Rgb', () => {
   });
 
   describe('.prototype.darken(factor)', () => {
-    it('should return darken color', () => {
+    it('should return a darken color', () => {
       // setup
-      const rgb = new Rgb(0, 128, 255);
+      const rgb = new Rgb(255, 128, 0);
 
       // exercise
-      const darken = rgb.darken(0.5);
+      const darken = rgb.darken(0.1);
 
       // verify
       assert(darken instanceof Rgb);
-      assert(darken.isValid());
-      assert(darken.equals(new Rgb(0, 64, 128, NO_ALPHA)));
-    });
-
-    it('should return black color when a factor is 0', () => {
-      // setup
-      const rgb = new Rgb(0, 128, 255);
-
-      // exercise
-      const darken = rgb.darken(0);
-
-      // verify
-      assert(darken instanceof Rgb);
-      assert(darken.isValid());
-      assert(darken.equals(new Rgb(Rgb.MIN, Rgb.MIN, Rgb.MIN, NO_ALPHA)));
-    });
-
-    it('should return valid color when a factor is greater than 1', () => {
-      // setup
-      const rgb = new Rgb(0, 128, 255);
-
-      // exercise
-      const darken = rgb.darken(1.5);
-
-      // verify
-      assert(darken instanceof Rgb);
-      assert(darken.isValid());
-      assert(darken.equals(new Rgb(0, 192, 255, NO_ALPHA)));
-    });
-
-    it('should return valid color when a factor is less than 0', () => {
-      // setup
-      const rgb = new Rgb(0, 128, 255);
-
-      // exercise
-      const darken = rgb.darken(-0.5);
-
-      // verify
-      assert(darken instanceof Rgb);
-      assert(darken.isValid());
-      assert(darken.equals(new Rgb(Rgb.MIN, Rgb.MIN, Rgb.MIN, NO_ALPHA)));
-    });
-
-    it('should throw TypeError when a factor is no finite number', () => {
-      // setup
-      const rgb = new Rgb(0, 128, 255);
-
-      // verify
-      assert.throws(() => {
-        // exercise
-        rgb.darken(Number.NEGATIVE_INFINITY);
-      }, TypeError);
+      assert(darken.int() === new Rgb(204, 102, 0).int())
     });
   });
 
   describe('.prototype.lighten(factor)', () => {
-    it('should return lighten color', () => {
+    it('should return a lighten color', () => {
       // setup
-      const rgb = new Rgb(0, 128, 255);
+      const rgb = new Rgb(255, 128, 0);
 
       // exercise
-      const lighten = rgb.lighten(0.8);
+      const lighten = rgb.lighten(0.1);
 
       // verify
       assert(lighten instanceof Rgb);
-      assert(lighten.isValid());
-      assert(lighten.equals(new Rgb(0, 160, 255, NO_ALPHA)));
-    });
-
-    it('should return valid color when a factor is greater than 1', () => {
-      // setup
-      const rgb = new Rgb(0, 128, 255);
-
-      // exercise
-      const lighten = rgb.lighten(1.5);
-
-      // verify
-      assert(lighten instanceof Rgb);
-      assert(lighten.isValid());
-      assert(lighten.equals(new Rgb(0, 85, 170, NO_ALPHA)));
-    });
-
-    it('should return valid color when a factor is less than 0', () => {
-      // setup
-      const rgb = new Rgb(0, 128, 255);
-
-      // exercise
-      const lighten = rgb.lighten(-0.5);
-
-      // verify
-      assert(lighten instanceof Rgb);
-      assert(lighten.isValid());
-      assert(lighten.equals(new Rgb(Rgb.MIN, Rgb.MIN, Rgb.MIN, NO_ALPHA)));
-    });
-
-    it('should throw TypeError when a factor is 0', () => {
-      // setup
-      const rgb = new Rgb(0, 128, 255);
-
-      // verify
-      assert.throws(() => {
-        // exercise
-        rgb.lighten(0);
-      }, TypeError);
+      assert(lighten.int() === new Rgb(255, 153, 51).int())
     });
   });
 

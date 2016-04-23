@@ -136,6 +136,20 @@ export default class Hwb extends Color {
   /**
    * @override
    */
+  darken(factor) {
+    return this.hsl().darken(factor).hwb();
+  }
+
+  /**
+   * @override
+   */
+  lighten(factor) {
+    return this.hsl().lighten(factor).hwb();
+  }
+
+  /**
+   * @override
+   */
   int() {
     return this.rgb().int();
   }

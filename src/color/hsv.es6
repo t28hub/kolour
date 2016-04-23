@@ -133,32 +133,26 @@ export default class Hsv extends Color {
       return min <= value && value <= max;
     });
   }
-  
-  /**
-   * @override
-   */
-  int() {
-    return this.rgb().int();
-  }
 
   /**
    * @override
    */
   darken(factor) {
-    super.darken(factor);
-    let v = this.v() * factor;
-    v = Math.min(Math.max(v, MIN_V), MAX_V);
-    return new Hsv(this.h(), this.s(), v, this.a());
+    return this.hsl().darken(factor).hsv();
   }
 
   /**
    * @override
    */
   lighten(factor) {
-    super.lighten(factor);
-    let v = this.v() / factor;
-    v = Math.min(Math.max(v, MIN_V), MAX_V);
-    return new Hsv(this.h(), this.s(), v, this.a());
+    return this.hsl().lighten(factor).hsv();
+  }
+
+  /**
+   * @override
+   */
+  int() {
+    return this.rgb().int();
   }
 
   /**

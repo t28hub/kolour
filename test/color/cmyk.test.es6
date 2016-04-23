@@ -83,7 +83,35 @@ describe('Cmyk', () => {
       assert(isValid === false);
     });
   });
-  
+
+  describe('.prototype.darken(factor)', () => {
+    it('should return a darken color', () => {
+      // setup
+      const cmyk = new Cmyk(1, 0.25, 0, 0);
+
+      // exercise
+      const darken = cmyk.darken(0.1);
+
+      // verify
+      assert(darken instanceof Cmyk);
+      assert(darken.int() === new Cmyk(1, 0.25, 0, 0.2).int())
+    });
+  });
+
+  describe('.prototype.lighten(factor)', () => {
+    it('should return a lighten color', () => {
+      // setup
+      const cmyk = new Cmyk(1, 0.25, 0, 0);
+
+      // exercise
+      const lighten = cmyk.lighten(0.1);
+
+      // verify
+      assert(lighten instanceof Cmyk);
+      assert(lighten.int() === new Cmyk(0.8, 0.2, 0, 0).int())
+    });
+  });
+
   describe('.prototype.int()', () => {
     it('should return an integer value', () => {
       // setup

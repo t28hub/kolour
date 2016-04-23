@@ -149,6 +149,20 @@ export default class Cmyk extends Color {
   /**
    * @override
    */
+  darken(factor) {
+    return this.hsl().darken(factor).cmyk();
+  }
+
+  /**
+   * @override
+   */
+  lighten(factor) {
+    return this.hsl().lighten(factor).cmyk();
+  }
+
+  /**
+   * @override
+   */
   int() {
     return this.rgb().int();
   }
@@ -162,20 +176,6 @@ export default class Cmyk extends Color {
       return `device-cmyk(${c * 100}%, ${m * 100}%, ${y * 100}%, ${k * 100}%)`;
     }
     return `device-cmyk(${c * 100}%, ${m * 100}%, ${y * 100}%, ${k * 100}%, ${a * 100}%)`;
-  }
-
-  /**
-   * @override
-   */
-  darken(factor) {
-    return this.rgb().darken(factor).cmy();
-  }
-
-  /**
-   * @override
-   */
-  lighten(factor) {
-    return this.rgb().lighten(factor).cmy();
   }
 
   /**
