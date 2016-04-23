@@ -128,14 +128,24 @@ export default class Cmy extends Color {
    * @override
    */
   darken(factor) {
-    return this.rgb().darken(factor).cmy();
+    super.darken(factor);
+    const [c, m, y] = [this.c(), this.m(), this.y()].map((value) => {
+      const newValue = value + (MAX - value) * factor;
+      return Math.max(Math.min(newValue, MAX), MIN);
+    });
+    return new Cmy(c, m, y, this.a());
   }
 
   /**
    * @override
    */
   lighten(factor) {
-    return this.rgb().lighten(factor).cmy();
+    super.lighten(factor);
+    const [c, m, y] = [this.c(), this.m(), this.y()].map((value) => {
+      const newValue = value - (MAX - value) * factor;
+      return Math.max(Math.min(newValue, MAX), MIN);
+    });
+    return new Cmy(c, m, y, this.a());
   }
 
   /**

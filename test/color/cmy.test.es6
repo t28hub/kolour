@@ -94,7 +94,33 @@ describe('Cmy', () => {
       assert(isValid === false);
     });
   });
+  
+  describe('.prototype.darken(factor)', () => {
+    it('should return a darken color', () => {
+      // setup
+      const cmy = new Cmy(1, 0, 0);
 
+      // exercise
+      const darken = cmy.darken(0.5);
+
+      // verify
+      assert(darken.int() === new Cmy(1, 0.5, 0.5).int())
+    });
+  });
+
+  describe('.prototype.lighten(factor)', () => {
+    it('should return a darken color', () => {
+      // setup
+      const cmy = new Cmy(1, 0.5, 0.5);
+
+      // exercise
+      const lighten = cmy.lighten(0.5);
+
+      // verify
+      assert(lighten.int() === new Cmy(1, 0.25, 0.25).int())
+    });
+  });
+  
   describe('.prototype.cmy()', () => {
     it('should returns a cloned instance', () => {
       // setup
