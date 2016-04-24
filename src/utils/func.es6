@@ -255,7 +255,8 @@ export function mix(color1, color2, amount = DEFAULT_AMOUNT) {
  * Mixes color with white by specified amount
  * @param {Color} color - The color to be mixed
  * @param {number} [amount] - The percentage 0..1
- * @returns
+ * @returns {Color} A mixed color
+ * @see shade
  */
 export function tint(color, amount = DEFAULT_AMOUNT) {
   const white = new Rgb(Rgb.MAX, Rgb.MAX, Rgb.MAX);
@@ -266,6 +267,8 @@ export function tint(color, amount = DEFAULT_AMOUNT) {
  * Mixes color with black by specified amount
  * @param {Color} color - The color to be mixed
  * @param {number} [amount] - The percentage 0..1
+ * @returns {Color} A mixed color
+ * @see tint
  */
 export function shade(color, amount = DEFAULT_AMOUNT) {
   const black = new Rgb(Rgb.MIN, Rgb.MIN, Rgb.MIN);
