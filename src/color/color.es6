@@ -4,6 +4,8 @@ export const NO_ALPHA = Number.POSITIVE_INFINITY;
 export const MIN_ALPHA = 0;
 export const MAX_ALPHA = 1;
 
+const DEFAULT_AMOUNT = 0.5;
+
 /**
  * Class representing a Color
  */
@@ -169,36 +171,184 @@ export default class Color {
   }
 
   /**
-   * Creates a new color which is darker than the current color.
+   * Increases the saturation by a specified amount
    * @public
    * @abstract
-   * @param {number} factor
-   * @throws {TypeError} Argument factor must be within range 0 and 1
+   * @param {number} amount - The percentage 0..1
+   * @returns {Color} A saturated color
+   * @see desaturate
    */
-  darken(factor) {
+  saturate(amount) {
   }
 
   /**
-   * Creates a new color which is lighter than the current color.
+   * Decreases the saturation by a specified amount
    * @public
    * @abstract
-   * @param {number} factor
-   * @throws {TypeError} Argument factor must be within range 0 and 1
+   * @param {number} amount - The percentage 0..1
+   * @returns {Color} A desaturated color
+   * @see saturate
    */
-  lighten(factor) {
+  desaturate(amount) {
+  }
+
+  /**
+   * Converts to grayscale
+   * @public
+   * @abstract
+   * @returns {Color} A grayscale color
+   */
+  grayscale() {
+  }
+
+  /**
+   * Increases the luminance by a specified amount
+   * @public
+   * @abstract
+   * @param {number} amount - The percentage 0..1
+   * @returns {Color} A lighten color
+   * @see darken
+   */
+  lighten(amount) {
+  }
+
+  /**
+   * Decreases the luminance by a specified amount
+   * @public
+   * @abstract
+   * @param {number} amount - The percentage 0..1
+   * @returns {Color} A darken color
+   * @see lighten
+   */
+  darken(amount) {
+  }
+
+  /**
+   * Increases the whiteness by a specified amount
+   * @public
+   * @abstract
+   * @param {number} [amount] - The percentage 0..1
+   * @returns {Color} A whiten color
+   * @see blacken
+   */
+  whiten(amount = DEFAULT_AMOUNT) {
+  }
+
+  /**
+   * Increases the blackness by a specified amount
+   * @public
+   * @abstract
+   * @param {number} [amount] - The percentage 0..1
+   * @returns {Color} A blacken color
+   * @see whiten
+   */
+  blaken(amount = DEFAULT_AMOUNT) {
+  }
+
+  /**
+   * Create a inverted color
+   * @public
+   * @abstract
+   * @returns {Color} A inverted color
+   * @see negate
+   */
+  invert() {
+  }
+
+  /**
+   * Creates a negative color
+   * @public
+   * @returns {Color} A negative color
+   * @see invert
+   */
+  negate() {
+    return this.invert();
+  }
+
+  /**
+   * Creates a rotated color
+   * @public
+   * @abstract
+   * @param amount - The percentage 0..1
+   * @returns {Color} A rotated color
+   * @see spin
+   */
+  rotate(amount) {
+  }
+
+  /**
+   * Creates a rotated color
+   * @public
+   * @param amount - The percentage 0..1
+   * @returns {Color} A rotated color
+   * @see rotate
+   */
+  spin(amount) {
+    return this.rotate(amount);
+  }
+
+  /**
+   * Creates a complementary color
+   * @public
+   * @abstract
+   * @returns {Color} A complementary color
+   */
+  complement() {
+  }
+
+  /**
+   * Increases the alpha by a specified amount
+   * @public
+   * @abstract
+   * @param amount - The percentage 0..1
+   * @returns {Color} A color
+   * @see fadeout
+   */
+  fadein(amount) {
+  }
+
+  /**
+   * Decreases the alpha by a specified amount
+   * @public
+   * @abstract
+   * @param amount - The percentage 0..1
+   * @returns {Color} A color
+   * @see fadein
+   */
+  fadeout(amount) {
   }
 
   /**
    * Mixes a color
    * @public
    * @abstract
-   * @param {Color} color - The mixing color
-   * @param {number} [weight] - The relative weight of each color
-   * @returns {Color} - The mixed color
-   * @throws {TypeError} Argument weight must be a finite number
-   * @throws {TypeError} Argument factor must be within range 0 and 1
+   * @param {Color} color - The color to be mixed
+   * @param {number} [amount] - The relative weight of each color
+   * @returns {Color} A mixed color
    */
-  mix(color, weight = 0.5) {
+  mix(color, amount = DEFAULT_AMOUNT) {
+  }
+
+  /**
+   * Mixes with white by a specified amount
+   * @public
+   * @abstract
+   * @param {number} [amount] - The percentage 0..1
+   * @returns {Color} A mixed color
+   * @see shade
+   */
+  tint(amount = DEFAULT_AMOUNT) {
+  }
+
+  /**
+   * Mixes with black by a specified amount
+   * @public
+   * @abstract
+   * @param {number} [amount] - The percentage 0..1
+   * @returns {Color} A mixed color
+   * @see tint
+   */
+  shade(amount = DEFAULT_AMOUNT) {
   }
 
   /**
