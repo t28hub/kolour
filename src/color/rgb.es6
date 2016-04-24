@@ -2,6 +2,7 @@ import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Cmy from './cmy.es6';
 import Hsl from './hsl.es6';
 import Hsv from './hsv.es6';
+import { DEFAULT_AMOUNT, mix } from '../utils/func.es6';
 
 const MIN = 0x00;
 const MAX = 0xFF;
@@ -124,6 +125,13 @@ export default class Rgb extends Color {
       }
       return MIN <= value && value <= MAX;
     });
+  }
+
+  /**
+   * @override
+   */
+  mix(color, weight = DEFAULT_AMOUNT) {
+    return mix(this, color.rgb(), weight);
   }
 
   /**

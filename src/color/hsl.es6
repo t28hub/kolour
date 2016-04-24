@@ -297,6 +297,13 @@ export default class Hsl extends Color {
   /**
    * @returns {number}
    */
+  static get MIN_L() {
+    return MIN_L;
+  }
+
+  /**
+   * @returns {number}
+   */
   static get MAX_L() {
     return MAX_L;
   }

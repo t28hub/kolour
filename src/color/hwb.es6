@@ -217,4 +217,32 @@ export default class Hwb extends Color {
   rgb() {
     return this.hsv().rgb();
   }
+
+  /**
+   * @returns {number}
+   */
+  static get MIN_W() {
+    return MIN_W;
+  }
+
+  /**
+   * @returns {number}
+   */
+  static get MAX_W() {
+    return MAX_W;
+  }
+
+  /**
+   * @returns {number}
+   */
+  static get MIN_B() {
+    return MIN_B;
+  }
+
+  /**
+   * @returns {number}
+   */
+  static get MAX_B() {
+    return MAX_B;
+  }
 }

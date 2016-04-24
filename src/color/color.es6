@@ -1,9 +1,8 @@
 export const NO_NAME = 'NULL';
 export const NO_VALUE = Number.POSITIVE_INFINITY;
 export const NO_ALPHA = Number.POSITIVE_INFINITY;
-
-const MIN_ALPHA = 0;
-const MAX_ALPHA = 1;
+export const MIN_ALPHA = 0;
+export const MAX_ALPHA = 1;
 
 /**
  * Class representing a Color
@@ -18,6 +17,28 @@ export default class Color {
   constructor(name, components) {
     this.name = name;
     this.components = new Map(components);
+  }
+
+  /**
+   * Provides accessor of the alpha value
+   * @public
+   * @abstract
+   * @param {number} value - The new alpha value
+   * @returns {Color|number} Either self or value of alpha
+   * @see alpha
+   */
+  a(value = NO_ALPHA) {
+  }
+
+  /**
+   * Provides accessor of the alpha value
+   * @public
+   * @abstract
+   * @param {number} value - The new alpha value
+   * @returns {Color|number} Either self or value of alpha
+   * @see a
+   */
+  alpha(value = NO_ALPHA) {
   }
 
   /**
@@ -165,6 +186,19 @@ export default class Color {
    * @throws {TypeError} Argument factor must be within range 0 and 1
    */
   lighten(factor) {
+  }
+
+  /**
+   * Mixes a color
+   * @public
+   * @abstract
+   * @param {Color} color - The mixing color
+   * @param {number} [weight] - The relative weight of each color
+   * @returns {Color} - The mixed color
+   * @throws {TypeError} Argument weight must be a finite number
+   * @throws {TypeError} Argument factor must be within range 0 and 1
+   */
+  mix(color, weight = 0.5) {
   }
 
   /**
