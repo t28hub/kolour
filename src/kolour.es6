@@ -7,8 +7,7 @@ import Hwb from './color/hwb.es6';
 import Rgb from './color/rgb.es6';
 import ObjectParser from './parser/object-parser.es6';
 import StringParser from './parser/string-parser.es6';
-import isObject from './utils/is-object.es6';
-import isString from './utils/is-string.es6';
+import * as type from './utils/type.es6';
 
 /**
  * Creates a color
@@ -19,9 +18,9 @@ function kolour(value) {
   let color;
   if (value instanceof Color) {
     color = value.clone();
-  } else if (isObject(value)) {
+  } else if (type.isObject(value)) {
     color = ObjectParser.defaults().parse(value);
-  } else if (isString(value)) {
+  } else if (type.isString(value)) {
     color = StringParser.defaults().parse(value);
   }
 
