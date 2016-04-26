@@ -149,20 +149,6 @@ export default class Cmyk extends Color {
   /**
    * @override
    */
-  darken(factor) {
-    return this.hsl().darken(factor).cmyk();
-  }
-
-  /**
-   * @override
-   */
-  lighten(factor) {
-    return this.hsl().lighten(factor).cmyk();
-  }
-
-  /**
-   * @override
-   */
   int() {
     return this.rgb().int();
   }

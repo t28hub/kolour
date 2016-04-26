@@ -64,34 +64,6 @@ describe('Hwb', () => {
     });
   });
 
-  describe('.prototype.darken(factor)', () => {
-    it('should return a darken color', () => {
-      // setup
-      const hwb = new Hwb(30, 0, 0);
-
-      // exercise
-      const darken = hwb.darken(0.1);
-
-      // verify
-      assert(darken instanceof Hwb);
-      assert(darken.int() === new Hwb(30, 0, 0.2).int())
-    });
-  });
-
-  describe('.prototype.lighten(factor)', () => {
-    it('should return a lighten color', () => {
-      // setup
-      const hwb = new Hwb(30, 0, 0);
-
-      // exercise
-      const lighten = hwb.lighten(0.1);
-
-      // verify
-      assert(lighten instanceof Hwb);
-      assert(lighten.int() === new Hwb(30, 0.2, 0).int())
-    });
-  });
-
   describe('.prototype.int()', () => {
     it('should return an integer representing the color', () => {
       // setup

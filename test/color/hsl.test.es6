@@ -64,56 +64,6 @@ describe('Hsl', () => {
     });
   });
   
-  describe('.prototype.darken(factor)', () => {
-    it('should return a darken color', () => {
-      // setup
-      const hsl = new Hsl(180, 100, 50);
-
-      // exercise
-      const darken = hsl.darken(0.1);
-
-      // verify
-      assert(darken instanceof Hsl);
-      assert(darken.int() === new Hsl(180, 100, 40).int());
-    });
-    
-    it('should throw TypeError when a factor is not finite', () => {
-      // setup
-      const hsl = new Hsl(180, 100, 50);
-
-      // verify
-      assert.throws(() => {
-        // exercise
-        hsl.darken(Number.POSITIVE_INFINITY);
-      }, TypeError);
-    });
-  });
-  
-  describe('.prototype.lighten(factor)', () => {
-    it('should return a lighten color', () => {
-      // setup
-      const hsl = new Hsl(180, 100, 50);
-
-      // exercise
-      const lighten = hsl.lighten(0.1);
-
-      // verify
-      assert(lighten instanceof Hsl);
-      assert(lighten.int() === new Hsl(180, 100, 60).int());
-    });
-
-    it('should throw TypeError when a factor is not finite', () => {
-      // setup
-      const hsl = new Hsl(180, 100, 50);
-
-      // verify
-      assert.throws(() => {
-        // exercise
-        hsl.lighten(Number.POSITIVE_INFINITY);
-      }, TypeError);
-    });
-  });
-  
   describe('.prototype.int()', () => {
     it('should return an integer representing the color', () => {
       // setup

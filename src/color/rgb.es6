@@ -157,20 +157,6 @@ export default class Rgb extends Color {
   /**
    * @override
    */
-  darken(factor) {
-    return this.hsl().darken(factor).rgb();
-  }
-
-  /**
-   * @override
-   */
-  lighten(factor) {
-    return this.hsl().lighten(factor).rgb();
-  }
-
-  /**
-   * @override
-   */
   cmy() {
     const [r, g, b, a] = [this.r(), this.g(), this.b(), this.a()];
     const values = [r, g, b].map((value) => {

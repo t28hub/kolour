@@ -225,34 +225,6 @@ describe('Rgb', () => {
     });
   });
 
-  describe('.prototype.darken(factor)', () => {
-    it('should return a darken color', () => {
-      // setup
-      const rgb = new Rgb(255, 128, 0);
-
-      // exercise
-      const darken = rgb.darken(0.1);
-
-      // verify
-      assert(darken instanceof Rgb);
-      assert(darken.int() === new Rgb(204, 102, 0).int())
-    });
-  });
-
-  describe('.prototype.lighten(factor)', () => {
-    it('should return a lighten color', () => {
-      // setup
-      const rgb = new Rgb(255, 128, 0);
-
-      // exercise
-      const lighten = rgb.lighten(0.1);
-
-      // verify
-      assert(lighten instanceof Rgb);
-      assert(lighten.int() === new Rgb(255, 153, 51).int())
-    });
-  });
-
   describe('.prototype.cmy()', () => {
     it('should convert color space to CMY', () => {
       // setup

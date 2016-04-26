@@ -137,20 +137,6 @@ export default class Hsv extends Color {
   /**
    * @override
    */
-  darken(factor) {
-    return this.hsl().darken(factor).hsv();
-  }
-
-  /**
-   * @override
-   */
-  lighten(factor) {
-    return this.hsl().lighten(factor).hsv();
-  }
-
-  /**
-   * @override
-   */
   int() {
     return this.rgb().int();
   }

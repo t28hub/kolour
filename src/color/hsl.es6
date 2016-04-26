@@ -136,32 +136,6 @@ export default class Hsl extends Color {
   /**
    * @override
    */
-  darken(factor) {
-    if (!Number.isFinite(factor)) {
-      throw new TypeError(`Argument factor(${factor}) must be a finite number`);
-    }
-    
-    let l = this.l() - factor * 100;
-    l = Math.max(Math.min(l, MAX_L), MIN_L);
-    return new Hsl(this.h(), this.s(), l, this.a());
-  }
-
-  /**
-   * @override
-   */
-  lighten(factor) {
-    if (!Number.isFinite(factor)) {
-      throw new TypeError(`Factor(${factor}) must be a finite number`);
-    }
-    
-    let l = this.l() + factor * 100;
-    l = Math.max(Math.min(l, MAX_L), MIN_L);
-    return new Hsl(this.h(), this.s(), l, this.a());
-  }
-
-  /**
-   * @override
-   */
   int() {
     return this.rgb().int();
   }
