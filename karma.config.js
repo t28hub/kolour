@@ -15,13 +15,11 @@ module.exports = function (config) {
       'karma-mocha',
       'karma-webpack',
       'karma-mocha-reporter',
-      'karma-phantomjs-launcher',
-      'karma-espower-preprocessor'
+      'karma-phantomjs-launcher'
     ],
     preprocessors: {
       'test/**/*.test.es6': [
-        'webpack',
-        'espower'
+        'webpack'
       ]
     },
     webpack: {
@@ -38,9 +36,6 @@ module.exports = function (config) {
               presets: [
                 'es2015',
                 'stage-0'
-              ],
-              plugins: [
-                'babel-plugin-espower'
               ]
             }
           },

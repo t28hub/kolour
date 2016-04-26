@@ -1,6 +1,5 @@
 import assert from 'power-assert';
-import sinon from 'sinon';
-import Color from '../../src/color/color.es6';
+import Color, { NO_ALPHA } from '../../src/color/color.es6';
 import Hsl from '../../src/color/hsl.es6';
 import Hwb from '../../src/color/hwb.es6';
 import Rgb from '../../src/color/rgb.es6';
@@ -12,32 +11,7 @@ const KEYS = Object.freeze({
   C: Symbol.for('c'),
 });
 
-class StubHolder {
-  constructor() {
-    this.stubs = [];
-  }
-  
-  stub(object, method) {
-    const stub = sinon.stub(object, method);
-    this.stubs.push(stub);
-    return stub;
-  }
-  
-  restore() {
-    this.stubs.forEach((stub) => {
-      stub.restore();
-    });
-    this.stubs = [];
-  }
-}
-
 describe('Color', () => {
-  const stubHolder = new StubHolder();
-
-  afterEach(() => {
-    stubHolder.restore();
-  });
-  
   describe('.constructor(name, components)', () => {
     it('should create an instance with name and components', () => {
       // exercise
@@ -266,9 +240,15 @@ describe('Color', () => {
   describe('.prototype.saturate(amount)', () => {
     it('should increase the saturation', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hsl');
-      stub.returns(new Hsl(180, 50, 50));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hsl() {
+          return new Hsl(180, 50, 50);
+        }
+      };
 
       // exercise
       const result = color.saturate(0.1);
@@ -277,18 +257,21 @@ describe('Color', () => {
       assert(result instanceof Rgb);
       assert(result !== color);
       assert(result.int() == new Hsl(180, 60, 50).int());
-
-      // teardown
-      stub.restore();
     });
   });
   
   describe('.prototype.desaturate(amount)', () => {
     it('should decrease the saturation', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hsl');
-      stub.returns(new Hsl(180, 50, 50));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hsl() {
+          return new Hsl(180, 50, 50);
+        }
+      };
 
       // exercise
       const result = color.desaturate(0.1);
@@ -297,19 +280,22 @@ describe('Color', () => {
       assert(result instanceof Rgb);
       assert(result !== color);
       assert(result.int() == new Hsl(180, 40, 50).int());
-
-      // teardown
-      stub.restore();
     });
   });
   
   describe('.prototype.grayscale()', () => {
     it('should create a grayscale color', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hsl');
-      stub.returns(new Hsl(180, 50, 50));
-      
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hsl() {
+          return new Hsl(180, 50, 50);
+        }
+      };
+
       // exercise
       const result = color.grayscale();
 
@@ -317,18 +303,21 @@ describe('Color', () => {
       assert(result instanceof Rgb);
       assert(result !== color);
       assert(result.int() == new Hsl(180, 0, 50).int());
-
-      // teardown
-      stub.restore();
     });
   });
   
   describe('.prototype.lighten(amount)', () => {
     it('should increase the luminance', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hsl');
-      stub.returns(new Hsl(180, 50, 50));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hsl() {
+          return new Hsl(180, 50, 50);
+        }
+      };
 
       // exercise
       const result = color.lighten(0.1);
@@ -337,18 +326,21 @@ describe('Color', () => {
       assert(result instanceof Rgb);
       assert(result !== color);
       assert(result.int() == new Hsl(180, 50, 60).int());
-
-      // teardown
-      stub.restore();
     });
   });
 
   describe('.prototype.darken(amount)', () => {
     it('should decrease the luminance', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hsl');
-      stub.returns(new Hsl(180, 50, 50));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hsl() {
+          return new Hsl(180, 50, 50);
+        }
+      };
 
       // exercise
       const result = color.darken(0.1);
@@ -357,18 +349,21 @@ describe('Color', () => {
       assert(result instanceof Rgb);
       assert(result !== color);
       assert(result.int() == new Hsl(180, 50, 40).int());
-
-      // teardown
-      stub.restore();
     });
   });
 
   describe('.prototype.whiten(amount)', () => {
     it('should increase the whiteness', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hwb');
-      stub.returns(new Hwb(180, 0.5, 0.5));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hwb() {
+          return new Hwb(180, 0.5, 0.5);
+        }
+      };
 
       // exercise
       const result = color.whiten();
@@ -381,9 +376,15 @@ describe('Color', () => {
 
     it('should increase the whiteness with amount', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hwb');
-      stub.returns(new Hwb(180, 0.5, 0.5));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hwb() {
+          return new Hwb(180, 0.5, 0.5);
+        }
+      };
 
       // exercise
       const result = color.whiten(0.2);
@@ -398,9 +399,15 @@ describe('Color', () => {
   describe('.prototype.blacken(amount)', () => {
     it('should increase the blackness', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hwb');
-      stub.returns(new Hwb(180, 0.5, 0.5));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hwb() {
+          return new Hwb(180, 0.5, 0.5);
+        }
+      };
 
       // exercise
       const result = color.blacken();
@@ -413,9 +420,15 @@ describe('Color', () => {
 
     it('should increase the whiteness with amount', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hwb');
-      stub.returns(new Hwb(180, 0.5, 0.5));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hwb() {
+          return new Hwb(180, 0.5, 0.5);
+        }
+      };
 
       // exercise
       const result = color.blacken(0.2);
@@ -430,10 +443,16 @@ describe('Color', () => {
   describe('.prototype.invert()', () => {
     it('should return an inverted color', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'rgb');
-      stub.returns(new Rgb(100, 150, 255));
-      
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        rgb() {
+          return new Rgb(100, 150, 255);
+        }
+      };
+
       // exercise
       const result = color.invert();
       
@@ -447,9 +466,15 @@ describe('Color', () => {
   describe('.prototype.rotate(amount)', () => {
     it('should return a rotated color', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hsl');
-      stub.returns(new Hsl(180, 100, 50));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hsl() {
+          return new Hsl(180, 100, 50);
+        }
+      };
 
       // exercise
       const result = color.rotate(300 / 360);
@@ -464,9 +489,15 @@ describe('Color', () => {
   describe('.prototype.complement()', () => {
     it('should return a complementary color', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'hsl');
-      stub.returns(new Hsl(60, 100, 50));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hsl() {
+          return new Hsl(60, 100, 50);
+        }
+      };
 
       // exercise
       const result = color.complement();
@@ -481,40 +512,68 @@ describe('Color', () => {
   describe('.prototype.fadein(amount)', () => {
     it('should increase the alpha', () => {
       // setup
-      const color = new Color('rgb', []);
-      const spy = sinon.spy(color, 'alpha');
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+          this._alpha = NO_ALPHA;
+        }
+
+        alpha(value = NO_ALPHA) {
+          if (value === NO_ALPHA) {
+            return this._alpha;
+          }
+          this._alpha = value;
+          return this;
+        }
+      };
 
       // exercise
       const result = color.fadein(0.1);
 
       // verify
       assert(result !== color);
-      assert(spy.callCount === 1);
     });
   });
 
   describe('.prototype.fadeout(amount)', () => {
     it('should increase the alpha', () => {
       // setup
-      const color = new Color('rgb', []);
-      const spy = sinon.spy(color, 'alpha');
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+          this._alpha = NO_ALPHA;
+        }
+
+        alpha(value = NO_ALPHA) {
+          if (value === NO_ALPHA) {
+            return this._alpha;
+          }
+          this._alpha = value;
+          return this;
+        }
+      };
 
       // exercise
       const result = color.fadeout(0.1);
 
       // verify
       assert(result !== color);
-      assert(spy.callCount === 1);
     });
   });
   
   describe('.prototype.mix(color, amount)', () => {
     it('should return a mixed color', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'rgb');
-      stub.returns(new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN));
-      
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        rgb() {
+          return new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN);
+        }
+      };
+
       const blue = new Rgb(Rgb.MIN, Rgb.MIN, Rgb.MAX);
       
       // exercise
@@ -528,9 +587,15 @@ describe('Color', () => {
 
     it('should return a mixed color with amount', () => {
       // setup
-      const color = new Color('rgb', []);
-      const stub = stubHolder.stub(Color.prototype, 'rgb');
-      stub.returns(new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        rgb() {
+          return new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN);
+        }
+      };
 
       const blue = new Rgb(Rgb.MIN, Rgb.MIN, Rgb.MAX);
 
@@ -547,11 +612,15 @@ describe('Color', () => {
   describe('.prototype.tint(amount)', () => {
     it('should return a white mixed color', () => {
       // setup
-      const color = new Color('rgb', []);
-      const white = new Rgb(Rgb.MAX, Rgb.MAX, Rgb.MAX);
-      const stub = stubHolder.stub(color, 'rgb');
-      stub.onCall(0).returns(white);
-      stub.onCall(1).returns(new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        rgb() {
+          return new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN);
+        }
+      };
 
       // exercise
       const result = color.tint();
@@ -564,11 +633,15 @@ describe('Color', () => {
     
     it('should return a white mixed color with amount', () => {
       // setup
-      const color = new Color('rgb', []);
-      const white = new Rgb(Rgb.MAX, Rgb.MAX, Rgb.MAX);
-      const stub = stubHolder.stub(color, 'rgb');
-      stub.onCall(0).returns(white);
-      stub.onCall(1).returns(new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        rgb() {
+          return new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN);
+        }
+      };
 
       // exercise
       const result = color.tint(0.2);
@@ -583,11 +656,15 @@ describe('Color', () => {
   describe('.prototype.shade(amount)', () => {
     it('should return a black mixed color', () => {
       // setup
-      const color = new Color('rgb', []);
-      const white = new Rgb(Rgb.MAX, Rgb.MAX, Rgb.MAX);
-      const stub = stubHolder.stub(color, 'rgb');
-      stub.onCall(0).returns(white);
-      stub.onCall(1).returns(new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        rgb() {
+          return new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN);
+        }
+      };
 
       // exercise
       const result = color.shade();
@@ -600,11 +677,15 @@ describe('Color', () => {
 
     it('should return a black mixed color with amount', () => {
       // setup
-      const color = new Color('rgb', []);
-      const white = new Rgb(Rgb.MAX, Rgb.MAX, Rgb.MAX);
-      const stub = stubHolder.stub(color, 'rgb');
-      stub.onCall(0).returns(white);
-      stub.onCall(1).returns(new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN));
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        rgb() {
+          return new Rgb(Rgb.MAX, Rgb.MIN, Rgb.MIN);
+        }
+      };
 
       // exercise
       const result = color.shade(0.2);
