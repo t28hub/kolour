@@ -127,20 +127,6 @@ export default class Cmy extends Color {
   /**
    * @override
    */
-  darken(factor) {
-    return this.hsl().darken(factor).cmy();
-  }
-
-  /**
-   * @override
-   */
-  lighten(factor) {
-    return this.hsl().lighten(factor).cmy();
-  }
-
-  /**
-   * @override
-   */
   int() {
     return this.rgb().int();
   }

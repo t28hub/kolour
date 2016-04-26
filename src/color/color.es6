@@ -1,10 +1,11 @@
+import * as math from '../utils/math.es6';
+
 export const NO_NAME = 'NULL';
 export const NO_VALUE = Number.POSITIVE_INFINITY;
 export const NO_ALPHA = Number.POSITIVE_INFINITY;
 export const MIN_ALPHA = 0;
 export const MAX_ALPHA = 1;
-
-const DEFAULT_AMOUNT = 0.5;
+export const DEFAULT_AMOUNT = 0.5;
 
 /**
  * Class representing a Color
@@ -55,10 +56,10 @@ export default class Color {
       .reduce((previous, entry) => {
         const key = entry[0];
         const value = entry[1];
-        
+
         const current = Object.create(null);
         current[Symbol.keyFor(key)] = value;
-        
+
         return Object.assign(previous, current);
       }, Object.create(null));
     return JSON.stringify(object);
@@ -173,86 +174,109 @@ export default class Color {
   /**
    * Increases the saturation by a specified amount
    * @public
-   * @abstract
    * @param {number} amount - The percentage 0..1
    * @returns {Color} A saturated color
    * @see desaturate
    */
   saturate(amount) {
+    const hsl = this.hsl();
+    const saturation = (hsl.s() / 100 + amount) * 100;
+    hsl.s(math.clamp(saturation, 0, 100));
+    return hsl[this.name.toLowerCase()]();
   }
 
   /**
    * Decreases the saturation by a specified amount
    * @public
-   * @abstract
    * @param {number} amount - The percentage 0..1
    * @returns {Color} A desaturated color
    * @see saturate
    */
   desaturate(amount) {
+    const hsl = this.hsl();
+    const saturation = (hsl.s() / 100 - amount) * 100;
+    hsl.s(math.clamp(saturation, 0, 100));
+    return hsl[this.name.toLowerCase()]();
   }
 
   /**
    * Converts to grayscale
    * @public
-   * @abstract
    * @returns {Color} A grayscale color
    */
   grayscale() {
+    return this.desaturate(1);
   }
 
   /**
    * Increases the luminance by a specified amount
    * @public
-   * @abstract
    * @param {number} amount - The percentage 0..1
    * @returns {Color} A lighten color
    * @see darken
    */
   lighten(amount) {
+    const hsl = this.hsl();
+    const luminance = (hsl.l() / 100 + amount) * 100;
+    hsl.l(math.clamp(luminance, 0, 100));
+    return hsl[this.name.toLowerCase()]();
   }
 
   /**
    * Decreases the luminance by a specified amount
    * @public
-   * @abstract
    * @param {number} amount - The percentage 0..1
    * @returns {Color} A darken color
    * @see lighten
    */
   darken(amount) {
+    const hsl = this.hsl();
+    const luminance = (hsl.l() / 100 - amount) * 100;
+    hsl.l(math.clamp(luminance, 0, 100));
+    return hsl[this.name.toLowerCase()]();
   }
 
   /**
    * Increases the whiteness by a specified amount
    * @public
-   * @abstract
    * @param {number} [amount] - The percentage 0..1
    * @returns {Color} A whiten color
    * @see blacken
    */
   whiten(amount = DEFAULT_AMOUNT) {
+    const hwb = this.hwb();
+    const whiteness = hwb.w() + amount;
+    hwb.w(math.clamp(whiteness));
+    return hwb[this.name.toLowerCase()]();
   }
 
   /**
    * Increases the blackness by a specified amount
    * @public
-   * @abstract
    * @param {number} [amount] - The percentage 0..1
    * @returns {Color} A blacken color
    * @see whiten
    */
-  blaken(amount = DEFAULT_AMOUNT) {
+  blacken(amount = DEFAULT_AMOUNT) {
+    const hwb = this.hwb();
+    const blackness = hwb.b() + amount;
+    hwb.b(math.clamp(blackness));
+    return hwb[this.name.toLowerCase()]();
   }
 
   /**
    * Create a inverted color
    * @public
-   * @abstract
    * @returns {Color} A inverted color
    * @see negate
    */
   invert() {
+    const rgb = this.rgb();
+    const [r, g, b] = [rgb.r(), rgb.g(), rgb.b()].map((value) => {
+      return 0xFF - value;
+    });
+    rgb.r(r).g(g).b(b);
+    return rgb[this.name.toLowerCase()]();
   }
 
   /**
@@ -274,6 +298,13 @@ export default class Color {
    * @see spin
    */
   rotate(amount) {
+    const hsl = this.hsl();
+    let hue = (hsl.h() + 360 * amount) % 360;
+    if (hue > 360) {
+      hue -= 360;
+    }
+    hsl.h(hue);
+    return hsl[this.name.toLowerCase()]();
   }
 
   /**
@@ -290,43 +321,68 @@ export default class Color {
   /**
    * Creates a complementary color
    * @public
-   * @abstract
    * @returns {Color} A complementary color
    */
   complement() {
+    return this.rotate(0.5);
   }
 
   /**
    * Increases the alpha by a specified amount
    * @public
-   * @abstract
    * @param amount - The percentage 0..1
    * @returns {Color} A color
    * @see fadeout
    */
   fadein(amount) {
+    const oldAlpha = this.getAlphaOrDefault();
+    const newAlpha = math.clamp(oldAlpha + amount);
+    const cloned = this.clone();
+    cloned.a(newAlpha);
+    return cloned;
   }
 
   /**
    * Decreases the alpha by a specified amount
    * @public
-   * @abstract
    * @param amount - The percentage 0..1
    * @returns {Color} A color
    * @see fadein
    */
   fadeout(amount) {
+    const oldAlpha = this.getAlphaOrDefault();
+    const newAlpha = math.clamp(oldAlpha - amount);
+    const cloned = this.clone();
+    cloned.a(newAlpha);
+    return cloned;
   }
 
   /**
    * Mixes a color
    * @public
-   * @abstract
    * @param {Color} color - The color to be mixed
    * @param {number} [amount] - The relative weight of each color
    * @returns {Color} A mixed color
    */
   mix(color, amount = DEFAULT_AMOUNT) {
+    const rgb1 = this.rgb();
+    const rgb2 = color.rgb();
+
+    const weight1 = 1 - amount;
+    const weight2 = amount;
+    const values1 = [rgb1.r(), rgb1.g(), rgb1.b()];
+    const values2 = [rgb2.r(), rgb2.g(), rgb2.b()];
+    const [r, g, b] = values1.map((value1, index) => {
+      const value2 = values2[index];
+      const value = Math.round(value1 * weight1 + value2 * weight2);
+      return math.clamp(value, 0x00, 0xFF);
+    });
+
+    const alpha1 = rgb1.getAlphaOrDefault();
+    const alpha2 = rgb2.getAlphaOrDefault();
+    const newAlpha = alpha1 * weight1 + alpha2 * weight2;
+    const mixed = rgb1.r(r).g(g).b(b).a(newAlpha);
+    return mixed[this.name.toLowerCase()]();
   }
 
   /**
@@ -338,6 +394,8 @@ export default class Color {
    * @see shade
    */
   tint(amount = DEFAULT_AMOUNT) {
+    const white = this.rgb().r(0xFF).g(0xFF).b(0xFF);
+    return this.mix(white, amount);
   }
 
   /**
@@ -349,6 +407,8 @@ export default class Color {
    * @see tint
    */
   shade(amount = DEFAULT_AMOUNT) {
+    const black = this.rgb().r(0x00).g(0x00).b(0x00);
+    return this.mix(black, amount);
   }
 
   /**
@@ -468,6 +528,20 @@ export default class Color {
   isValidAlpha(key) {
     const value = this.components.get(key);
     return MIN_ALPHA <= value && value <= MAX_ALPHA;
+  }
+
+  /**
+   * Returns the alpha value or default value
+   * @private
+   * @param {number} defaultAlpha - The default alpha value
+   * @returns {number} - The alpha value
+   */
+  getAlphaOrDefault(defaultAlpha = 1) {
+    const alpha = this.alpha();
+    if (alpha === NO_ALPHA) {
+      return defaultAlpha;
+    }
+    return alpha;
   }
 
   /**

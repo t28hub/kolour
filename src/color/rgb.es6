@@ -2,7 +2,6 @@ import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Cmy from './cmy.es6';
 import Hsl from './hsl.es6';
 import Hsv from './hsv.es6';
-import { DEFAULT_AMOUNT, mix } from '../utils/func.es6';
 
 const MIN = 0x00;
 const MAX = 0xFF;
@@ -31,7 +30,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an access for the red value
+   * Provides an accessor for the red value
    * @param {number} [value] - The new value
    * @returns {Rgb|number}
    * @see red
@@ -41,7 +40,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an access for the green value
+   * Provides an accessor for the green value
    * @param {number} [value] - The new value
    * @returns {Rgb|number}
    * @see green
@@ -51,7 +50,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an access for the blue value
+   * Provides an accessor for the blue value
    * @param {number} [value] - The new value
    * @returns {Rgb|number}
    * @see blue
@@ -61,7 +60,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an access for the alpha value
+   * Provides an accessor for the alpha value
    * @param {number} [value] - The new value
    * @returns {Rgb|number}
    * @see alpha
@@ -71,7 +70,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an access for the red value
+   * Provides an accessor for the red value
    * @param {number} [value] - The new value
    * @returns {Rgb|number}
    * @see r
@@ -81,7 +80,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an access for the green value
+   * Provides an accessor for the green value
    * @param {number} [value] - The new value
    * @returns {Rgb|number}
    * @see g
@@ -91,7 +90,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an access for the blue value
+   * Provides an accessor for the blue value
    * @param {number} [value] - The new value
    * @returns {Rgb|number}
    * @see b
@@ -101,7 +100,7 @@ export default class Rgb extends Color {
   }
 
   /**
-   * Provides an access for the alpha value
+   * Provides an accessor for the alpha value
    * @param {number} [value] - The new value
    * @returns {Rgb|number}
    * @see a
@@ -125,13 +124,6 @@ export default class Rgb extends Color {
       }
       return MIN <= value && value <= MAX;
     });
-  }
-
-  /**
-   * @override
-   */
-  mix(color, weight = DEFAULT_AMOUNT) {
-    return mix(this, color.rgb(), weight);
   }
 
   /**
