@@ -94,7 +94,20 @@ describe('Cmy', () => {
       assert(isValid === false);
     });
   });
-  
+
+  describe('.prototype.hashCode()', () => {
+    it('should return an integer value', () => {
+      // setup
+      const cmy = new Cmy(1, 0, 0);
+
+      // exercise
+      const int = cmy.hashCode();
+
+      // verify
+      assert(int === 0xFF00FFFF);
+    });
+  });
+
   describe('.prototype.cmy()', () => {
     it('should returns a cloned instance', () => {
       // setup
@@ -104,7 +117,7 @@ describe('Cmy', () => {
       const color = cmy.cmy();
 
       // verify
-      assert(color.int() === cmy.int())
+      assert(color.hashCode() === cmy.hashCode())
     });
   });
 
@@ -119,7 +132,7 @@ describe('Cmy', () => {
       // verify
       assert(cmyk instanceof Cmyk);
       assert(cmyk.isValid());
-      assert(cmyk.int() === cmy.int())
+      assert(cmyk.hashCode() === cmy.hashCode())
     });
 
     it('should return a black color when all values are equal to 1', () => {
@@ -132,7 +145,7 @@ describe('Cmy', () => {
       // verify
       assert(cmyk instanceof Cmyk);
       assert(cmyk.isValid());
-      assert(cmyk.int() === cmy.int())
+      assert(cmyk.hashCode() === cmy.hashCode())
     });
   });
 
@@ -147,7 +160,7 @@ describe('Cmy', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.int() === cmy.int())
+      assert(hsl.hashCode() === cmy.hashCode())
     });
   });
 
@@ -162,7 +175,7 @@ describe('Cmy', () => {
       // verify
       assert(hsv instanceof Hsv);
       assert(hsv.isValid());
-      assert(hsv.int() === cmy.int())
+      assert(hsv.hashCode() === cmy.hashCode())
     });
   });
 
@@ -177,7 +190,7 @@ describe('Cmy', () => {
       // verify
       assert(hwb instanceof Hwb);
       assert(hwb.isValid());
-      assert(hwb.int() === cmy.int())
+      assert(hwb.hashCode() === cmy.hashCode())
     });
   });
 
@@ -192,7 +205,7 @@ describe('Cmy', () => {
       // verify
       assert(rgb instanceof Rgb);
       assert(rgb.isValid());
-      assert(rgb.int() === cmy.int())
+      assert(rgb.hashCode() === cmy.hashCode())
     });
   });
 });

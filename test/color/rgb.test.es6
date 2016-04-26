@@ -188,16 +188,16 @@ describe('Rgb', () => {
     });
   });
 
-  describe('.prototype.int()', () => {
+  describe('.prototype.hashCode()', () => {
     it('should return a number representing a color', () => {
       // setup
       const rgb = new Rgb(32, 64, 96, 0.5);
 
       // exercise
-      const int = rgb.int();
+      const int = rgb.hashCode();
 
       // verify
-      assert(int === 0x20406080);
+      assert(int === 0x80204060);
     });
   });
 
@@ -236,7 +236,7 @@ describe('Rgb', () => {
       // verify
       assert(cmy instanceof Cmy);
       assert(cmy.isValid());
-      assert(cmy.int() === rgb.int());
+      assert(cmy.hashCode() === rgb.hashCode());
     });
   });
 
@@ -251,7 +251,7 @@ describe('Rgb', () => {
       // verify
       assert(cmyk instanceof Cmyk);
       assert(cmyk.isValid());
-      assert(cmyk.int() === rgb.int());
+      assert(cmyk.hashCode() === rgb.hashCode());
     });
   });
 
@@ -266,7 +266,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.int() === rgb.int());
+      assert(hsl.hashCode() === rgb.hashCode());
     });
 
     it('should convert color space to HSL when max value is red', () => {
@@ -279,7 +279,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.int() === rgb.int());
+      assert(hsl.hashCode() === rgb.hashCode());
     });
 
     it('should convert color space to HSL when max value is green', () => {
@@ -292,7 +292,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.int() === rgb.int());
+      assert(hsl.hashCode() === rgb.hashCode());
     });
 
     it('should convert color space to HSL when max value is blue', () => {
@@ -305,7 +305,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.int() === rgb.int());
+      assert(hsl.hashCode() === rgb.hashCode());
     });
 
     it('should convert color space to HSL when the instance is grayscaled color', () => {
@@ -318,7 +318,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.int() === new Hsl(0, 0, 50, rgb.a()).int());
+      assert(hsl.hashCode() === new Hsl(0, 0, 50, rgb.a()).hashCode());
     });
   });
 
@@ -333,7 +333,7 @@ describe('Rgb', () => {
       // verify
       assert(hsv instanceof Hsv);
       assert(hsv.isValid());
-      assert(hsv.int() === rgb.int());
+      assert(hsv.hashCode() === rgb.hashCode());
     });
 
     it('should return a HSV color when a color is black', () => {
@@ -362,7 +362,7 @@ describe('Rgb', () => {
       // verify
       assert(hsv instanceof Hsv);
       assert(hsv.isValid());
-      assert(hsv.int() === rgb.int());
+      assert(hsv.hashCode() === rgb.hashCode());
     });
 
     it('should return a HSV color when green value is max', () => {
@@ -375,7 +375,7 @@ describe('Rgb', () => {
       // verify
       assert(hsv instanceof Hsv);
       assert(hsv.isValid());
-      assert(hsv.int() === rgb.int());
+      assert(hsv.hashCode() === rgb.hashCode());
     });
     
     it('should return a HSV color when blue value is max', () => {
@@ -388,7 +388,7 @@ describe('Rgb', () => {
       // verify
       assert(hsv instanceof Hsv);
       assert(hsv.isValid());
-      assert(hsv.int() === rgb.int());
+      assert(hsv.hashCode() === rgb.hashCode());
     });
   });
 
@@ -403,7 +403,7 @@ describe('Rgb', () => {
       // verify
       assert(hwb instanceof Hwb);
       assert(hwb.isValid());
-      assert(hwb.int() === rgb.int());
+      assert(hwb.hashCode() === rgb.hashCode());
     });
   });
 
@@ -419,7 +419,7 @@ describe('Rgb', () => {
       assert(converted !== rgb);
       assert(converted instanceof Rgb);
       assert(converted.isValid());
-      assert(converted.int() === rgb.int());
+      assert(converted.hashCode() === rgb.hashCode());
     });
   });
 });

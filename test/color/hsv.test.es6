@@ -64,16 +64,16 @@ describe('Hsv', () => {
     });
   });
 
-  describe('.prototype.int()', () => {
+  describe('.prototype.hashCode()', () => {
     it('should return an integer representing the color', () => {
       // setup
       const hsv = new Hsv(180, 1, 1);
 
       // exercise
-      const int = hsv.int();
+      const int = hsv.hashCode();
 
       // verify
-      assert(int === 0x00FFFFFF);
+      assert(int === 0xFF00FFFF);
     });
   });
 
@@ -87,7 +87,7 @@ describe('Hsv', () => {
 
       // verify
       assert(cmy instanceof Cmy);
-      assert(cmy.int() === hsv.int());
+      assert(cmy.hashCode() === hsv.hashCode());
     });
   });
   
@@ -101,7 +101,7 @@ describe('Hsv', () => {
 
       // verify
       assert(cmyk instanceof Cmyk);
-      assert(cmyk.int() === hsv.int());
+      assert(cmyk.hashCode() === hsv.hashCode());
     });
   });
 
@@ -115,7 +115,7 @@ describe('Hsv', () => {
 
       // verify
       assert(hsl instanceof Hsl);
-      assert(hsl.int() === hsv.int());
+      assert(hsl.hashCode() === hsv.hashCode());
     });
   });
 
@@ -129,7 +129,7 @@ describe('Hsv', () => {
 
       // verify
       assert(converted instanceof Hsv);
-      assert(converted.int() === hsv.int());
+      assert(converted.hashCode() === hsv.hashCode());
     });
   });
 
@@ -143,7 +143,7 @@ describe('Hsv', () => {
 
       // verify
       assert(hwb instanceof Hwb);
-      assert(hwb.int() === hsv.int());
+      assert(hwb.hashCode() === hsv.hashCode());
     });
   });
 
@@ -151,55 +151,55 @@ describe('Hsv', () => {
     [
       {
         argument: [0, 1, 1],
-        expected: 0xFF0000FF,
+        expected: 0xFFFF0000,
       },
       {
         argument: [30, 1, 1],
-        expected: 0xFF8000FF,
+        expected: 0xFFFF8000,
       },
       {
         argument: [60, 1, 1],
-        expected: 0xFFFF00FF,
+        expected: 0xFFFFFF00,
       },
       {
         argument: [90, 1, 1],
-        expected: 0x80FF00FF,
+        expected: 0xFF80FF00,
       },
       {
         argument: [120, 1, 1],
-        expected: 0x00FF00FF,
+        expected: 0xFF00FF00,
       },
       {
         argument: [150, 1, 1],
-        expected: 0x00FF80FF,
+        expected: 0xFF00FF80,
       },
       {
         argument: [180, 1, 1],
-        expected: 0x00FFFFFF,
-      },
-      {
-        argument: [210, 1, 1],
-        expected: 0x0080FFFF,
-      },
-      {
-        argument: [240, 1, 1],
-        expected: 0x0000FFFF,
-      },
-      {
-        argument: [270, 1, 1],
-        expected: 0x8000FFFF,
-      },
-      {
-        argument: [300, 1, 1],
         expected: 0xFF00FFFF,
       },
       {
-        argument: [330, 1, 1],
+        argument: [210, 1, 1],
         expected: 0xFF0080FF,
       },
       {
-        argument: [360, 1, 1],
+        argument: [240, 1, 1],
         expected: 0xFF0000FF,
+      },
+      {
+        argument: [270, 1, 1],
+        expected: 0xFF8000FF,
+      },
+      {
+        argument: [300, 1, 1],
+        expected: 0xFFFF00FF,
+      },
+      {
+        argument: [330, 1, 1],
+        expected: 0xFFFF0080,
+      },
+      {
+        argument: [360, 1, 1],
+        expected: 0xFFFF0000,
       },
     ].forEach((test) => {
       const { argument, expected } = test;
@@ -213,7 +213,7 @@ describe('Hsv', () => {
 
         // verify
         assert(rgb instanceof Rgb);
-        assert(rgb.int() === expected);
+        assert(rgb.hashCode() === expected);
       });
     });
   });

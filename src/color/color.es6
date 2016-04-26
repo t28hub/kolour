@@ -146,20 +146,7 @@ export default class Color {
     if (!(value instanceof Color)) {
       return false;
     }
-
-    if (value.name !== this.name) {
-      return false;
-    }
-
-    if (this.components.size !== value.components.size) {
-      return false;
-    }
-
-    const entries = Array.from(this.components.entries());
-    return entries.every((entry) => {
-      const key = entry[0];
-      return value.get(key) === entry[1];
-    });
+    return this.hashCode() === value.hashCode();
   }
 
   /**
@@ -169,6 +156,15 @@ export default class Color {
    */
   isValid() {
     return false;
+  }
+
+  /**
+   * Returns a hash code of the color
+   * @public
+   * @returns {number} A hass code
+   */
+  hashCode() {
+    return NaN;
   }
 
   /**
@@ -426,15 +422,6 @@ export default class Color {
       return string.toLowerCase();
     });
     return `#${values.join('')}`.toUpperCase();
-  }
-
-  /**
-   * Converts color to an integer
-   * @public
-   * @returns {number} An integer
-   */
-  int() {
-    return 0;
   }
 
   /**

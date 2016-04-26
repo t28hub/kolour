@@ -136,8 +136,8 @@ export default class Hwb extends Color {
   /**
    * @override
    */
-  int() {
-    return this.rgb().int();
+  hashCode() {
+    return this.rgb().hashCode();
   }
   
   /**

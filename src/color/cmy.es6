@@ -127,8 +127,8 @@ export default class Cmy extends Color {
   /**
    * @override
    */
-  int() {
-    return this.rgb().int();
+  hashCode() {
+    return this.rgb().hashCode();
   }
 
   /**

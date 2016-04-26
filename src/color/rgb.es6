@@ -129,7 +129,7 @@ export default class Rgb extends Color {
   /**
    * @override
    */
-  int() {
+  hashCode() {
     let a;
     if (this.hasAlpha(KEYS.A)) {
       a = Math.round(this.a() * MAX);
@@ -137,10 +137,10 @@ export default class Rgb extends Color {
       a = MAX;
     }
 
-    const int = [this.r(), this.g(), this.b(), a].reduce((result, value, index) => {
+    const code = [a, this.r(), this.g(), this.b()].reduce((result, value, index) => {
       return result | value << (8 * (3 - index));
     }, 0);
-    return int >>> 0;
+    return code >>> 0;
   }
 
   /**

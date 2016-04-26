@@ -137,8 +137,8 @@ export default class Hsv extends Color {
   /**
    * @override
    */
-  int() {
-    return this.rgb().int();
+  hashCode() {
+    return this.rgb().hashCode();
   }
 
   /**

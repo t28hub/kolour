@@ -26,7 +26,7 @@ describe('kolour', () => {
 
       // verify
       assert(color.isValid());
-      assert(color.int() === expected.int());
+      assert(color.hashCode() === expected.hashCode());
     });
   });
 
@@ -104,7 +104,7 @@ describe('kolour', () => {
 
       // verify
       assert(color.isValid());
-      assert(color.int() === expected.int());
+      assert(color.hashCode() === expected.hashCode());
     });
   });
 

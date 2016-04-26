@@ -84,16 +84,16 @@ describe('Cmyk', () => {
     });
   });
 
-  describe('.prototype.int()', () => {
+  describe('.prototype.hashCode()', () => {
     it('should return an integer value', () => {
       // setup
       const cmyk = new Cmyk(1, 0, 0, 0);
       
       // exercise
-      const int = cmyk.int();
+      const int = cmyk.hashCode();
       
       // verify
-      assert(int === 0x00FFFFFF);
+      assert(int === 0xFF00FFFF);
     });
   });
   
@@ -140,7 +140,7 @@ describe('Cmyk', () => {
       // verify
       assert(cmy instanceof Cmy);
       assert(cmy.isValid());
-      assert(cmy.int() === cmyk.int());
+      assert(cmy.hashCode() === cmyk.hashCode());
     });
   });
   
@@ -155,7 +155,7 @@ describe('Cmyk', () => {
       // verify
       assert(converted instanceof Cmyk);
       assert(converted.isValid());
-      assert(converted.int() === cmyk.int());
+      assert(converted.hashCode() === cmyk.hashCode());
     });
   });
 
@@ -170,7 +170,7 @@ describe('Cmyk', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.int() === cmyk.int());
+      assert(hsl.hashCode() === cmyk.hashCode());
     });
   });
   
@@ -185,7 +185,7 @@ describe('Cmyk', () => {
       // verify
       assert(hsv instanceof Hsv);
       assert(hsv.isValid());
-      assert(hsv.int() === cmyk.int());
+      assert(hsv.hashCode() === cmyk.hashCode());
     });
   });
 
@@ -200,7 +200,7 @@ describe('Cmyk', () => {
       // verify
       assert(hwb instanceof Hwb);
       assert(hwb.isValid());
-      assert(hwb.int() === cmyk.int());
+      assert(hwb.hashCode() === cmyk.hashCode());
     });
   });
   
@@ -215,7 +215,7 @@ describe('Cmyk', () => {
       // verify
       assert(rgb instanceof Rgb);
       assert(rgb.isValid());
-      assert(rgb.int() === cmyk.int());
+      assert(rgb.hashCode() === cmyk.hashCode());
     });
   });
 });

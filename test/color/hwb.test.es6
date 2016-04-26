@@ -64,16 +64,16 @@ describe('Hwb', () => {
     });
   });
 
-  describe('.prototype.int()', () => {
+  describe('.prototype.hashCode()', () => {
     it('should return an integer representing the color', () => {
       // setup
       const hwb = new Hwb(180, 0, 0);
 
       // exercise
-      const int = hwb.int();
+      const int = hwb.hashCode();
 
       // verify
-      assert(int === 0x00FFFFFF);
+      assert(int === 0xFF00FFFF);
     });
   });
 
@@ -111,7 +111,7 @@ describe('Hwb', () => {
 
       // verify
       assert(cmy instanceof Cmy);
-      assert(cmy.int() === hwb.int());
+      assert(cmy.hashCode() === hwb.hashCode());
     });
   });
 
@@ -125,7 +125,7 @@ describe('Hwb', () => {
 
       // verify
       assert(cmyk instanceof Cmyk);
-      assert(cmyk.int() === hwb.int());
+      assert(cmyk.hashCode() === hwb.hashCode());
     });
   });
 
@@ -139,7 +139,7 @@ describe('Hwb', () => {
 
       // verify
       assert(hsl instanceof Hsl);
-      assert(hsl.int() === hwb.int());
+      assert(hsl.hashCode() === hwb.hashCode());
     });
   });
 
@@ -153,7 +153,7 @@ describe('Hwb', () => {
 
       // verify
       assert(hsv instanceof Hsv);
-      assert(hsv.int() === hwb.int());
+      assert(hsv.hashCode() === hwb.hashCode());
     });
   });
 
@@ -168,7 +168,7 @@ describe('Hwb', () => {
       // verify
       assert(converted instanceof Hwb);
       assert(converted !== hwb);
-      assert(converted.int() === hwb.int());
+      assert(converted.hashCode() === hwb.hashCode());
     });
   });
 
@@ -182,7 +182,7 @@ describe('Hwb', () => {
 
       // verify
       assert(rgb instanceof Rgb);
-      assert(rgb.int() === rgb.int());
+      assert(rgb.hashCode() === rgb.hashCode());
     });
   });
 });

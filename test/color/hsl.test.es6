@@ -64,16 +64,16 @@ describe('Hsl', () => {
     });
   });
   
-  describe('.prototype.int()', () => {
+  describe('.prototype.hashCode()', () => {
     it('should return an integer representing the color', () => {
       // setup
       const hsl = new Hsl(180, 100, 50);
       
       // exercise
-      const int = hsl.int();
+      const int = hsl.hashCode();
       
       // verify
-      assert(int === 0x00FFFFFF);
+      assert(int === 0xFF00FFFF);
     });
   });
   
@@ -111,7 +111,7 @@ describe('Hsl', () => {
 
       // verify
       assert(cmy instanceof Cmy);
-      assert(cmy.int() === hsl.int());
+      assert(cmy.hashCode() === hsl.hashCode());
     });
   });
   
@@ -125,7 +125,7 @@ describe('Hsl', () => {
 
       // verify
       assert(cmyk instanceof Cmyk);
-      assert(cmyk.int() === hsl.int());
+      assert(cmyk.hashCode() === hsl.hashCode());
     });
   });
   
@@ -140,7 +140,7 @@ describe('Hsl', () => {
       // verify
       assert(converted instanceof Hsl);
       assert(converted !== hsl);
-      assert(converted.int() === hsl.int());
+      assert(converted.hashCode() === hsl.hashCode());
     });
   });
 
@@ -154,7 +154,7 @@ describe('Hsl', () => {
 
       // verify
       assert(hsv instanceof Hsv);
-      assert(hsv.int() === hsl.int());
+      assert(hsv.hashCode() === hsl.hashCode());
     });
   });
   
@@ -169,7 +169,7 @@ describe('Hsl', () => {
       // verify
       assert(hwb instanceof Hwb);
       assert(hwb !== hsl);
-      assert(hwb.int() === hsl.int());
+      assert(hwb.hashCode() === hsl.hashCode());
     });
   });
 
@@ -177,31 +177,31 @@ describe('Hsl', () => {
     [
       {
         argument: [0, 50, 50],
-        expected: 0xBF4040FF
+        expected: 0xFFBF4040,
       },
       {
         argument: [30, 50, 50],
-        expected: 0xBF8040FF
+        expected: 0xFFBF8040,
       },
       {
         argument: [120, 50, 50],
-        expected: 0x40BF40FF
+        expected: 0xFF40BF40,
       },
       {
         argument: [180, 50, 50],
-        expected: 0x40BFBFFF
+        expected: 0xFF40BFBF,
       },
       {
         argument: [300, 50, 50],
-        expected: 0xBF40BFFF
+        expected: 0xFFBF40BF,
       },
       {
         argument: [60, 0, 50],
-        expected: 0x808080FF
+        expected: 0xFF808080,
       },
       {
         argument: [90, 50, 0],
-        expected: 0x000000FF
+        expected: 0xFF000000,
       },
     ].forEach((test) => {
       const { argument, expected } = test;
@@ -215,7 +215,7 @@ describe('Hsl', () => {
 
         // verify
         assert(rgb instanceof Rgb);
-        assert(rgb.int() === expected);
+        assert(rgb.hashCode() === expected);
       });
     });
   });

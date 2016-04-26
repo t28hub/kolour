@@ -154,7 +154,6 @@ describe('Color', () => {
 
       // verify
       assert(cloned !== color);
-      assert(cloned.equals(color));
     });
 
     it('should return another instance when an instance is a child class of Color', () => {
@@ -162,6 +161,13 @@ describe('Color', () => {
       class TestColor extends Color {
         constructor(a, b, c) {
           super(NAME, [[KEYS.A, a], [KEYS.B, b], [KEYS.C, c]]);
+        }
+
+        hashCode() {
+          return Array.from(this.components.values())
+            .reduce((result, value) => {
+              return result + value;
+            }, 0);
         }
       }
       const color = new TestColor(10, 20, 30);
@@ -176,16 +182,32 @@ describe('Color', () => {
   });
 
   describe('.prototype.equals(value)', () => {
-    it('should return true when a value is same class and has same components', () => {
+    it('should return true when a value has same hashCode', () => {
       // setup
-      const color1 = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
-      const color2 = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
+      const color1 = new class extends Color {
+        constructor() {
+          super(NAME, []);
+        }
+
+        hashCode() {
+          return 0xFF;
+        }
+      };
+      const color2 = new class extends Color {
+        constructor() {
+          super(NAME, []);
+        }
+
+        hashCode() {
+          return 0xFF;
+        }
+      };
 
       // exercise
       const equals = color1.equals(color2);
 
       // verify
-      assert(equals);
+      assert(equals === true);
     });
 
     it('should return false when a value is not instance of Color', () => {
@@ -199,22 +221,26 @@ describe('Color', () => {
       assert(!equals);
     });
 
-    it('should return false when a value does not have same name', () => {
+    it('should return false when a value does not have same hash code', () => {
       // setup
-      const color1 = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
-      const color2 = new Color('TEST2', [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
+      const color1 = new class extends Color {
+        constructor() {
+          super(NAME, []);
+        }
 
-      // exercise
-      const equals = color1.equals(color2);
+        hashCode() {
+          return 0xFF;
+        }
+      };
+      const color2 = new class extends Color {
+        constructor() {
+          super(NAME, []);
+        }
 
-      // verify
-      assert(!equals);
-    });
-
-    it('should return false when a value does not have components which does not have same size', () => {
-      // setup
-      const color1 = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
-      const color2 = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20]]);
+        hashCode() {
+          return 0xFE;
+        }
+      };
 
       // exercise
       const equals = color1.equals(color2);
@@ -236,7 +262,20 @@ describe('Color', () => {
       assert(!isValid);
     });
   });
-  
+
+  describe('.prototype.hashCode()', () => {
+    it('should return NaN', () => {
+      // setup
+      const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
+
+      // exercise
+      const int = color.hashCode();
+
+      // verify
+      assert(Number.isNaN(int));
+    });
+  });
+
   describe('.prototype.saturate(amount)', () => {
     it('should increase the saturation', () => {
       // setup
@@ -256,7 +295,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hsl(180, 60, 50).int());
+      assert(result.hashCode() == new Hsl(180, 60, 50).hashCode());
     });
   });
   
@@ -279,7 +318,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hsl(180, 40, 50).int());
+      assert(result.hashCode() == new Hsl(180, 40, 50).hashCode());
     });
   });
   
@@ -302,7 +341,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hsl(180, 0, 50).int());
+      assert(result.hashCode() == new Hsl(180, 0, 50).hashCode());
     });
   });
   
@@ -325,7 +364,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hsl(180, 50, 60).int());
+      assert(result.hashCode() == new Hsl(180, 50, 60).hashCode());
     });
   });
 
@@ -348,7 +387,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hsl(180, 50, 40).int());
+      assert(result.hashCode() == new Hsl(180, 50, 40).hashCode());
     });
   });
 
@@ -371,7 +410,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hwb(180, 1, 0.5).int());
+      assert(result.hashCode() == new Hwb(180, 1, 0.5).hashCode());
     });
 
     it('should increase the whiteness with amount', () => {
@@ -392,7 +431,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hwb(180, 0.7, 0.5).int());
+      assert(result.hashCode() == new Hwb(180, 0.7, 0.5).hashCode());
     });
   });
 
@@ -415,7 +454,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hwb(180, 0.5, 1).int());
+      assert(result.hashCode() == new Hwb(180, 0.5, 1).hashCode());
     });
 
     it('should increase the whiteness with amount', () => {
@@ -436,7 +475,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() == new Hwb(180, 0.5, 0.7).int());
+      assert(result.hashCode() == new Hwb(180, 0.5, 0.7).hashCode());
     });
   });
   
@@ -459,7 +498,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Rgb(155, 105, 0).int());
+      assert(result.hashCode() === new Rgb(155, 105, 0).hashCode());
     });
   });
   
@@ -482,7 +521,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Hsl(120, 100, 50).int());
+      assert(result.hashCode() === new Hsl(120, 100, 50).hashCode());
     });
   });
   
@@ -505,7 +544,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Hsl(240, 100, 50).int());
+      assert(result.hashCode() === new Hsl(240, 100, 50).hashCode());
     });
   });
   
@@ -582,7 +621,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Rgb(128, 0, 128).int());
+      assert(result.hashCode() === new Rgb(128, 0, 128).hashCode());
     });
 
     it('should return a mixed color with amount', () => {
@@ -605,7 +644,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Rgb(204, 0, 51).int());
+      assert(result.hashCode() === new Rgb(204, 0, 51).hashCode());
     });
   });
   
@@ -628,7 +667,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Rgb(255, 128, 128).int());
+      assert(result.hashCode() === new Rgb(255, 128, 128).hashCode());
     });
     
     it('should return a white mixed color with amount', () => {
@@ -649,7 +688,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Rgb(255, 51, 51).int());
+      assert(result.hashCode() === new Rgb(255, 51, 51).hashCode());
     });
   });
 
@@ -672,7 +711,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Rgb(128, 0, 0).int());
+      assert(result.hashCode() === new Rgb(128, 0, 0).hashCode());
     });
 
     it('should return a black mixed color with amount', () => {
@@ -693,7 +732,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.int() === new Rgb(204, 0, 0).int());
+      assert(result.hashCode() === new Rgb(204, 0, 0).hashCode());
     });
   });
 
@@ -714,19 +753,6 @@ describe('Color', () => {
     });   
   });
   
-  describe('.prototype.int()', () => {
-    it('should return 0', () => {
-      // setup
-      const color = new Color(NAME, [[KEYS.A, 10], [KEYS.B, 20], [KEYS.C, 30]]);
-
-      // exercise
-      const int = color.int();
-
-      // verify
-      assert(int === 0);
-    });
-  });
-
   describe('.prototype.css()', () => {
     it('should return empty string', () => {
       // setup
