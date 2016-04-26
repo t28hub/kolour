@@ -5,6 +5,7 @@ import Hsl from './color/hsl.es6';
 import Hsv from './color/hsv.es6';
 import Hwb from './color/hwb.es6';
 import Rgb from './color/rgb.es6';
+import NumberParser from './parser/number-parser.es6';
 import ObjectParser from './parser/object-parser.es6';
 import StringParser from './parser/string-parser.es6';
 import * as type from './utils/type.es6';
@@ -18,6 +19,8 @@ function kolour(value) {
   let color;
   if (value instanceof Color) {
     color = value.clone();
+  } else if (type.isNumber(value)) {
+    color = new NumberParser().parse(value);
   } else if (type.isObject(value)) {
     color = ObjectParser.defaults().parse(value);
   } else if (type.isString(value)) {

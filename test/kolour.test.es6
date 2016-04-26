@@ -11,6 +11,36 @@ import Rgb from '../src/color/rgb.es6';
 describe('kolour', () => {
   [
     {
+      argument: 0xFF00FF,
+      expected: new Rgb(255, 0, 255, 0),
+    },
+    {
+      argument: 0xFFFF00FF,
+      expected: new Rgb(255, 0, 255, 1),
+    },
+  ].forEach((test) => {
+    const { argument, expected } = test;
+    it(`should create ${expected.name} with 0x${argument.toString(16).toUpperCase()}`, () => {
+      // exercise
+      const color = kolour(argument);
+
+      // verify
+      assert(color.isValid());
+      assert(color.int() === expected.int());
+    });
+  });
+
+  it('should create an invalid color with non-finite number', () => {
+    // exercise
+    const color = kolour(NaN);
+
+    // verify
+    assert(color instanceof Color);
+    assert(color.isValid() === false);
+  });
+
+  [
+    {
       argument: 'black',
       expected: new Rgb(0, 0, 0),
     },
