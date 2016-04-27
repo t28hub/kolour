@@ -288,7 +288,6 @@ export default class Color {
   /**
    * Creates a rotated color
    * @public
-   * @abstract
    * @param degree - The degree
    * @returns {Color} A rotated color
    * @see spin
@@ -384,7 +383,6 @@ export default class Color {
   /**
    * Mixes with white by a specified amount
    * @public
-   * @abstract
    * @param {number} [amount] - The percentage 0..1
    * @returns {Color} A mixed color
    * @see shade
@@ -397,7 +395,6 @@ export default class Color {
   /**
    * Mixes with black by a specified amount
    * @public
-   * @abstract
    * @param {number} [amount] - The percentage 0..1
    * @returns {Color} A mixed color
    * @see tint
