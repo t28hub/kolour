@@ -289,15 +289,15 @@ export default class Color {
    * Creates a rotated color
    * @public
    * @abstract
-   * @param amount - The percentage 0..1
+   * @param degree - The degree
    * @returns {Color} A rotated color
    * @see spin
    */
-  rotate(amount) {
+  rotate(degree) {
     const hsl = this.hsl();
-    let hue = (hsl.h() + 360 * amount) % 360;
-    if (hue > 360) {
-      hue -= 360;
+    let hue = (hsl.h() + degree) % 360;
+    if (hue < 360) {
+      hue += 360;
     }
     hsl.h(hue);
     return hsl[this.name.toLowerCase()]();
@@ -306,12 +306,12 @@ export default class Color {
   /**
    * Creates a rotated color
    * @public
-   * @param amount - The percentage 0..1
+   * @param degree - The degree
    * @returns {Color} A rotated color
    * @see rotate
    */
-  spin(amount) {
-    return this.rotate(amount);
+  spin(degree) {
+    return this.rotate(degree);
   }
 
   /**
@@ -320,7 +320,7 @@ export default class Color {
    * @returns {Color} A complementary color
    */
   complement() {
-    return this.rotate(0.5);
+    return this.rotate(180);
   }
 
   /**

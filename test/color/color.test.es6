@@ -501,9 +501,9 @@ describe('Color', () => {
       assert(result.hashCode() === new Rgb(155, 105, 0).hashCode());
     });
   });
-  
-  describe('.prototype.rotate(amount)', () => {
-    it('should return a rotated color', () => {
+
+  describe('.prototype.rotate(degree)', () => {
+    it('should return a rotated color with positive degree', () => {
       // setup
       const color = new class extends Color {
         constructor() {
@@ -516,12 +516,33 @@ describe('Color', () => {
       };
 
       // exercise
-      const result = color.rotate(300 / 360);
+      const result = color.rotate(300);
 
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
       assert(result.hashCode() === new Hsl(120, 100, 50).hashCode());
+    });
+
+    it('should return a rotated color with negative degree', () => {
+      // setup
+      const color = new class extends Color {
+        constructor() {
+          super('rgb', []);
+        }
+
+        hsl() {
+          return new Hsl(180, 100, 50);
+        }
+      };
+
+      // exercise
+      const result = color.rotate(-300);
+
+      // verify
+      assert(result instanceof Rgb);
+      assert(result !== color);
+      assert(result.hashCode() === new Hsl(240, 100, 50).hashCode());
     });
   });
   
