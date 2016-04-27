@@ -10,7 +10,7 @@ describe('Hsl', () => {
   describe('.constructor(h, s, l, a)', () => {
     it('should create an instance with hue, saturation and lightness', () => {
       // exercise
-      const hsl = new Hsl(120, 50, 20);
+      const hsl = new Hsl(120, 0.5, 0.2);
       
       // verify
       assert(hsl instanceof Hsl);
@@ -19,7 +19,7 @@ describe('Hsl', () => {
     
     it('should create an instance with hue, saturation, lightness and alpha', () => {
       // exercise
-      const hsl = new Hsl(120, 50, 20, 0.5);
+      const hsl = new Hsl(120, 0.5, 0.2, 0.5);
 
       // verify
       assert(hsl instanceof Hsl);
@@ -30,7 +30,7 @@ describe('Hsl', () => {
   describe('.prototype.isValid()', () => {
     it('should return true when all values are valid', () => {
       // setup
-      const hsl = new Hsl(120, 50, 20);
+      const hsl = new Hsl(120, 0.5, 0.2);
       
       // exercise
       const isValid = hsl.isValid();
@@ -40,14 +40,14 @@ describe('Hsl', () => {
     });
     
     [
-      { arguments: [120, 50, NaN] },
-      { arguments: [-120, 50, 20] },
-      { arguments: [480, 50, 20] },
-      { arguments: [120, -1, 20] },
-      { arguments: [120, 101, 20] },
-      { arguments: [120, 50, -1] },
-      { arguments: [120, 50, 101] },
-      { arguments: [120, 50, 100, NaN] },
+      { arguments: [120, 0.5, NaN] },
+      { arguments: [-120, 0.5, 2.0] },
+      { arguments: [480, 0.5, 2.0] },
+      { arguments: [120, -1., 2.0] },
+      { arguments: [120, 1.01, 2.0] },
+      { arguments: [120, 0.5, -1.0] },
+      { arguments: [120, 0.5, 1.01] },
+      { arguments: [120, 0.5, 1.0, NaN] },
     ].forEach((test) => {
       const [h, s, l, a] = test.arguments;
 
@@ -67,7 +67,7 @@ describe('Hsl', () => {
   describe('.prototype.hashCode()', () => {
     it('should return an integer representing the color', () => {
       // setup
-      const hsl = new Hsl(180, 100, 50);
+      const hsl = new Hsl(180, 1.0, 0.5);
       
       // exercise
       const int = hsl.hashCode();
@@ -80,7 +80,7 @@ describe('Hsl', () => {
   describe('.prototype.css()', () => {
     it('should return a css style color', () => {
       // setup
-      const hsl = new Hsl(180, 100, 50);
+      const hsl = new Hsl(180, 1.0, 0.5);
 
       // exercise
       const css = hsl.css();
@@ -91,7 +91,7 @@ describe('Hsl', () => {
     
     it('should return a css style color when the alpha value is contained', () => {
       // setup
-      const hsl = new Hsl(180, 100, 50, 0.5);
+      const hsl = new Hsl(180, 1.0, 0.5, 0.5);
 
       // exercise
       const css = hsl.css();
@@ -104,7 +104,7 @@ describe('Hsl', () => {
   describe('.prototype.cmy()', () => {
     it('should convert color to CMY', () => {
       // setup
-      const hsl = new Hsl(180, 100, 50);
+      const hsl = new Hsl(180, 1.0, 0.5);
 
       // exercise
       const cmy = hsl.cmy();
@@ -118,7 +118,7 @@ describe('Hsl', () => {
   describe('.prototype.cmyk()', () => {
     it('should convert color to CMYK', () => {
       // setup
-      const hsl = new Hsl(180, 100, 50);
+      const hsl = new Hsl(180, 1.0, 0.5);
 
       // exercise
       const cmyk = hsl.cmyk();
@@ -132,7 +132,7 @@ describe('Hsl', () => {
   describe('.prototype.hsl()', () => {
     it('should return HSL', () => {
       // setup
-      const hsl = new Hsl(180, 100, 50);
+      const hsl = new Hsl(180, 1.0, 0.5);
 
       // exercise
       const converted = hsl.hsl();
@@ -147,7 +147,7 @@ describe('Hsl', () => {
   describe('.prototype.hsv()', () => {
     it('should convert color to HSV', () => {
       // setup
-      const hsl = new Hsl(180, 100, 50);
+      const hsl = new Hsl(180, 1.0, 0.5);
 
       // exercise
       const hsv = hsl.hsv();
@@ -161,7 +161,7 @@ describe('Hsl', () => {
   describe('.prototype.hwb()', () => {
     it('should convert color to HWB', () => {
       // setup
-      const hsl = new Hsl(180, 100, 50);
+      const hsl = new Hsl(180, 1.0, 0.5);
 
       // exercise
       const hwb = hsl.hwb();
@@ -176,31 +176,31 @@ describe('Hsl', () => {
   describe('.prototype.rgb()', () => {
     [
       {
-        argument: [0, 50, 50],
+        argument: [0, 0.5, 0.5],
         expected: 0xFFBF4040,
       },
       {
-        argument: [30, 50, 50],
+        argument: [30, 0.5, 0.5],
         expected: 0xFFBF8040,
       },
       {
-        argument: [120, 50, 50],
+        argument: [120, 0.5, 0.5],
         expected: 0xFF40BF40,
       },
       {
-        argument: [180, 50, 50],
+        argument: [180, 0.5, 0.5],
         expected: 0xFF40BFBF,
       },
       {
-        argument: [300, 50, 50],
+        argument: [300, 0.5, 0.5],
         expected: 0xFFBF40BF,
       },
       {
-        argument: [60, 0, 50],
+        argument: [60, 0.0, 0.5],
         expected: 0xFF808080,
       },
       {
-        argument: [90, 50, 0],
+        argument: [90, 0.5, 0.0],
         expected: 0xFF000000,
       },
     ].forEach((test) => {

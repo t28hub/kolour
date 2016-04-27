@@ -1,12 +1,13 @@
 import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Rgb from './rgb.es6';
+import * as func from '../utils/func.es6';
 
 const MIN_H = 0;
 const MAX_H = 360;
 const MIN_S = 0;
-const MAX_S = 100;
+const MAX_S = 1;
 const MIN_L = 0;
-const MAX_L = 100;
+const MAX_L = 1;
 
 const NAME = 'HSL';
 const KEYS = Object.freeze({
@@ -122,7 +123,7 @@ export default class Hsl extends Color {
 
     const [h, s, l] = [this.h(), this.s(), this.l()];
     return [
-      { min: MIN_H, max: MAX_H, value: h },
+      { min: Number.NEGATIVE_INFINITY, max: Number.POSITIVE_INFINITY, value: h },
       { min: MIN_S, max: MAX_S, value: s },
       { min: MIN_L, max: MAX_L, value: l },
     ].every(({ min, max, value }) => {
@@ -146,9 +147,9 @@ export default class Hsl extends Color {
   css() {
     const [h, s, l, a] = [this.h(), this.s(), this.l(), this.a()];
     if (this.hasAlpha(KEYS.A)) {
-      return `hsla(${h}, ${s}%, ${l}%, ${a})`;
+      return `hsla(${h}, ${s * 100}%, ${l * 100}%, ${a})`;
     }
-    return `hsl(${h}, ${s}%, ${l}%)`;
+    return `hsl(${h}, ${s * 100}%, ${l * 100}%)`;
   }
 
   /**
@@ -191,9 +192,9 @@ export default class Hsl extends Color {
    * @override
    */
   rgb() {
-    const h = this.h();
-    const s = this.s() / MAX_S;
-    const l = this.l() / MAX_L;
+    const h = func.normalizedHue(this.h());
+    const s = this.s();
+    const l = this.l();
     if (s === MIN_S) {
       const value = Math.round(l * Rgb.MAX);
       return new Rgb(value, value, value, this.alpha());

@@ -212,7 +212,7 @@ export default class Rgb extends Color {
     } else {
       s = delta / (2 - total);
     }
-    return new Hsl(h, s * Hsl.MAX_S, l * Hsl.MAX_L, this.alpha());
+    return new Hsl(h, s, l, this.alpha());
   }
 
   /**

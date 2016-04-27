@@ -1,8 +1,7 @@
 import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Hsv from './hsv.es6';
+import * as func from '../utils/func.es6';
 
-const MIN_H = 0;
-const MAX_H = 360;
 const MIN_W = 0;
 const MAX_W = 1;
 const MIN_B = 0;
@@ -121,7 +120,7 @@ export default class Hwb extends Color {
     }
 
     return [
-      { min: MIN_H, max: MAX_H, value: this.h() },
+      { min: Number.NEGATIVE_INFINITY, max: Number.POSITIVE_INFINITY, value: this.h() },
       { min: MIN_W, max: MAX_W, value: this.w() },
       { min: MIN_B, max: MAX_B, value: this.b() },
     ].every((object) => {
@@ -176,7 +175,7 @@ export default class Hwb extends Color {
    * @override
    */
   hsv() {
-    const [h, w, b] = [this.h(), this.w(), this.b()];
+    const [h, w, b] = [func.normalizedHue(this.h()), this.w(), this.b()];
     let s;
     let v;
     if (w + b >= 1) {

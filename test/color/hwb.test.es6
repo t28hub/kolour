@@ -41,8 +41,6 @@ describe('Hwb', () => {
 
     [
       { argument: [120, 0, NaN] },
-      { argument: [-120, 0, 0] },
-      { argument: [480, 0, 0] },
       { argument: [120, -1, 0] },
       { argument: [120, 1.1, 0] },
       { argument: [120, 0, -1] },

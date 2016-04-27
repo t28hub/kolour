@@ -318,7 +318,7 @@ describe('Rgb', () => {
       // verify
       assert(hsl instanceof Hsl);
       assert(hsl.isValid());
-      assert(hsl.hashCode() === new Hsl(0, 0, 50, rgb.a()).hashCode());
+      assert(hsl.hashCode() === new Hsl(0, 0, 0.5, rgb.a()).hashCode());
     });
   });
 

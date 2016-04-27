@@ -1,9 +1,8 @@
 import Color, { NO_ALPHA, NO_VALUE } from './color.es6';
 import Hwb from './hwb.es6';
 import Rgb from './rgb.es6';
+import * as func from '../utils/func.es6';
 
-const MIN_H = 0;
-const MAX_H = 360;
 const MIN_S = 0;
 const MAX_S = 1;
 const MIN_V = 0;
@@ -122,7 +121,7 @@ export default class Hsv extends Color {
     }
 
     return [
-      { min: MIN_H, max: MAX_H, value: this.h() },
+      { min: Number.NEGATIVE_INFINITY, max: Number.POSITIVE_INFINITY, value: this.h() },
       { min: MIN_S, max: MAX_S, value: this.s() },
       { min: MIN_V, max: MAX_V, value: this.v() },
     ].every((object) => {
@@ -174,7 +173,7 @@ export default class Hsv extends Color {
    * @override
    */
   hwb() {
-    const [h, s, v, a] = [this.h(), this.s(), this.v(), this.a()];
+    const [h, s, v, a] = [func.normalizedHue(this.h()), this.s(), this.v(), this.a()];
     const w = (1 - s) * v;
     const b = 1 - v;
     return new Hwb(h, w, b, a);
@@ -184,7 +183,7 @@ export default class Hsv extends Color {
    * @override
    */
   rgb() {
-    const [h, s, v] = [this.h(), this.s(), this.v()];
+    const [h, s, v] = [func.normalizedHue(this.h()), this.s(), this.v()];
     const c = v * s;
     const x = c * (1 - Math.abs(h / 60 % 2 - 1));
     const m = v - c;

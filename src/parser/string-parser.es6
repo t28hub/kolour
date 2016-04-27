@@ -270,8 +270,8 @@ DEFAULTS.add(new class extends Factory {
   create(h, s, l) {
     return new Hsl(
       Number.parseInt(h, 10),
-      Number.parseFloat(s) / Hsl.MAX_S,
-      Number.parseFloat(l) / Hsl.MAX_L
+      Number.parseFloat(s) / 100,
+      Number.parseFloat(l) / 100
     );
   }
 });
@@ -284,8 +284,8 @@ DEFAULTS.add(new class extends Factory {
   create(h, s, l, a) {
     return new Hsl(
       Number.parseInt(h, 10),
-      Number.parseFloat(s) / Hsl.MAX_S,
-      Number.parseFloat(l) / Hsl.MAX_L,
+      Number.parseFloat(s) / 100,
+      Number.parseFloat(l) / 100,
       Number.parseFloat(a)
     );
   }
