@@ -1,3 +1,4 @@
+import * as func from '../utils/func.es6';
 import * as math from '../utils/math.es6';
 
 export const NO_NAME = 'NULL';
@@ -294,10 +295,7 @@ export default class Color {
    */
   rotate(degree) {
     const hsl = this.hsl();
-    let hue = (hsl.h() + degree) % 360;
-    if (hue < 360) {
-      hue += 360;
-    }
+    const hue = func.normalizedHue(hsl.h() + degree);
     hsl.h(hue);
     return hsl[this.name.toLowerCase()]();
   }
