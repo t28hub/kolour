@@ -1,0 +1,36 @@
+{
+  "name": "kolour",
+  "version": "1.0.0",
+  "homepage": "https://github.com/t28hub/kolour",
+  "authors": [
+    "Tatsuya Maki <t28oogle@gmail.com>"
+  ],
+  "description": "A fluent color conversion and manipulation library",
+  "main": "lib/kolour.js",
+  "keywords": [
+    "hex",
+    "cmy",
+    "cmyk",
+    "hsl",
+    "hsv",
+    "hwb",
+    "rgb",
+    "color",
+    "colour",
+    "color-space",
+    "color-model",
+    "parser",
+    "convert"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "coverage",
+    "node_modules",
+    "test",
+    "jsdoc.config.json",
+    "karma.config.js",
+    "package.json",
+    "webpack.config.babel.js"
+  ]
+}
