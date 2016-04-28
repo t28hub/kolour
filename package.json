@@ -1,6 +1,6 @@
 {
   "name": "kolour",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "A fluent color conversion and manipulation library",
   "main": "lib/kolour.js",
   "scripts": {
