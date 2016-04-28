@@ -1,7 +1,7 @@
 {
   "name": "kolour",
   "version": "1.0.0",
-  "description": "A fluent color manipulation library",
+  "description": "A fluent color conversion and manipulation library",
   "main": "lib/kolour.js",
   "scripts": {
     "build": "npm run clean && npm run lint && npm run test && npm run build:webpack",
@@ -21,7 +21,15 @@
     "url": "git+https://github.com/t28hub/kolour.git"
   },
   "keywords": [
+    "hex",
+    "cmy",
+    "cmyk",
+    "hsl",
+    "hsv",
+    "hwb",
+    "rgb",
     "color",
+    "colour",
     "color-space",
     "color-model",
     "parser",
