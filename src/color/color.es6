@@ -214,8 +214,8 @@ export default class Color {
    */
   lighten(amount) {
     const hsl = this.hsl();
-    const luminance = (hsl.l() / 100 + amount) * 100;
-    hsl.l(math.clamp(luminance, 0, 100));
+    const luminance = hsl.l() + amount;
+    hsl.l(math.clamp(luminance));
     return hsl[this.name.toLowerCase()]();
   }
 
@@ -228,8 +228,8 @@ export default class Color {
    */
   darken(amount) {
     const hsl = this.hsl();
-    const luminance = (hsl.l() / 100 - amount) * 100;
-    hsl.l(math.clamp(luminance, 0, 100));
+    const luminance = hsl.l() - amount;
+    hsl.l(math.clamp(luminance));
     return hsl[this.name.toLowerCase()]();
   }
 

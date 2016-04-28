@@ -354,7 +354,7 @@ describe('Color', () => {
         }
 
         hsl() {
-          return new Hsl(180, 50, 50);
+          return new Hsl(180, 0.5, 0.5);
         }
       };
 
@@ -364,7 +364,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.hashCode() == new Hsl(180, 50, 60).hashCode());
+      assert(result.hashCode() == new Hsl(180, 0.5, 0.6).hashCode());
     });
   });
 
@@ -377,7 +377,7 @@ describe('Color', () => {
         }
 
         hsl() {
-          return new Hsl(180, 50, 50);
+          return new Hsl(180, 0.5, 0.5);
         }
       };
 
@@ -387,7 +387,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.hashCode() == new Hsl(180, 50, 40).hashCode());
+      assert(result.hashCode() == new Hsl(180, 0.5, 0.4).hashCode());
     });
   });
 
@@ -511,7 +511,7 @@ describe('Color', () => {
         }
 
         hsl() {
-          return new Hsl(180, 100, 50);
+          return new Hsl(180, 1.0, 0.5);
         }
       };
 
@@ -521,7 +521,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.hashCode() === new Hsl(120, 100, 50).hashCode());
+      assert(result.hashCode() === new Hsl(120, 1.0, 0.5).hashCode());
     });
 
     it('should return a rotated color with negative degree', () => {
@@ -532,7 +532,7 @@ describe('Color', () => {
         }
 
         hsl() {
-          return new Hsl(180, 100, 50);
+          return new Hsl(180, 1.0, 0.5);
         }
       };
 
@@ -542,7 +542,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.hashCode() === new Hsl(240, 100, 50).hashCode());
+      assert(result.hashCode() === new Hsl(240, 1.0, 0.5).hashCode());
     });
   });
   
@@ -555,7 +555,7 @@ describe('Color', () => {
         }
 
         hsl() {
-          return new Hsl(60, 100, 50);
+          return new Hsl(60, 1.0, 0.5);
         }
       };
 
@@ -565,7 +565,7 @@ describe('Color', () => {
       // verify
       assert(result instanceof Rgb);
       assert(result !== color);
-      assert(result.hashCode() === new Hsl(240, 100, 50).hashCode());
+      assert(result.hashCode() === new Hsl(240, 1.0, 0.5).hashCode());
     });
   });
   
