@@ -1,5 +1,6 @@
 # Kolour
 
+[![npm version](https://badge.fury.io/js/kolour.svg)](https://badge.fury.io/js/kolour)
 [![Build Status](https://travis-ci.org/t28hub/kolour.svg?branch=master)](https://travis-ci.org/t28hub/kolour)
 
 Kolour is a fluent color conversion and manipulation library.
