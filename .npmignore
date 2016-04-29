@@ -1,0 +1,8 @@
+**/.*
+coverage
+node_modules
+test
+bower.json
+jsdoc.config.json
+karma.config.js
+webpack.config.babel.js
