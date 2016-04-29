@@ -9,21 +9,21 @@
   },
   "rules": {
     "no-console": [
-      "error"
+      2
     ],
     "max-len": [
-      "error",
+      2,
       160,
       4
     ],
     "no-trailing-spaces": [
-      "error",
+      2,
       {
         "skipBlankLines": true
       }
     ],
     "no-unused-vars": [
-      "error",
+      2,
       {
         "vars": "all",
         "args": "none"
